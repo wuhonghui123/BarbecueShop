@@ -70,24 +70,21 @@ public class finishPanel extends JPanel{
         container1.add(button3);
 
         /*--------------------------------查询订单--------------------------------*/
-        button1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String sql=new String();
-                try {
-                    int selectId=Integer.parseInt(text1.getText());
-                    sql = "SELECT * FROM adminItem where userId="+selectId+";";
-                }catch (Exception e1){
-                    sql="SELECT * FROM adminItem;";
-                }finally {
-                    DefaultTableModel tableModel=new DefaultTableModel(queryData(sql),TableHead){
-                        public boolean isCellEditable(int row, int column) {
-                            return false;
-                        }
-                    };
-                    table=new JTable(tableModel);
-                    scrollPanel.setViewportView(table);
-                }
+        button1.addActionListener(e -> {
+            String sql1 =new String();
+            try {
+                int selectId=Integer.parseInt(text1.getText());
+                sql1 = "SELECT * FROM adminItem where userId="+selectId+";";
+            }catch (Exception e1){
+                sql1 ="SELECT * FROM adminItem;";
+            }finally {
+                DefaultTableModel tableModel1 =new DefaultTableModel(queryData(sql1),TableHead){
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
+                    }
+                };
+                table=new JTable(tableModel1);
+                scrollPanel.setViewportView(table);
             }
         });
         /*--------------------------------查询订单--------------------------------*/
@@ -115,7 +112,7 @@ public class finishPanel extends JPanel{
 
     public Object[][] queryData(String sql) {
 
-        java.util.List<AdminOrderitem> list = new ArrayList<AdminOrderitem>();
+        java.util.List<AdminOrderitem> list = new ArrayList<>();
         Statement stmt = null;//SQL语句对象，拼SQL
         ResultSet rs = null;
         Connection conn=connection(sql);
