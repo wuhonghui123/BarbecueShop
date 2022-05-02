@@ -117,7 +117,7 @@ public class ShowOrder extends JFrame{
         jButton3.setBounds(550,350,100,30);
         jButton3.addActionListener(
                 (e)->{
-                    this.setVisible(false);
+                    dispose();
                 }
         );
 

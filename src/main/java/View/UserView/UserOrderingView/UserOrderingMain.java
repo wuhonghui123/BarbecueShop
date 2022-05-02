@@ -120,7 +120,7 @@ public class UserOrderingMain extends JFrame {
         contentPane.add(button5);
         button5.setBounds(600, 355, 130, 30);
         button5.addActionListener(
-                (e)-> this.setVisible(false)
+                (e)-> dispose()
         );
 
         button4.setText("购物车");
@@ -129,7 +129,7 @@ public class UserOrderingMain extends JFrame {
         button4.addActionListener(
                 (e)-> {
                     ShowOrder showOrder= new ShowOrder();
-                    showOrder.Show("`order`");
+                    showOrder.Show("`ordering`");
                 }
         );
 
