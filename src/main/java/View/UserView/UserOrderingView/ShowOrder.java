@@ -1,4 +1,4 @@
-package View.UserView;
+package View.UserView.UserOrderingView;
 
 import Order.*;
 import javax.swing.*;
@@ -22,8 +22,8 @@ public class ShowOrder extends JFrame{
         Connection conn=null;
         String user = "root";
         String dbPassword = "123456";
-        String url = "jdbc:mysql://120.25.164.209:3306/teashop?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
-        java.util.List<Order> list1 = new ArrayList<Order>();
+        String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+        java.util.List<Ordering> list1 = new ArrayList<Ordering>();
         try {
             conn = DriverManager.getConnection(url, user, dbPassword);
 //                conn=ConnectionHandler.getConn();
@@ -33,12 +33,12 @@ public class ShowOrder extends JFrame{
             PreparedStatement pstmt=conn.prepareStatement(sql);
             rs = pstmt.executeQuery(sql);
             while (rs.next()) {
-                Order order=new Order();
-                order.setId(rs.getInt(1));
-                order.setTitle(rs.getString(2));
-                order.setPrice(rs.getFloat(3));
-                order.setNumber(rs.getInt(4));
-                list1.add(order);
+                Ordering ordering =new Ordering();
+                ordering.setId(rs.getInt(1));
+                ordering.setTitle(rs.getString(2));
+                ordering.setPrice(rs.getFloat(3));
+                ordering.setNumber(rs.getInt(4));
+                list1.add(ordering);
             }
 
 
@@ -144,7 +144,7 @@ public class ShowOrder extends JFrame{
         pack();
         setLocationRelativeTo(getOwner());
         this.setBounds(300, 300, 1000, 450);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
 

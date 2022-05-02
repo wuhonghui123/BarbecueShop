@@ -15,7 +15,7 @@ public class ConnectionHandler {
             try {
                 String user = "root";
                 String dbPassword = "123456";
-                String url = "jdbc:mysql://120.25.164.209:3306/teashop?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+                String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
 
                 /*String user = "root";
                 String dbPassword = "123456";

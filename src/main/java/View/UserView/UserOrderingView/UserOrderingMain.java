@@ -1,8 +1,9 @@
-package View.UserView;
+package View.UserView.UserOrderingView;
 
 
 import Food.FoodItem;
 import Order.OrderDaoImpl;
+import View.UserView.ConnectionHandler;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -154,7 +155,8 @@ public class UserOrderingMain extends JFrame {
         pack();
         setLocationRelativeTo(getOwner());
         this.setBounds(300, 300, 1000, 415);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
     }
 
     public Object[][] getDataFromDatabase() {
@@ -165,7 +167,7 @@ public class UserOrderingMain extends JFrame {
         String dbPassword = "757722";
         String url = "jdbc:mysql://localhost:3306/teashop?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";*/
         Statement stmt = null;
-        String sql = "SELECT * FROM item";
+        String sql = "SELECT * FROM food";
         ResultSet rs = null;
         try {
             conn = ConnectionHandler.getConn();

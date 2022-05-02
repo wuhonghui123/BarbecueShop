@@ -13,5 +13,9 @@ public interface OrderDao {
     /*
     只规定能做什么
      */
-    void newOrder(Order order) throws SQLException;
+    void newOrder(Ordering ordering) throws SQLException;
+
+    void DeleteOrder(int id) throws SQLException;
+
+    float pay()throws SQLException;
 }

@@ -4,9 +4,7 @@
 
 package View.AdminView;
 
-import View.LoginView.Register;
-import View.UserView.UserOrder;
-import View.UserView.UserView;
+import View.AdminView.AdminOrderView.AdminOrder;
 
 import java.awt.*;
 import javax.swing.*;
@@ -56,4 +54,7 @@ public class AdminView extends JFrame {
     private JButton button1;
     private JButton button2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
+    public static void main(String[] args) {
+        new AdminView();
+    }
 }

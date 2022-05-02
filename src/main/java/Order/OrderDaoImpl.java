@@ -12,9 +12,9 @@ public class OrderDaoImpl implements OrderDao {
         float money=0;
         String user = "root";
         String dbPassword = "123456";
-        String url = "jdbc:mysql://120.25.164.209:3306/teashop?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+        String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
         conn = DriverManager.getConnection(url, user, dbPassword);
-        String sql="SELECT sum(price*number) FROM `order`";
+        String sql="SELECT sum(food_price*number) FROM `ordering`";
         Statement stmt = null;
         ResultSet rs = null;
         stmt = conn.createStatement();
@@ -30,9 +30,9 @@ public class OrderDaoImpl implements OrderDao {
         try {
             String user = "root";
             String dbPassword = "123456";
-            String url = "jdbc:mysql://120.25.164.209:3306/teashop?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+            String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
             conn = DriverManager.getConnection(url, user, dbPassword);
-            String sql="DELETE FROM `order` WHERE id=?";
+            String sql="DELETE FROM `ordering` WHERE food_id=?";
             PreparedStatement pstmt=conn.prepareStatement(sql);
             pstmt.setInt(1,id);
 
@@ -43,21 +43,21 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public void newOrder(Order order) throws SQLException{
+    public void newOrder(Ordering ordering) throws SQLException{
         try {
 //            conn= ConnectionHandler.getConn();
             String user = "root";
             String dbPassword = "123456";
-            String url = "jdbc:mysql://120.25.164.209:3306/teashop?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+            String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
             conn = DriverManager.getConnection(url, user, dbPassword);
 
-            String sql="INSERT INTO `order` VALUES(?,?,?,?)";
+            String sql="INSERT INTO `ordering` VALUES(?,?,?,?)";
             PreparedStatement pstmt=conn.prepareStatement(sql);
 
-            pstmt.setInt(1,order.getId());
-            pstmt.setString(2,order.getTitle());
-            pstmt.setFloat(3,order.getPrice());
-            pstmt.setInt(4,order.getNumber());
+            pstmt.setInt(1, ordering.getId());
+            pstmt.setString(2, ordering.getTitle());
+            pstmt.setFloat(3, ordering.getPrice());
+            pstmt.setInt(4, ordering.getNumber());
             /*pstmt.setString(1,order.getId());
             pstmt.setInt(2,order.getMch_id());
             pstmt.setString(3,order.getOut_trade_no());

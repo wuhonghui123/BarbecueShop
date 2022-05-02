@@ -2,7 +2,7 @@ package Order;
 
 import java.util.Objects;
 
-public class Order {
+public class Ordering {
     public int getId() {
         return id;
     }
@@ -38,8 +38,8 @@ public class Order {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Order order = (Order) o;
-        return id == order.id && number == order.number && Objects.equals(title, order.title) && Objects.equals(price, order.price);
+        Ordering ordering = (Ordering) o;
+        return id == ordering.id && number == ordering.number && Objects.equals(title, ordering.title) && Objects.equals(price, ordering.price);
     }
 
     @Override
@@ -47,14 +47,14 @@ public class Order {
         return Objects.hash(id, title, price, number);
     }
 
-    public Order(int id, String title, Float price, int number) {
+    public Ordering(int id, String title, Float price, int number) {
         this.id = id;
         this.title = title;
         this.price = price;
         this.number = number;
     }
 
-    public Order(){}
+    public Ordering(){}
 
     private int id;
     private String title;

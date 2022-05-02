@@ -1,27 +1,20 @@
-package View.UserView;
-
-
+package View.AdminView.AdminFoodView;
 
 import Food.FoodItem;
-import Order.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 /**
+ * @liwei
  */
-public class OrderItem1 extends JFrame {
-    Order order;
+public class UpdateFoodItem extends JFrame {
     FoodItem foodItem;
-    Connection conn=null;
 
-    public OrderItem1(FoodItem foodItem){
+    public UpdateFoodItem(FoodItem foodItem) {
         this.foodItem = foodItem;
         initComponents();
     }
-
 
     private void initComponents() {
         label1 = new JLabel();
@@ -36,11 +29,7 @@ public class OrderItem1 extends JFrame {
         textField5 = new JTextField();
         label6 = new JLabel();
         textField6 = new JTextField();
-        label7 = new JLabel();
-        textField7 = new JTextField();
         button1 = new JButton();
-        button2 = new JButton();
-
 
         //======== this ========
         JPanel contentPane = (JPanel) getContentPane();
@@ -87,52 +76,21 @@ public class OrderItem1 extends JFrame {
         textField5.setText(String.valueOf(foodItem.getSales()));
 
         //---- label6 ----
-        label6.setText("购买数量：");
+        label6.setText("\u5546\u54c1\u56fe\u7247\uff1a");
         contentPane.add(label6);
         label6.setBounds(240, 140, 90, 20);
         contentPane.add(textField6);
         textField6.setBounds(300, 140, 130, 20);
-
-
-
-        //---- label7 ----
-        label7.setText("\u5546\u54c1\u56fe\u7247\uff1a");
-        contentPane.add(label7);
-        label7.setBounds(20, 200, 90, 20);
-        contentPane.add(textField6);
-        textField7.setBounds(70, 200, 130, 20);
-        textField7.setText(foodItem.getImg_url());
+        textField6.setText(foodItem.getImg_url());
 
         //---- button1 ----
         button1.setText("保存");
         contentPane.add(button1);
-        button1.setBounds(150, 300, 100, 30);
+        button1.setBounds(200, 300, 100, 30);
         button1.addActionListener(
                 (e)->{
+                    System.out.println("准备保存");
                     // 执行UPDATE
-                    Order order=new Order();
-                    order.setId(Integer.parseInt(textField1.getText()));
-                    order.setTitle(textField2.getText());
-                    order.setPrice(Float.valueOf(textField3.getText()));
-                    order.setNumber(Integer.parseInt(textField6.getText()));
-
-                    OrderDao orderDaoImpl=new OrderDaoImpl();
-                    try {
-                        orderDaoImpl.newOrder(order);
-                    } catch (SQLException ex) {
-                        ex.printStackTrace();
-                    }
-
-                }
-        );
-
-        //---- button2 ----
-        button2.setText("返回");
-        contentPane.add(button2);
-        button2.setBounds(250, 300, 100, 30);
-        button2.addActionListener(
-                (e)->{
-                    this.setVisible(false);
                 }
         );
 
@@ -168,8 +126,5 @@ public class OrderItem1 extends JFrame {
     private JTextField textField5;
     private JLabel label6;
     private JTextField textField6;
-    private JLabel label7;
-    private JTextField textField7;
     private JButton button1;
-    private JButton button2;
 }

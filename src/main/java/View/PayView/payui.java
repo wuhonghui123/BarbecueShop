@@ -66,7 +66,7 @@ public class payui extends JFrame {
         //======== panel1 ========
         //添加二维码图片到窗口
         JLabel label = new JLabel();
-        label.setIcon(new ImageIcon("C:\\Users\\Wuhonghui\\Desktop\\wxpaydemo\\src\\main\\java\\image\\new.jpg"));
+        label.setIcon(new ImageIcon("src/main/java/image/二维码.jpg"));
         label.setBounds(0,0,300,300);
         panel1.add(label);
 

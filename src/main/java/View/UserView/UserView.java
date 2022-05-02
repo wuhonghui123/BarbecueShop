@@ -4,7 +4,8 @@
 
 package View.UserView;
 
-import View.AdminView.AdminView;
+import View.UserView.UserOrderView.UserOrder;
+import View.UserView.UserOrderingView.UserOrderingMain;
 
 import java.awt.*;
 import javax.swing.*;
@@ -30,7 +31,7 @@ public class UserView extends JFrame {
         button1.setText("\u70b9\u9910");
         contentPane.add(button1);
         button1.setBounds(new Rectangle(new Point(165, 210), button1.getPreferredSize()));
-        button2.addActionListener(e-> new UserOrderingMain()
+        button1.addActionListener(e-> new UserOrderingMain()
         );
 
         //---- button2 ----

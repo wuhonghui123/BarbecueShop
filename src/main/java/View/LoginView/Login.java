@@ -4,7 +4,7 @@
 
 package View.LoginView;
 
-import View.AdminView.AdminOrder;
+import View.AdminView.AdminOrderView.AdminOrder;
 import View.UserView.*;
 
 import java.awt.*;
