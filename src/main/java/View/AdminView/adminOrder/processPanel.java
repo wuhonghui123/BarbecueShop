@@ -92,6 +92,15 @@ public class processPanel extends JPanel{
         });
         /*--------------------------------查询订单--------------------------------*/
 
+        /*--------------------------------返回--------------------------------*/
+
+        button3.addActionListener(e -> {
+            AdminOrder.frame.dispose();
+            //上一层界面显示
+        });
+
+        /*--------------------------------返回--------------------------------*/
+
 
         north.add(container1);
         panel.add(north,BorderLayout.NORTH);

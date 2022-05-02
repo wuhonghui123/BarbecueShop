@@ -1,6 +1,7 @@
 package View.AdminView.adminOrder;
 
 import Bean.adminItem;
+import View.UserView.UserOrder.UserOrder;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -91,6 +92,15 @@ public class finishPanel extends JPanel{
             }
         });
         /*--------------------------------查询订单--------------------------------*/
+
+        /*--------------------------------返回--------------------------------*/
+
+        button3.addActionListener(e -> {
+            AdminOrder.frame.dispose();
+            //上一层界面显示
+        });
+
+        /*--------------------------------返回--------------------------------*/
 
 
         north.add(container1);

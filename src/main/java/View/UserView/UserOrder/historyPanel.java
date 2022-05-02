@@ -1,6 +1,7 @@
 package View.UserView.UserOrder;
 
 import Bean.History;
+import View.AdminView.adminOrder.AdminOrder;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -102,6 +103,15 @@ public class historyPanel extends JPanel {
         });
         /*--------------------------------查询订单--------------------------------*/
 
+
+        /*--------------------------------返回--------------------------------*/
+
+        button3.addActionListener(e -> {
+            UserOrder.frame.dispose();
+            //上一层界面显示
+        });
+
+        /*--------------------------------返回--------------------------------*/
 
         return panel;
     }

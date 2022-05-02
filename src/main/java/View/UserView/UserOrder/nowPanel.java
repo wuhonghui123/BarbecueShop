@@ -164,7 +164,6 @@ public class nowPanel extends JPanel {
 
         /*--------------------------------------删除部分----------------------------------------*/
 
-
         S_button2.addActionListener(new ActionListener() {
 
             @Override
@@ -205,6 +204,62 @@ public class nowPanel extends JPanel {
         });
 
         /*--------------------------------------删除部分----------------------------------------*/
+
+        /*--------------------------------------支付部分----------------------------------------*/
+
+        S_button1.addActionListener(e -> {
+            int count= table.getSelectedRow();
+            int getId=Integer.parseInt(table.getValueAt(count,0).toString());
+            String sql2=new String();
+            String sql3="update history set pay='是' where id="+getId;
+            Connection conn1 = connection(sql3);
+            try {
+                sql2="delete from item where id="+getId;
+                Statement stmt = null;//SQL语句对象，拼SQL
+                stmt = conn1.createStatement();
+                ResultSet rs = null;
+                stmt.executeUpdate(sql3);
+                DefaultTableModel tableModel1=new DefaultTableModel(queryData(sql2),TableHead){
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
+                    }
+                };
+                table=new JTable(tableModel1);
+                scrollPanel.setViewportView(table);
+
+
+            }catch (Exception e1){
+                e1.printStackTrace();
+                JDialog jDialog=new JDialog();
+                jDialog.setVisible(true);
+                jDialog.setLayout(new BorderLayout());
+                jDialog.setBounds(500,500,450,300);
+                JLabel lab=new JLabel("订单支付失败");
+                Font font=new Font("宋体",Font.PLAIN,28);
+                lab.setFont(font);
+                jDialog.add(lab, JLabel.CENTER);
+                JButton button=new JButton("确定");
+                button.setBounds(450,450,20,10);
+                jDialog.add(button,BorderLayout.SOUTH);
+                button.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        jDialog.dispose();
+                    }
+                });
+            }
+        });
+
+        /*--------------------------------------支付部分----------------------------------------*/
+
+        /*---------------------------------------返回------------------------------------------*/
+
+        button3.addActionListener(e -> {
+            UserOrder.frame.dispose();
+            //上一层界面显示
+        });
+
+        /*--------------------------------返回--------------------------------*/
 
 
         return panel;

@@ -6,7 +6,7 @@ import javax.swing.*;
 public class AdminOrder {
     String sql1="select * from adminItem;";
     String sql2="select * from adminItem;";
-    JFrame frame=new JFrame("商家订单信息");
+    static JFrame frame=new JFrame("商家订单信息");
     JPanel panel1=new processPanel().init(sql1);
     JPanel panel2=new finishPanel().init(sql2);
 

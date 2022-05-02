@@ -6,7 +6,7 @@ import javax.swing.*;
 public class UserOrder {
     String sql1="select * from item;";
     String sql2="select * from history;";
-    JFrame frame=new JFrame("订单信息");
+    static JFrame frame=new JFrame("订单信息");
     JPanel panel1=new nowPanel().init(sql1);
     JPanel panel2=new historyPanel().init(sql2);
 
