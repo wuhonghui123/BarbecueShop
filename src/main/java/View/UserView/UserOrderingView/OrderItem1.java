@@ -40,6 +40,7 @@ public class OrderItem1 extends JFrame {
         textField7 = new JTextField();
         button1 = new JButton();
         button2 = new JButton();
+        panel1 = new JPanel();
 
 
         //======== this ========
@@ -99,9 +100,22 @@ public class OrderItem1 extends JFrame {
         label7.setText("\u5546\u54c1\u56fe\u7247\uff1a");
         contentPane.add(label7);
         label7.setBounds(20, 200, 90, 20);
-        contentPane.add(textField6);
-        textField7.setBounds(70, 200, 130, 20);
-        textField7.setText(foodItem.getImg_url());
+       // contentPane.add(textField6);
+       // textField7.setBounds(70, 200, 130, 20);
+       // textField7.setText(foodItem.getImg_url());
+
+
+        ImageIcon icon = new ImageIcon(foodItem.getImg_url());//图片地址
+        JLabel label = new JLabel();
+        label.setIcon(icon);
+        label.setBounds(0,0,120,120);//图片在面板中的位置和大小
+        panel1.add(label);
+        contentPane.add(panel1);
+        panel1.setBounds(100, 170, 120, 120);//放置图片的面板的位置和大小
+
+
+
+
 
         //---- button1 ----
         button1.setText("保存");
@@ -122,6 +136,7 @@ public class OrderItem1 extends JFrame {
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                     }
+                    dispose();
 
                 }
         );
@@ -132,7 +147,7 @@ public class OrderItem1 extends JFrame {
         button2.setBounds(250, 300, 100, 30);
         button2.addActionListener(
                 (e)->{
-                    this.setVisible(false);
+                    dispose();
                 }
         );
 
@@ -174,4 +189,5 @@ public class OrderItem1 extends JFrame {
     private JTextField textField7;
     private JButton button1;
     private JButton button2;
+    private JPanel panel1;
 }
