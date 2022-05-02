@@ -1,4 +1,6 @@
-package User.UserOrder;
+package View.AdminView.adminOrder;
+
+import Bean.adminItem;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -8,13 +10,12 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class historyPanel extends JPanel {
+public class finishPanel extends JPanel{
     private JScrollPane scrollPanel=null;
-    private String TableHead[] = {"订单号","商品号","商品名称","订单数量","订单提交日期","订单金额"};
+    private String TableHead[] = {"用户ID","订单号","商品号","商品名称","订单数量","订单提交日期","订单金额"};
     private Object[][] data = null;
     private JTable table=new JTable();
     public JPanel init(String sql){
-
         JPanel panel=new JPanel();
         //JPanel mainPanel=new JPanel();
         panel.setLayout(new BorderLayout());
@@ -53,28 +54,20 @@ public class historyPanel extends JPanel {
 
         JPanel north=new JPanel();
         Container container1=new Container();//容器，存放上面板所用
-        JLabel label1=new JLabel("订单号");
+        JLabel label1=new JLabel("用户ID");
         JButton button1=new JButton("查询");
         JButton button3=new JButton("返回");
         JTextField text1=new JTextField();
         JLabel text2=new JLabel("");
-        container1.setLayout(new GridLayout(1,12));
+        JLabel text3=new JLabel("");
+        JLabel label5=new JLabel("");
+        JLabel label4=new JLabel("");
+        container1.setLayout(new GridLayout(1,5));
         container1.add(label1);
         container1.add(text1);
         container1.add(button1);
-        container1.add(text2);
-        container1.add(text2);
-        container1.add(text2);
-        container1.add(text2);
-        container1.add(text2);
-        container1.add(text2);
-        container1.add(text2);
-        container1.add(new JLabel(""));
+        container1.add(label4);
         container1.add(button3);
-        north.add(container1);
-        panel.add(north,BorderLayout.NORTH);
-        /*--------------------------------------上方部分----------------------------------------*/
-
 
         /*--------------------------------查询订单--------------------------------*/
         button1.addActionListener(new ActionListener() {
@@ -83,9 +76,9 @@ public class historyPanel extends JPanel {
                 String sql=new String();
                 try {
                     int selectId=Integer.parseInt(text1.getText());
-                    sql = "SELECT * FROM history where id="+selectId+";";
+                    sql = "SELECT * FROM adminItem where userId="+selectId+";";
                 }catch (Exception e1){
-                    sql="SELECT * FROM history;";
+                    sql="SELECT * FROM adminItem;";
                 }finally {
                     DefaultTableModel tableModel=new DefaultTableModel(queryData(sql),TableHead){
                         public boolean isCellEditable(int row, int column) {
@@ -100,8 +93,13 @@ public class historyPanel extends JPanel {
         /*--------------------------------查询订单--------------------------------*/
 
 
+        north.add(container1);
+        panel.add(north,BorderLayout.NORTH);
+        /*--------------------------------------上方部分----------------------------------------*/
+
         return panel;
     }
+
     private Connection connection(String sql){
         Connection conn = null;
         String user = "root";
@@ -117,7 +115,7 @@ public class historyPanel extends JPanel {
 
     public Object[][] queryData(String sql) {
 
-        java.util.List<Item> list = new ArrayList<Item>();
+        java.util.List<adminItem> list = new ArrayList<adminItem>();
         Statement stmt = null;//SQL语句对象，拼SQL
         ResultSet rs = null;
         Connection conn=connection(sql);
@@ -127,18 +125,19 @@ public class historyPanel extends JPanel {
                 rs = stmt.executeQuery(sql);
             }else {
                 stmt.executeUpdate(sql);
-                rs = stmt.executeQuery("select * from history");
+                rs = stmt.executeQuery("select * from adminItem");
             }
             while (rs.next()) {
                 //每循环一次就是一个对象，把这个对象放入容器（List（有序可重复）、Set（无序不可重复）、Map（key、value结构）
-                Item item = new Item();
-                item.setId(rs.getInt(1));
-                item.setItemId(rs.getInt(2));
-                item.setNaem(rs.getString(3));
-                item.setNumber(rs.getInt(4));
-                item.setSubDate(rs.getTimestamp(5));
-                item.setScore(rs.getInt(6));
-                list.add(item);
+                adminItem adminItem = new adminItem();
+                adminItem.setUserId(rs.getInt(1));
+                adminItem.setId(rs.getInt(2));
+                adminItem.setItemId(rs.getInt(3));
+                adminItem.setNaem(rs.getString(4));
+                adminItem.setNumber(rs.getInt(5));
+                adminItem.setSubDate(rs.getTimestamp(6));
+                adminItem.setScore(rs.getInt(7));
+                list.add(adminItem);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -154,16 +153,18 @@ public class historyPanel extends JPanel {
 
         }
 
+
         Object[][] data = new Object[list.size()][TableHead.length];
         //把集合里的数据放入Obejct这个二维数组
         for (int i = 0; i < list.size(); i++) {
             for (int k = 0; k < TableHead.length; k++) {
-                data[i][0] = list.get(i).getId();
-                data[i][1] = list.get(i).getItemId();
-                data[i][2] = list.get(i).getNaem();
-                data[i][3] = list.get(i).getNumber();
-                data[i][4] = list.get(i).getSubDate();
-                data[i][5] = list.get(i).getScore();
+                data[i][0] = list.get(i).getUserId();
+                data[i][1] = list.get(i).getId();
+                data[i][2] = list.get(i).getItemId();
+                data[i][3] = list.get(i).getNaem();
+                data[i][4] = list.get(i).getNumber();
+                data[i][5] = list.get(i).getSubDate();
+                data[i][6] = list.get(i).getScore();
             }
         }
         return data;

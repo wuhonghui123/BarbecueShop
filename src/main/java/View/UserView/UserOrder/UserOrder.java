@@ -1,6 +1,5 @@
-package User.UserOrder;
+package View.UserView.UserOrder;
 
-import User.UserOrder.nowPanel;
 
 import javax.swing.*;
 

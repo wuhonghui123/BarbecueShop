@@ -1,4 +1,6 @@
-package admin.adminOrder;
+package View.AdminView.adminOrder;
+
+import Bean.adminItem;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -8,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class finishPanel extends JPanel{
+public class processPanel extends JPanel{
     private JScrollPane scrollPanel=null;
     private String TableHead[] = {"用户ID","订单号","商品号","商品名称","订单数量","订单提交日期","订单金额"};
     private Object[][] data = null;
@@ -52,7 +54,7 @@ public class finishPanel extends JPanel{
 
         JPanel north=new JPanel();
         Container container1=new Container();//容器，存放上面板所用
-        JLabel label1=new JLabel("用户ID");
+        JLabel label1=new JLabel("用户Id");
         JButton button1=new JButton("查询");
         JButton button3=new JButton("返回");
         JTextField text1=new JTextField();

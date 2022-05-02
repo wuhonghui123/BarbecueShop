@@ -1,6 +1,6 @@
-package User.UserOrder;
+package View.UserView.UserOrder;
 
-import User.UserOrder.Item;
+import Bean.Item;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

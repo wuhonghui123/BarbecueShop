@@ -1,4 +1,4 @@
-package admin.adminOrder;
+package View.AdminView.adminOrder;
 
 
 import javax.swing.*;
