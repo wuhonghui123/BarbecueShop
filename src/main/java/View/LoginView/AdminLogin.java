@@ -4,7 +4,7 @@ package View.LoginView;
 import java.awt.*;
 import javax.swing.*;
 import View.AdminView.MainAdminView;
-
+//管理员登录界面
 /**
  * @author 1
  */
@@ -27,14 +27,14 @@ public class AdminLogin extends JFrame {
         contentPane.setLayout(null);
 
         //---- label1 ----
-        label1.setText("text");
+        label1.setText("账号");
         contentPane.add(label1);
         label1.setBounds(new Rectangle(new Point(85, 75), label1.getPreferredSize()));
         contentPane.add(textField1);
         textField1.setBounds(150, 70, 100, textField1.getPreferredSize().height);
 
         //---- label2 ----
-        label2.setText("text");
+        label2.setText("密码");
         contentPane.add(label2);
         label2.setBounds(new Rectangle(new Point(85, 130), label2.getPreferredSize()));
         contentPane.add(textField2);
@@ -55,7 +55,8 @@ public class AdminLogin extends JFrame {
         contentPane.add(button2);
         button2.setBounds(225, 195, 80, button2.getPreferredSize().height);
         button2.addActionListener(e -> {//点击按钮执行操作
-            new AdminRegister(); //打开新窗口
+            dispose();
+            new AdminRegister();//打开新窗口
 
         });
 

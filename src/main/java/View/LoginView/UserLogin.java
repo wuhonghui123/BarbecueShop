@@ -7,6 +7,7 @@ package View.LoginView;
 import java.awt.*;
 import javax.swing.*;
 import View.UserView.MainUserView;
+//用户登录界面
 /**
  * @author 1
  */
@@ -29,21 +30,21 @@ public class UserLogin extends JFrame {
         contentPane.setLayout(null);
 
         //---- label1 ----
-        label1.setText("text");
+        label1.setText("账号");
         contentPane.add(label1);
         label1.setBounds(new Rectangle(new Point(95, 85), label1.getPreferredSize()));
         contentPane.add(textField1);
         textField1.setBounds(165, 80, 95, textField1.getPreferredSize().height);
 
         //---- label2 ----
-        label2.setText("text");
+        label2.setText("密码");
         contentPane.add(label2);
         label2.setBounds(new Rectangle(new Point(90, 150), label2.getPreferredSize()));
         contentPane.add(textField2);
         textField2.setBounds(170, 145, 90, textField2.getPreferredSize().height);
 
         //---- button1 ----
-        button1.setText("text");
+        button1.setText("登录");
         contentPane.add(button1);
         button1.setBounds(new Rectangle(new Point(110, 200), button1.getPreferredSize()));
         button1.addActionListener(e -> {//点击按钮执行操作
@@ -53,7 +54,7 @@ public class UserLogin extends JFrame {
         });
 
         //---- button2 ----
-        button2.setText("text");
+        button2.setText("注册");
         contentPane.add(button2);
         button2.setBounds(new Rectangle(new Point(230, 200), button2.getPreferredSize()));
         button2.addActionListener(e -> {//点击按钮执行操作
