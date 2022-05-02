@@ -78,7 +78,7 @@ public class UserOrderitem {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Order.UserOrderitem item = (UserOrderitem) o;
+        UserOrderitem item = (UserOrderitem) o;
         return id == item.id && itemId == item.itemId && number == item.number && score == item.score && Objects.equals(naem, item.naem) && Objects.equals(subDate, item.subDate);
     }
 

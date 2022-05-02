@@ -86,7 +86,7 @@ public class AdminOrderitem {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Order.AdminOrderitem AdminOrderitem = (Order.AdminOrderitem) o;
+        AdminOrderitem AdminOrderitem = (AdminOrderitem) o;
         return UserId == AdminOrderitem.UserId && id == AdminOrderitem.id && itemId == AdminOrderitem.itemId && number == AdminOrderitem.number && score == AdminOrderitem.score && Objects.equals(naem, AdminOrderitem.naem) && Objects.equals(subDate, AdminOrderitem.subDate);
     }
 
