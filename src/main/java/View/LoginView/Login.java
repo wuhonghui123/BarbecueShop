@@ -40,7 +40,7 @@ public class Login extends JFrame {
         button1.addActionListener(e-> {
             if (radioButton1.isSelected()) {
                 dispose();//关闭当前界面
-                new UserOrder().init();//打开新界面
+                new UserView();//打开新界面
             } else if (radioButton2.isSelected()) {
                 dispose();//关闭当前界面
                 new AdminOrder().init();//打开新界面

@@ -30,7 +30,7 @@ public class UserView extends JFrame {
         button1.setText("\u70b9\u9910");
         contentPane.add(button1);
         button1.setBounds(new Rectangle(new Point(165, 210), button1.getPreferredSize()));
-        button2.addActionListener(e-> new UserOrder().init()
+        button2.addActionListener(e-> new UserOrderingMain()
         );
 
         //---- button2 ----
@@ -40,22 +40,12 @@ public class UserView extends JFrame {
         button2.addActionListener(e-> new UserOrder().init()
         );
 
-        {
-            // compute preferred size
-            Dimension preferredSize = new Dimension();
-            for(int i = 0; i < contentPane.getComponentCount(); i++) {
-                Rectangle bounds = contentPane.getComponent(i).getBounds();
-                preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
-                preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
-            }
-            Insets insets = contentPane.getInsets();
-            preferredSize.width += insets.right;
-            preferredSize.height += insets.bottom;
-            contentPane.setMinimumSize(preferredSize);
-            contentPane.setPreferredSize(preferredSize);
-        }
+        contentPane.setPreferredSize(new Dimension(800, 600));//窗口大小
         pack();
         setLocationRelativeTo(getOwner());
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//设置默认关闭操作
+        this.setResizable(false);//锁定窗口大小
+        this.setVisible(true);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
