@@ -1,5 +1,6 @@
 package Pay;
 
+import Order.OrderDaoImpl;
 import sdk.WXPayUtil;
 import util.DateUtil;
 import com.google.zxing.BarcodeFormat;
@@ -15,6 +16,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedMap;
@@ -57,7 +59,7 @@ public class WXPay {
         map.put("attach", "订单额外描述");
         map.put("auth_code", auth_code);
         map.put("body", "小米手机");
-        map.put("device_info", "桂电1号店");
+        map.put("device_info", "蓝桥第6组");
         map.put("nonce_str", WXPayUtil.generateNonceStr());
         map.put("out_trade_no", out_trade_no);
         map.put("spbill_create_ip", spbill_create_ip);
@@ -157,9 +159,15 @@ public class WXPay {
         }
         String spbill_create_ip = addr.getHostAddress();
         //支付金额，需要转成字符串类型，否则后面的签名会失败
-        int total_fee = 1;//100分：1块钱
+        OrderDaoImpl pay = new OrderDaoImpl();
+        int total_fee = 0;//100分：1块钱
+        try {
+            total_fee = (int) pay.pay()*100;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         //商品描述
-        String body = "路由器";
+        String body = "祥麟烧烤";
         //商户订单号
         String out_trade_no = WXPayUtil.generateNonceStr();
         //统一下单接口参数
@@ -187,7 +195,7 @@ public class WXPay {
 
     public static void createQRCode(Map<String, String> map) throws Exception {
 
-        File outputFile = new File("src/main/java/image" + File.separator + "二维码.jpg");
+        File outputFile = new File("src/main/java/image" + File.separator + "二维码2.jpg");
         FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
         String url = map.get("code_url");
         System.out.println("生成二维码的url：" + url);

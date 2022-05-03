@@ -156,42 +156,38 @@ public class nowPanel extends JPanel {
         /*--------------------------------------删除部分----------------------------------------*/
 
 
-        S_button2.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int count= table.getSelectedRow();
-                int getId=Integer.parseInt(table.getValueAt(count,0).toString());
-                String sql2=new String();
-                try {
-                    sql2="delete from item where id="+getId;
-                    DefaultTableModel tableModel1=new DefaultTableModel(queryData(sql2),TableHead){
-                        public boolean isCellEditable(int row, int column) {
-                            return false;
-                        }
-                    };
-                    table=new JTable(tableModel1);
-                    scrollPanel.setViewportView(table);
-                }catch (Exception e1){
-                    e1.printStackTrace();
-                    JDialog jDialog=new JDialog();
-                    jDialog.setVisible(true);
-                    jDialog.setLayout(new BorderLayout());
-                    jDialog.setBounds(500,500,450,300);
-                    JLabel lab=new JLabel("您未输入订单id或者修改的数量");
-                    Font font=new Font("宋体",Font.PLAIN,28);
-                    lab.setFont(font);
-                    jDialog.add(lab, JLabel.CENTER);
-                    JButton button=new JButton("确定");
-                    button.setBounds(450,450,20,10);
-                    jDialog.add(button,BorderLayout.SOUTH);
-                    button.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            jDialog.dispose();
-                        }
-                    });
-                }
+        S_button2.addActionListener(e -> {
+            int count= table.getSelectedRow();
+            int getId=Integer.parseInt(table.getValueAt(count,0).toString());
+            String sql2=new String();
+            try {
+                sql2="delete from item where id="+getId;
+                DefaultTableModel tableModel1=new DefaultTableModel(queryData(sql2),TableHead){
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
+                    }
+                };
+                table=new JTable(tableModel1);
+                scrollPanel.setViewportView(table);
+            }catch (Exception e1){
+                e1.printStackTrace();
+                JDialog jDialog=new JDialog();
+                jDialog.setVisible(true);
+                jDialog.setLayout(new BorderLayout());
+                jDialog.setBounds(500,500,450,300);
+                JLabel lab=new JLabel("您未输入订单id或者修改的数量");
+                Font font=new Font("宋体",Font.PLAIN,28);
+                lab.setFont(font);
+                jDialog.add(lab, JLabel.CENTER);
+                JButton button=new JButton("确定");
+                button.setBounds(450,450,20,10);
+                jDialog.add(button,BorderLayout.SOUTH);
+                button.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        jDialog.dispose();
+                    }
+                });
             }
         });
 

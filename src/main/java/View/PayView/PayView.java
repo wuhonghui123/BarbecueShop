@@ -4,14 +4,17 @@ package View.PayView;
  * Created by JFormDesigner on Mon May 02 16:21:21 CST 2022
  */
 
+import Order.OrderDaoImpl;
+
 import java.awt.*;
+import java.sql.SQLException;
 import javax.swing.*;
 
 /**
  * @author 1
  */
-public class payui extends JFrame {
-    public payui() {
+public class PayView extends JFrame {
+    public PayView() {
         initComponents();
     }
 
@@ -29,7 +32,7 @@ public class payui extends JFrame {
         //======== this ========
         var contentPane = getContentPane();
         contentPane.setLayout(null);
-
+        OrderDaoImpl pay = new OrderDaoImpl();
         //---- label1 ----
         label1.setText("商品描述");
         contentPane.add(label1);
@@ -44,7 +47,11 @@ public class payui extends JFrame {
         contentPane.add(label2);
         label2.setBounds(new Rectangle(new Point(90, 95), label2.getPreferredSize()));
 
-        textField2.setText("10.00");
+        try {
+            textField2.setText(String.valueOf(pay.pay()));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         contentPane.add(textField2);
         textField2.setBounds(new Rectangle(new Point(155, 100), textField2.getPreferredSize()));
 
@@ -76,7 +83,7 @@ public class payui extends JFrame {
         contentPane.setPreferredSize(new Dimension(600, 400));//窗口大小
         pack();
         setLocationRelativeTo(getOwner());
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//设置默认关闭操作
+       // this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//设置默认关闭操作
         this.setResizable(false);//锁定窗口大小
         this.setVisible(true);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -93,7 +100,7 @@ public class payui extends JFrame {
     private JPanel panel1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
     public static void main(String[] args) {
-        new payui();
+        new PayView();
     }
 }
 

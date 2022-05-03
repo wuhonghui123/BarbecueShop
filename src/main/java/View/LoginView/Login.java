@@ -6,6 +6,7 @@ package View.LoginView;
 
 import View.AdminView.AdminOrderView.AdminOrder;
 import View.UserView.*;
+import View.UserView.UserOrderView.UserOrder;
 
 import java.awt.*;
 import javax.swing.*;
@@ -26,7 +27,7 @@ public class Login extends JFrame {
         radioButton2 = new JRadioButton();
         label1 = new JLabel();
         label2 = new JLabel();
-        textField1 = new JTextField();
+        textField1 = new JTextField(1111);
         textField2 = new JTextField();
 
         //======== this ========
@@ -40,7 +41,7 @@ public class Login extends JFrame {
         button1.addActionListener(e-> {
             if (radioButton1.isSelected()) {
                 dispose();//关闭当前界面
-                new UserView();//打开新界面
+                new UserOrder().init();//打开新界面
             } else if (radioButton2.isSelected()) {
                 dispose();//关闭当前界面
                 new AdminOrder().init();//打开新界面

@@ -7,7 +7,7 @@ public class OrderDaoImpl implements OrderDao {
     Connection conn=null;
 
 
-
+@Override
     public float pay()throws SQLException{
         float money=0;
         String user = "root";
@@ -21,11 +21,10 @@ public class OrderDaoImpl implements OrderDao {
         rs = stmt.executeQuery(sql);
         while (rs.next()) {
             money= rs.getFloat(1);
-            System.out.println(money);
         }
         return money;
     }
-
+@Override
     public  void DeleteOrder(int id) throws SQLException{
         try {
             String user = "root";

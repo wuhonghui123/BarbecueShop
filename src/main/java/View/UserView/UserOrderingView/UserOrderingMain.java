@@ -17,23 +17,22 @@ import java.util.ArrayList;
 
 /**
  */
-public class UserOrderingMain extends JFrame {
-    Connection conn=null;
-    public UserOrderingMain() {
-        initComponents();
-    }
+public class UserOrderingMain extends JPanel {
+  //  Connection conn=null;
+    private JLabel label1 = new JLabel();
+    private JButton button5 = new JButton();
+    private JButton button1 = new JButton();
+    private JButton button3 = new JButton();
+    private JButton button4 = new JButton();
+    private Object[][] data = null;
+    private JScrollPane scrollPane1 = new JScrollPane();
+    private JTable table1 = new JTable();
+    private String head[] = {"id","商品名称", "单价", "描述", "促销价", "商品图片"};
 
-    private void initComponents() {
-        scrollPane1 = new JScrollPane();
-        table1 = new JTable();
-        button1 = new JButton();
-        button2 = new JButton();
-        button3 = new JButton();
-        button4 = new JButton();
-        button5 = new JButton();
-        label1 = new JLabel();
+    public JPanel init() {
 
-
+        JPanel panel=new JPanel();
+        panel.setLayout(new BorderLayout());
         DefaultTableModel tableModel = new DefaultTableModel(getDataFromDatabase(), head) {
             public boolean isCellEditable(int row, int column) {
                 return false;
@@ -42,19 +41,18 @@ public class UserOrderingMain extends JFrame {
         table1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         table1.setModel(tableModel);
 
-        JPanel contentPane = (JPanel) getContentPane();
-        contentPane.setLayout(null);
+
 
         label1.setFont(new
                 Font("STHeiti Light", Font.BOLD,
                 30));
         label1.setText("商品信息");
-        contentPane.add(label1);
+       // panel.add(label1);
         label1.setBounds(460, 0, 600, 60);
 
         button1.setText("支付");
-        contentPane.add(button1);
-        button1.setBounds(500, 355, 100, 30);
+        panel.add(button1);
+        button1.setBounds(500, 360, 100, 30);
         button1.addActionListener(
                 (e)->{
                     OrderDaoImpl orderDao=new OrderDaoImpl();
@@ -87,9 +85,9 @@ public class UserOrderingMain extends JFrame {
         );*/
 
         button3.setText("购买");
-        contentPane.add(button3);
+        panel.add(button3);
 //        button3.setBounds(510, 355, 100, 30);
-        button3.setBounds(300, 355, 100, 30);
+        button3.setBounds(300, 360, 100, 30);
         button3.addActionListener(
                 (e)->{
                     int rowNo = table1.getSelectedRow();//获取所选的行号
@@ -117,15 +115,16 @@ public class UserOrderingMain extends JFrame {
         );
 
         button5.setText("返回");
-        contentPane.add(button5);
-        button5.setBounds(600, 355, 130, 30);
-        button5.addActionListener(
-                (e)-> dispose()
+        panel.add(button5);
+        button5.setBounds(600, 360, 130, 30);
+        button5.addActionListener((e)-> {
+                    //dispose()
+                }
         );
 
         button4.setText("购物车");
-        contentPane.add(button4);
-        button4.setBounds(400, 355, 100, 30);
+        panel.add(button4);
+        button4.setBounds(400, 360, 100, 30);
         button4.addActionListener(
                 (e)-> {
                     ShowOrder showOrder= new ShowOrder();
@@ -137,26 +136,23 @@ public class UserOrderingMain extends JFrame {
         {
             scrollPane1.setViewportView(table1);//增加滚动条
         }
-        contentPane.add(scrollPane1);
-        scrollPane1.setBounds(0, 50, 1000, 300);
+        panel.add(scrollPane1);
+        scrollPane1.setBounds(0, 0, 1000, 300);
         {
+            // compute preferred size
             Dimension preferredSize = new Dimension();
-            for (int i = 0; i < contentPane.getComponentCount(); i++) {
-                Rectangle bounds = contentPane.getComponent(i).getBounds();
+            for (int i = 0; i < panel.getComponentCount(); i++) {
+                Rectangle bounds = panel.getComponent(i).getBounds();
                 preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
                 preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
             }
-            Insets insets = contentPane.getInsets();
+            Insets insets = panel.getInsets();
             preferredSize.width += insets.right;
             preferredSize.height += insets.bottom;
-            contentPane.setMinimumSize(preferredSize);
-            contentPane.setPreferredSize(preferredSize);
+            panel.setMinimumSize(preferredSize);
+            panel.setPreferredSize(preferredSize);
         }
-        pack();
-        setLocationRelativeTo(getOwner());
-        this.setBounds(300, 300, 1000, 415);
-        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(true);
+        return panel;
     }
 
     public Object[][] getDataFromDatabase() {
@@ -210,18 +206,6 @@ public class UserOrderingMain extends JFrame {
         }
         return data;
     }
-
-    private JScrollPane scrollPane1;
-    private JTable table1;
-    private String head[] = {"id","商品名称", "单价", "描述", "促销价", "商品图片"};
-    private Object[][] data = null;
-    private JButton button1;
-    private JButton button2;
-    private JButton button3;
-    private JButton button4;
-    private JButton button5;
-    private JLabel label1;
-
     public static void main(String[] args) {
         new UserOrderingMain();
     }

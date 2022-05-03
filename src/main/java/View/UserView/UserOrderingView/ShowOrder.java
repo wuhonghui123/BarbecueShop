@@ -1,6 +1,8 @@
 package View.UserView.UserOrderingView;
 
 import Order.*;
+import View.PayView.PayView;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -8,17 +10,18 @@ import java.sql.*;
 import java.util.ArrayList;
 
 
-public class ShowOrder extends JFrame{
+public class ShowOrder extends JPanel{
     JScrollPane scrollPane1 = new JScrollPane();
     JTable table1 = new JTable();
     JLabel label1 = new JLabel();
     JButton jButton1=new JButton();
     JButton jButton2=new JButton();
     JButton jButton3=new JButton();
+    JPanel jPanel2 = new JPanel();
 
     private String head[] = {"id", "商品名称", "单价", "数量"};
     private Object[][] data = null;
-    public void Show(String name){
+    public JPanel Show(String name){
         Connection conn=null;
         String user = "root";
         String dbPassword = "123456";
@@ -67,21 +70,21 @@ public class ShowOrder extends JFrame{
         table1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         table1.setModel(tableModel);
 
-        JPanel contentPane = (JPanel) getContentPane();
-        contentPane.setLayout(null);
+        JPanel panel=new JPanel();
+        panel.setLayout(new BorderLayout());
 
         label1.setFont(new
                 Font("STHeiti Light", Font.BOLD,
                 30));
         label1.setText("购物车");
-        contentPane.add(label1);
+      //  panel.add(label1);
         label1.setBounds(460, 0, 600, 60);
 
 
         //this jButton1
         jButton1.setText("删除");
-        this.add(jButton1);
-        jButton1.setBounds(350,350,100,30);
+        panel.add(jButton1);
+        jButton1.setBounds(350,500,100,30);
         jButton3.addActionListener(
                 (e)-> {
                     OrderDaoImpl orderDao=new OrderDaoImpl();
@@ -98,13 +101,14 @@ public class ShowOrder extends JFrame{
 
         //this jButton2
         jButton2.setText("支付");
-        this.add(jButton2);
-        jButton2.setBounds(450,350,100,30);
+        panel.add(jButton2);
+        jButton2.setBounds(450,500,100,30);
         jButton2.addActionListener(
                 (e)->{
                     OrderDaoImpl orderDao=new OrderDaoImpl();
                     try {
                         orderDao.pay();
+                        new PayView();
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                     }
@@ -113,11 +117,11 @@ public class ShowOrder extends JFrame{
 
         //this jButton3
         jButton3.setText("返回");
-        this.add(jButton3);
-        jButton3.setBounds(550,350,100,30);
+        panel.add(jButton3);
+        jButton3.setBounds(550,500,100,30);
         jButton3.addActionListener(
                 (e)->{
-                    dispose();
+                   // dispose();
                 }
         );
 
@@ -125,27 +129,28 @@ public class ShowOrder extends JFrame{
         {
             scrollPane1.setViewportView(table1);//增加滚动条
         }
-        contentPane.add(scrollPane1);
-        scrollPane1.setBounds(0, 50, 1000, 300);
+        jPanel2.add(scrollPane1);
+        panel.add(jPanel2);
+        scrollPane1.setBounds(0, 150, 1000, 600);
+        jPanel2.setBounds(0,150,1000,600);
 
+        //
         {
+            // compute preferred size
             Dimension preferredSize = new Dimension();
-            for (int i = 0; i < contentPane.getComponentCount(); i++) {
-                Rectangle bounds = contentPane.getComponent(i).getBounds();
+            for (int i = 0; i < panel.getComponentCount(); i++) {
+                Rectangle bounds = panel.getComponent(i).getBounds();
                 preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
                 preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
             }
-            Insets insets = contentPane.getInsets();
+            Insets insets = panel.getInsets();
             preferredSize.width += insets.right;
             preferredSize.height += insets.bottom;
-            contentPane.setMinimumSize(preferredSize);
-            contentPane.setPreferredSize(preferredSize);
+            panel.setMinimumSize(preferredSize);
+            panel.setPreferredSize(preferredSize);
         }
-        pack();
-        setLocationRelativeTo(getOwner());
-        this.setBounds(300, 300, 1000, 450);
-        //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(true);
+
+return panel;
     }
 
 }
