@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 /**
  */
-public class UserOrderingMain extends JPanel {
+public class UserOrdering extends JPanel {
   //  Connection conn=null;
     private JLabel label1 = new JLabel();
     private JButton button5 = new JButton();

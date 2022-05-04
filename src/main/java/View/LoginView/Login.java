@@ -4,10 +4,8 @@
 
 package View.LoginView;
 
-import View.AdminView.AdminOrderView.*;
 import View.AdminView.AdminOrderView.AdminOrder;
-import View.UserView.*;
-import View.UserView.UserOrderView.UserOrder;
+import View.UserView.UserOrderView.UserMain;
 
 import java.awt.*;
 import java.sql.*;
@@ -58,7 +56,7 @@ public class Login extends JFrame {
                     if (rs.next()) {
                         //System.out.println("登录成功");
                         dispose();//关闭当前界面
-                        new UserOrder().init(userid);//打开新界面，并传递一个ID给新界面
+                        new UserMain().init(userid);//打开新界面，并传递一个ID给新界面
                         this.setVisible(false);
                     } else {
                         JOptionPane.showMessageDialog(null, "账号或密码错误");
