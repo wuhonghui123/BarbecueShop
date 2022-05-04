@@ -42,13 +42,13 @@ public class Login extends JFrame {
         button1.setBounds(new Rectangle(new Point(165, 315), button1.getPreferredSize()));
         button1.addActionListener(e-> {
             if (radioButton1.isSelected()) {
-                String username = textField1.getText();
+                String userid = textField1.getText();
                 String password = textField2.getText();
                 String user = "root";
                 String dbPassword = "123456";
                 String url = "jdbc:mysql://120.25.164.209:3306/barbecueshopsystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
                 Connection conn = null;
-                String sql = "SELECT * FROM user WHERE user_id='" + username + "' AND user_password='" + password + "'";
+                String sql = "SELECT * FROM user WHERE user_id='" + userid + "' AND user_password='" + password + "'";
                 ResultSet rs = null;
                 Statement stmt = null;
                 try {
@@ -56,12 +56,12 @@ public class Login extends JFrame {
                     stmt = conn.createStatement();
                     rs = stmt.executeQuery(sql);
                     if (rs.next()) {
-                        System.out.println("登录成功");
+                        //System.out.println("登录成功");
                         dispose();//关闭当前界面
-                        new UserOrder().init();//打开新界面
+                        new UserOrder().init(userid);//打开新界面
                         this.setVisible(false);
                     } else {
-                        System.out.println("用户名或密码错误");
+                        JOptionPane.showMessageDialog(null, "账号或密码错误");
                     }
                 } catch (SQLException ex) {
                     ex.printStackTrace();

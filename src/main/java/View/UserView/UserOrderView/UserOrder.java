@@ -14,7 +14,11 @@ public class UserOrder {
 
     JTabbedPane jTabbedPane = new JTabbedPane(SwingConstants.NORTH, JTabbedPane.SCROLL_TAB_LAYOUT);
 
-    public void init() {
+    public void init(String string) {
+        String userid = string;//登录的用户id
+        System.out.println("当前登录的用户id"+userid);
+
+
         jTabbedPane.addTab("菜单", null, panel3);
         jTabbedPane.addTab("购物车", null, panel4);
         jTabbedPane.addTab("当前订单", null, panel1);
@@ -26,9 +30,9 @@ public class UserOrder {
         frame.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        new UserOrder().init();
-    }
+  //  public static void main(String[] args) {
+   //     new UserOrder().init();
+   // }
 }
 
 
