@@ -20,6 +20,7 @@ public class ShowOrder extends JPanel{
     JButton jButton1=new JButton();
     JButton jButton2=new JButton();
     JButton jButton3=new JButton();
+    JButton jButton4=new JButton();
     JPanel jPanel2 = new JPanel();
 
     private String head[] = {"id", "商品名称", "单价", "数量"};
@@ -78,19 +79,19 @@ public class ShowOrder extends JPanel{
         JPanel panel=new JPanel();
         panel.setLayout(new BorderLayout());
 
-        label1.setFont(new
-                Font("STHeiti Light", Font.BOLD,
-                30));
-        label1.setText("购物车");
-      //  panel.add(label1);
-        label1.setBounds(460, 0, 600, 60);
+//        label1.setFont(new
+//                Font("STHeiti Light", Font.BOLD,
+//                30));
+//        label1.setText("购物车");
+//        panel.add(label1);
+//        label1.setBounds(460, 0, 600, 60);
 
 
         //this jButton1
         jButton1.setText("删除");
         panel.add(jButton1);
         jButton1.setBounds(350,500,100,30);
-        jButton3.addActionListener(
+        jButton1.addActionListener(
                 (e)-> {
                     OrderDaoImpl orderDao=new OrderDaoImpl();
                     try {
@@ -103,6 +104,24 @@ public class ShowOrder extends JPanel{
                 }
 
         );
+
+
+        jButton4.setText("清空");
+        panel.add(jButton4);
+        jButton4.setBounds(350,500,100,30);
+        jButton4.addActionListener(
+                (e)->{
+                    OrderDaoImpl orderDao=new OrderDaoImpl();
+                    try {
+                        orderDao.DeleteOrdering();
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                }
+        );
+
+
+
 
         //this jButton2
         jButton2.setText("支付");
@@ -126,15 +145,15 @@ public class ShowOrder extends JPanel{
                 }
         );
 
-        //this jButton3
-        jButton3.setText("返回");
-        panel.add(jButton3);
-        jButton3.setBounds(550,500,100,30);
-        jButton3.addActionListener(
-                (e)->{
-                   // dispose();
-                }
-        );
+//        //this jButton3
+//        jButton3.setText("返回");
+//        panel.add(jButton3);
+//        jButton3.setBounds(550,500,100,30);
+//        jButton3.addActionListener(
+//                (e)->{
+//                   // dispose();
+//                }
+//        );
 
 
         {
