@@ -1,6 +1,7 @@
 package Pay;
 
 import Order.OrderDaoImpl;
+import View.PayView.PayView;
 import sdk.WXPayUtil;
 import util.DateUtil;
 import com.google.zxing.BarcodeFormat;
@@ -32,7 +33,7 @@ public class WXPay {
     public static void main(String[] args) throws Exception {
 
         // 生成二维码，完成支付
-         unifiedOrder();
+      //   unifiedOrder();
         // 商家扫用户手机的条形码
         //scanCodeToPay("133958845598205196");
 
@@ -43,7 +44,7 @@ public class WXPay {
      *
      * @throws Exception
      */
-    public static String scanCodeToPay(String auth_code) throws Exception {
+    public  String scanCodeToPay(String auth_code) throws Exception {
         InetAddress addr = null;
         try {
             addr = InetAddress.getLocalHost();
@@ -136,7 +137,7 @@ public class WXPay {
     /*
     下单：生成二维码
      */
-    public static void unifiedOrder() {
+    public  void unifiedOrder() {
         Map<String, String> resultMap = new HashMap();
        // String openid = "ouR0E1oP5UGTEBce8jZ_sChfH26g";
         MyConfig config = null;
@@ -162,7 +163,8 @@ public class WXPay {
         OrderDaoImpl pay = new OrderDaoImpl();
         int total_fee = 0;//100分：1块钱
         try {
-            total_fee = (int) pay.pay()*100;
+            float a= pay.pay()*100;
+            total_fee = (int) a;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -195,7 +197,8 @@ public class WXPay {
 
     public static void createQRCode(Map<String, String> map) throws Exception {
 
-        File outputFile = new File("src/main/java/image" + File.separator + "二维码2.jpg");
+        File outputFile = new File("src/main/java/image" + File.separator + "二维码.jpg");
+        //System.out.println("生成的二维码："+ewm);
         FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
         String url = map.get("code_url");
         System.out.println("生成二维码的url：" + url);

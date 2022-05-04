@@ -182,12 +182,7 @@ public class nowPanel extends JPanel {
                 JButton button=new JButton("确定");
                 button.setBounds(450,450,20,10);
                 jDialog.add(button,BorderLayout.SOUTH);
-                button.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        jDialog.dispose();
-                    }
-                });
+                button.addActionListener(e22 -> jDialog.dispose());
             }
         });
 

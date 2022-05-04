@@ -5,6 +5,7 @@ package View.PayView;
  */
 
 import Order.OrderDaoImpl;
+import Pay.WXPay;
 
 import java.awt.*;
 import java.sql.SQLException;
@@ -14,46 +15,53 @@ import javax.swing.*;
  * @author 1
  */
 public class PayView extends JFrame {
+
     public PayView() {
         initComponents();
     }
+    OrderDaoImpl pay = new OrderDaoImpl();
+    public String orderid = pay.OrderId();
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         label1 = new JLabel();
-        textField1 = new JTextField();
+        label4 = new JLabel();
         label2 = new JLabel();
-        textField2 = new JTextField();
+        label5 = new JLabel();
         label3 = new JLabel();
         button1 = new JButton();
         button2 = new JButton();
         panel1 = new JPanel();
 
+
+
+
         //======== this ========
         var contentPane = getContentPane();
         contentPane.setLayout(null);
-        OrderDaoImpl pay = new OrderDaoImpl();
+
         //---- label1 ----
-        label1.setText("商品描述");
+        label1.setText("订单号:");
         contentPane.add(label1);
         label1.setBounds(new Rectangle(new Point(90, 50), label1.getPreferredSize()));
 
-        textField1.setText("热狗");
-        contentPane.add(textField1);
-        textField1.setBounds(new Rectangle(new Point(155, 50), textField1.getPreferredSize()));
+        label4.setText(orderid);
+        contentPane.add(label4);
+        label4.setBounds(new Rectangle(new Point(155, 50), label4.getPreferredSize()));
 
         //---- label2 ----
-        label2.setText("价格");
+        label2.setText("价格:");
         contentPane.add(label2);
-        label2.setBounds(new Rectangle(new Point(90, 95), label2.getPreferredSize()));
+        label2.setBounds(new Rectangle(new Point(90, 100), label2.getPreferredSize()));
 
         try {
-            textField2.setText(String.valueOf(pay.pay()));
+            label5.setText(String.valueOf(pay.pay()));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        contentPane.add(textField2);
-        textField2.setBounds(new Rectangle(new Point(155, 100), textField2.getPreferredSize()));
+        contentPane.add(label5);
+        label5.setBounds(new Rectangle(new Point(155, 100), label5.getPreferredSize()));
 
         //---- label3 ----
         label3.setText("支付方式");
@@ -64,6 +72,15 @@ public class PayView extends JFrame {
         button1.setText("扫码支付");
         contentPane.add(button1);
         button1.setBounds(new Rectangle(new Point(55, 215), button1.getPreferredSize()));
+        button1.addActionListener(e->{
+
+            JLabel label = new JLabel();
+            label.setIcon(new ImageIcon("src/main/java/image/二维码.jpg"));
+           // System.out.println(image);
+            label.setBounds(0,0,300,300);
+            panel1.add(label);
+
+        });
 
         //---- button2 ----
         button2.setText("付款码支付");
@@ -72,11 +89,11 @@ public class PayView extends JFrame {
 
         //======== panel1 ========
         //添加二维码图片到窗口
+
         JLabel label = new JLabel();
         label.setIcon(new ImageIcon("src/main/java/image/二维码.jpg"));
         label.setBounds(0,0,300,300);
         panel1.add(label);
-
         contentPane.add(panel1);
         panel1.setBounds(285, 60, 300, 300);
 
@@ -91,9 +108,9 @@ public class PayView extends JFrame {
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     private JLabel label1;
-    private JTextField textField1;
+    private JLabel label4;
     private JLabel label2;
-    private JTextField textField2;
+    private JLabel label5;
     private JLabel label3;
     private JButton button1;
     private JButton button2;

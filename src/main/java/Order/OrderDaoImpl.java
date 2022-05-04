@@ -2,6 +2,7 @@ package Order;
 
 
 import java.sql.*;
+import java.util.Random;
 
 public class OrderDaoImpl implements OrderDao {
     Connection conn=null;
@@ -23,6 +24,19 @@ public class OrderDaoImpl implements OrderDao {
             money= rs.getFloat(1);
         }
         return money;
+    }
+
+
+    //随机生成一个订单号
+    public String OrderId() {
+        String str="0123456789";
+        Random random=new Random();
+        StringBuffer sb=new StringBuffer();
+        for(int i=0;i<10;i++){
+            int number=random.nextInt(10);
+            sb.append(str.charAt(number));
+        }
+        return sb.toString();
     }
 @Override
     public  void DeleteOrder(int id) throws SQLException{

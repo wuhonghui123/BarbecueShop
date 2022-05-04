@@ -1,11 +1,13 @@
 package View.UserView.UserOrderingView;
 
 import Order.*;
+import Pay.WXPay;
 import View.PayView.PayView;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -42,11 +44,13 @@ public class ShowOrder extends JPanel{
                 ordering.setPrice(rs.getFloat(3));
                 ordering.setNumber(rs.getInt(4));
                 list1.add(ordering);
+
             }
 
 
         }  catch (SQLException throwables) {
             throwables.printStackTrace();
+
         }
 
         data = new Object[list1.size()][head.length];
@@ -107,7 +111,13 @@ public class ShowOrder extends JPanel{
                 (e)->{
                     OrderDaoImpl orderDao=new OrderDaoImpl();
                     try {
+                        String path = "src/main/java/image/二维码.jpg";
+                        File file = new File(path);
+                        file.delete();//删除原来的二维码
+
                         orderDao.pay();
+                        WXPay wxpay = new WXPay();
+                        wxpay.unifiedOrder();
                         new PayView();
                     } catch (SQLException ex) {
                         ex.printStackTrace();
