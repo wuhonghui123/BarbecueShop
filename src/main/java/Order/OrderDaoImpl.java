@@ -1,13 +1,16 @@
 package Order;
 
 
+import Order.item.Ordering;
+
 import java.sql.*;
+import java.util.Random;
 
 public class OrderDaoImpl implements OrderDao {
     Connection conn=null;
 
 
-
+@Override
     public float pay()throws SQLException{
         float money=0;
         String user = "root";
@@ -21,11 +24,25 @@ public class OrderDaoImpl implements OrderDao {
         rs = stmt.executeQuery(sql);
         while (rs.next()) {
             money= rs.getFloat(1);
-            System.out.println(money);
         }
         return money;
     }
 
+
+    //随机生成一个订单号
+    public String OrderId() {
+        String str="0123456789";
+        Random random=new Random();
+        StringBuffer sb=new StringBuffer();
+        for(int i=0;i<10;i++){
+            int number=random.nextInt(10);
+            sb.append(str.charAt(number));
+        }
+        return sb.toString();
+    }
+
+
+@Override
     public  void DeleteOrder(int id) throws SQLException{
         try {
             String user = "root";
@@ -41,6 +58,19 @@ public class OrderDaoImpl implements OrderDao {
             ex.printStackTrace();
         }
     }
+
+    //清空购物车的数据
+    @Override
+    public void DeleteOrdering() throws SQLException{
+        String user = "root";
+        String dbPassword = "123456";
+        String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+        conn = DriverManager.getConnection(url, user, dbPassword);
+        String sql="TRUNCATE TABLE `ordering`";
+        conn.prepareStatement(sql);
+    }
+
+
 
     @Override
     public void newOrder(Ordering ordering) throws SQLException{

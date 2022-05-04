@@ -4,6 +4,7 @@ package View.UserView.UserOrderingView;
 
 import Food.FoodItem;
 import Order.*;
+import Order.item.Ordering;
 
 import javax.swing.*;
 import java.awt.*;

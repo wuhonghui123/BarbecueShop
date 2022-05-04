@@ -1,6 +1,6 @@
 package View.AdminView.AdminOrderView;
 
-import Order.AdminOrderitem;
+import Order.item.AdminOrderitem;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

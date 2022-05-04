@@ -1,22 +1,21 @@
-package Order;
-
-import com.mysql.cj.x.protobuf.MysqlxCrud;
+package Order.item;
 
 import java.sql.Timestamp;
 import java.util.Objects;
 
-public class UserOrderitem {
+public class Orderitem {
+    private int UserId;
     private int id;
     private int itemId;
     private String naem;
     private int number;
     private Timestamp subDate;
     private int score;
-
-    public UserOrderitem(){
+    public Orderitem(){
 
     }
-    public UserOrderitem(int id,int itemId,String naem,int number,Timestamp subDateint,int score){
+    public Orderitem(int UserId,int id,int itemId,String naem,int number,Timestamp subDate,int score){
+        this.UserId = UserId;
         this.id = id;
         this.itemId = itemId;
         this.naem = naem;
@@ -25,6 +24,13 @@ public class UserOrderitem {
         this.score = score;
     }
 
+    public int getUserId() {
+        return UserId;
+    }
+
+    public void setUserId(int userId) {
+        UserId = userId;
+    }
 
     public int getId() {
         return id;
@@ -78,19 +84,20 @@ public class UserOrderitem {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserOrderitem item = (UserOrderitem) o;
-        return id == item.id && itemId == item.itemId && number == item.number && score == item.score && Objects.equals(naem, item.naem) && Objects.equals(subDate, item.subDate);
+        Orderitem Orderitem = (Orderitem) o;
+        return UserId == Orderitem.UserId && id == Orderitem.id && itemId == Orderitem.itemId && number == Orderitem.number && score == Orderitem.score && Objects.equals(naem, Orderitem.naem) && Objects.equals(subDate, Orderitem.subDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, itemId, naem, number, subDate, score);
+        return Objects.hash(UserId, id, itemId, naem, number, subDate, score);
     }
 
     @Override
     public String toString() {
-        return "Item{" +
-                "id=" + id +
+        return "adminItem{" +
+                "UserId=" + UserId +
+                ", id=" + id +
                 ", itemId=" + itemId +
                 ", naem='" + naem + '\'' +
                 ", number=" + number +

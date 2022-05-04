@@ -99,11 +99,12 @@ public class AdminFood extends JFrame {
         }
         contentPane.add(scrollPane1);
         scrollPane1.setBounds(0, 50, 1000, 600);
-        //contentPane.setPreferredSize(new Dimension(1000, 800));
+        contentPane.setPreferredSize(new Dimension(600, 400));//窗口大小
         pack();
         setLocationRelativeTo(getOwner());
-        this.setBounds(300, 300, 1000, 800);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//设置默认关闭操作
+        this.setResizable(false);//锁定窗口大小
+        this.setVisible(true);
     }
 
     public Object[][] getDataFromDatabase() {

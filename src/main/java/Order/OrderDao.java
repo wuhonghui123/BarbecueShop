@@ -1,5 +1,7 @@
 package Order;
 
+import Order.item.Ordering;
+
 import java.sql.SQLException;
 
 /**
@@ -16,6 +18,8 @@ public interface OrderDao {
     void newOrder(Ordering ordering) throws SQLException;
 
     void DeleteOrder(int id) throws SQLException;
+
+    void DeleteOrdering() throws SQLException;
 
     float pay()throws SQLException;
 }
