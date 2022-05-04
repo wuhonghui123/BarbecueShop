@@ -94,6 +94,9 @@ public class PayView extends JFrame {
         button2.setText("付款码支付");
         contentPane.add(button2);
         button2.setBounds(new Rectangle(new Point(155, 230), button2.getPreferredSize()));
+        button2.addActionListener(e -> {
+
+        });
 
         //======== panel1 ========
         //添加二维码图片到窗口
