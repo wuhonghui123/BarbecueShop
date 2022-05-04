@@ -17,5 +17,7 @@ public interface OrderDao {
 
     void DeleteOrder(int id) throws SQLException;
 
+    void DeleteOrdering() throws SQLException;
+
     float pay()throws SQLException;
 }

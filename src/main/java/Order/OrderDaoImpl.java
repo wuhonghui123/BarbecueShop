@@ -55,6 +55,19 @@ public class OrderDaoImpl implements OrderDao {
         }
     }
 
+    //清空购物车的数据
+    @Override
+    public void DeleteOrdering() throws SQLException{
+        String user = "root";
+        String dbPassword = "123456";
+        String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+        conn = DriverManager.getConnection(url, user, dbPassword);
+        String sql="DELETE FROM `ordering`";
+        conn.prepareStatement(sql);
+    }
+
+
+
     @Override
     public void newOrder(Ordering ordering) throws SQLException{
         try {
