@@ -27,7 +27,7 @@ public class UserOrdering extends JPanel {
     private Object[][] data = null;
     private JScrollPane scrollPane1 = new JScrollPane();
     private JTable table1 = new JTable();
-    private String head[] = {"id","商品名称", "单价", "描述", "促销价", "商品图片"};
+    private String head[] = {"id","商品名称", "单价", "描述", "销量", "商品图片"};
 
     public JPanel init() {
 

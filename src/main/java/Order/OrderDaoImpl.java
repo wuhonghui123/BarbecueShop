@@ -66,7 +66,7 @@ public class OrderDaoImpl implements OrderDao {
         String dbPassword = "123456";
         String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
         conn = DriverManager.getConnection(url, user, dbPassword);
-        String sql="DELETE FROM `ordering`";
+        String sql="TRUNCATE TABLE `ordering`";
         conn.prepareStatement(sql);
     }
 

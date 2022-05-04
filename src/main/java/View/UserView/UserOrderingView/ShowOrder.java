@@ -106,19 +106,7 @@ public class ShowOrder extends JPanel{
         );
 
 
-        jButton4.setText("清空");
-        panel.add(jButton4);
-        jButton4.setBounds(350,500,100,30);
-        jButton4.addActionListener(
-                (e)->{
-                    OrderDaoImpl orderDao=new OrderDaoImpl();
-                    try {
-                        orderDao.DeleteOrdering();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    }
-                }
-        );
+
 
 
 
@@ -154,6 +142,20 @@ public class ShowOrder extends JPanel{
 //                   // dispose();
 //                }
 //        );
+
+        jButton4.setText("清空");
+        panel.add(jButton4);
+        jButton4.setBounds(550,500,100,30);
+        jButton4.addActionListener(
+                (e)->{
+                    OrderDaoImpl orderDao=new OrderDaoImpl();
+                    try {
+                        orderDao.DeleteOrdering();
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                }
+        );
 
 
         {

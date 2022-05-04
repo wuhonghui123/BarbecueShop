@@ -33,8 +33,8 @@ public class PayView extends JFrame {
         button1 = new JButton();
         button2 = new JButton();
         panel1 = new JPanel();
-
-
+        label6 = new JLabel();
+        textField = new TextField();
 
 
         //======== this ========
@@ -66,12 +66,20 @@ public class PayView extends JFrame {
         //---- label3 ----
         label3.setText("支付方式");
         contentPane.add(label3);
-        label3.setBounds(new Rectangle(new Point(100, 160), label3.getPreferredSize()));
+        label3.setBounds(new Rectangle(new Point(90, 160), label3.getPreferredSize()));
+
+        label6.setText("付款码：");
+        contentPane.add(label6);
+        label6.setBounds(new Rectangle(new Point(90, 190), label6.getPreferredSize()));
+
+        textField.setText("");
+        contentPane.add(textField);
+        textField.setBounds(150, 190,100,20);
 
         //---- button1 ----
         button1.setText("扫码支付");
         contentPane.add(button1);
-        button1.setBounds(new Rectangle(new Point(55, 215), button1.getPreferredSize()));
+        button1.setBounds(new Rectangle(new Point(55, 230), button1.getPreferredSize()));
         button1.addActionListener(e->{
 
             JLabel label = new JLabel();
@@ -85,7 +93,7 @@ public class PayView extends JFrame {
         //---- button2 ----
         button2.setText("付款码支付");
         contentPane.add(button2);
-        button2.setBounds(new Rectangle(new Point(155, 215), button2.getPreferredSize()));
+        button2.setBounds(new Rectangle(new Point(155, 230), button2.getPreferredSize()));
 
         //======== panel1 ========
         //添加二维码图片到窗口
@@ -95,7 +103,7 @@ public class PayView extends JFrame {
         label.setBounds(0,0,300,300);
         panel1.add(label);
         contentPane.add(panel1);
-        panel1.setBounds(285, 60, 300, 300);
+        panel1.setBounds(285, 50, 300, 300);
 
         contentPane.setPreferredSize(new Dimension(600, 400));//窗口大小
         pack();
@@ -115,6 +123,8 @@ public class PayView extends JFrame {
     private JButton button1;
     private JButton button2;
     private JPanel panel1;
+    private JLabel label6;
+    private TextField textField;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
     public static void main(String[] args) {
         new PayView();
