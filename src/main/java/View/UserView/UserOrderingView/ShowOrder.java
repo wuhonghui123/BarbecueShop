@@ -1,6 +1,7 @@
 package View.UserView.UserOrderingView;
 
 import Order.*;
+import Order.item.Ordering;
 import Pay.WXPay;
 import View.PayView.PayView;
 
