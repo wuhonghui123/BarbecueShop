@@ -189,7 +189,6 @@ public class UserOrderingMain extends JPanel {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-
         }
         // 把集合的数据（商品信息）转换成二维数组
         data = new Object[list.size()][head.length];
@@ -205,8 +204,5 @@ public class UserOrderingMain extends JPanel {
             }
         }
         return data;
-    }
-    public static void main(String[] args) {
-        new UserOrderingMain();
     }
 }
