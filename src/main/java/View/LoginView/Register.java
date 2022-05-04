@@ -74,7 +74,7 @@ public class Register extends JFrame {
                         String user = "root";
                         String dbPassword = "123456";
                         String url = "jdbc:mysql://120.25.164.209:3306/barbecueshopsystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
-                        String sql = "insert into user (use_id,user_name,user_password,user_phone) values(?,?,?,?)";
+                        String sql = "insert into user (user_id,user_name,user_password,user_phone) values(?,?,?,?)";
                         try {
                             conn = DriverManager.getConnection(url, user, dbPassword);
                             PreparedStatement pst = conn.prepareStatement(sql);// 创建一个Statment对象

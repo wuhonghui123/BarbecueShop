@@ -58,7 +58,7 @@ public class Login extends JFrame {
                     if (rs.next()) {
                         //System.out.println("登录成功");
                         dispose();//关闭当前界面
-                        new UserOrder().init(userid);//打开新界面
+                        new UserOrder().init(userid);//打开新界面，并传递一个ID给新界面
                         this.setVisible(false);
                     } else {
                         JOptionPane.showMessageDialog(null, "账号或密码错误");
