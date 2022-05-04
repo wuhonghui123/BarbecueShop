@@ -4,8 +4,12 @@
 
 package View.LoginView;
 
+
 import java.awt.*;
 import javax.swing.*;
+import java.sql.*;
+import java.sql.PreparedStatement;
+
 
 /**
  * @author 1
@@ -63,6 +67,50 @@ public class Register extends JFrame {
         button1.setText("Register");
         contentPane.add(button1);
         button1.setBounds(new Rectangle(new Point(185, 290), button1.getPreferredSize()));
+        button1.addActionListener(e-> {
+                    if (radioButton1.isSelected()) {
+
+                        Connection conn = null;
+                        String user = "root";
+                        String dbPassword = "123456";
+                        String url = "jdbc:mysql://120.25.164.209:3306/barbecueshopsystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+                        String sql = "insert into user (use_id,user_name,user_password,user_phone) values(?,?,?,?)";
+                        try {
+                            conn = DriverManager.getConnection(url, user, dbPassword);
+                            PreparedStatement pst = conn.prepareStatement(sql);// 创建一个Statment对象
+                            pst.setString(1, textField1.getText());
+                            pst.setString(2, textField2.getText());
+                            pst.setString(3, textField3.getText());
+                            pst.setString(4, textField4.getText());
+                            pst.executeUpdate();// 执行sql语句
+                            conn.close();// 关闭数据库连接对象
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                    else if (radioButton2.isSelected()) {
+
+                        Connection conn = null;
+                        String user = "root";
+                        String dbPassword = "123456";
+                        String url = "jdbc:mysql://120.25.164.209:3306/barbecueshopsystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+                        String sql = "insert into admin (admin_id,admin_name,admin_password,admin_phone) values(?,?,?,?)";
+                        try {
+                            conn = DriverManager.getConnection(url, user, dbPassword);
+                            PreparedStatement pst = conn.prepareStatement(sql);
+                            // 创建一个Statment对象
+                            pst.setString(1, textField1.getText());
+                            pst.setString(2, textField2.getText());
+                            pst.setString(3, textField3.getText());
+                            pst.setString(4, textField4.getText());
+                            pst.executeUpdate();// 执行sql语句
+                            conn.close();// 关闭数据库连接对象
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                }
+        );
 
         //---- button2 ----
         button2.setText("return");
@@ -119,4 +167,7 @@ public class Register extends JFrame {
     private JLabel label4;
     private JLabel label5;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
+    public static void main(String[] args) {
+        new Login();
+    }
 }

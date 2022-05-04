@@ -8,6 +8,7 @@ import View.AdminView.AdminOrder;
 import View.UserView.*;
 
 import java.awt.*;
+import java.sql.*;
 import javax.swing.*;
 
 /**
@@ -34,16 +35,62 @@ public class Login extends JFrame {
         contentPane.setLayout(null);
 
         //---- button1 ----
-        button1.setText("login");
+        button1.setText("登录");
         contentPane.add(button1);
         button1.setBounds(new Rectangle(new Point(165, 315), button1.getPreferredSize()));
         button1.addActionListener(e-> {
             if (radioButton1.isSelected()) {
-                dispose();//关闭当前界面
-                new UserOrder().init();//打开新界面
+                String username = textField1.getText();
+                String password = textField2.getText();
+                String user = "root";
+                String dbPassword = "123456";
+                String url = "jdbc:mysql://120.25.164.209:3306/barbecueshopsystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+                Connection conn = null;
+                String sql = "SELECT * FROM user WHERE use_id='" + username + "' AND use_password='" + password + "'";
+                ResultSet rs = null;
+                Statement stmt = null;
+                try {
+                    conn = DriverManager.getConnection(url, user, dbPassword);
+                    stmt = conn.createStatement();
+                    rs = stmt.executeQuery(sql);
+                    if (rs.next()) {
+                        System.out.println("登录成功");
+                        dispose();//关闭当前界面
+                        new UserOrder().init();//打开新界面
+                        this.setVisible(false);
+                    } else {
+                        System.out.println("用户名或密码错误");
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
             } else if (radioButton2.isSelected()) {
-                dispose();//关闭当前界面
-                new AdminOrder().init();//打开新界面
+                String adminname = textField1.getText();
+                String password = textField2.getText();
+
+                String user = "root";
+                String dbPassword = "123456";
+                String url = "jdbc:mysql://120.25.164.209:3306/barbecueshopsystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+                Connection conn = null;
+                String sql = "SELECT * FROM admin WHERE admin_name='" + adminname + "' AND admin_password='" + password + "'";
+                System.out.println(sql);
+                ResultSet rs = null;
+                Statement stmt = null;
+                try {
+                    conn = DriverManager.getConnection(url, user, dbPassword);
+                    stmt = conn.createStatement();
+                    rs = stmt.executeQuery(sql);
+                    if (rs.next()) {
+                        System.out.println("登录成功");
+                        dispose();//关闭当前界面
+                        new AdminOrder().init();//打开新界面
+                        this.setVisible(false);
+                    } else {
+                        System.out.println("用户名或密码错误");
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
             }
                 }
         );
@@ -51,7 +98,7 @@ public class Login extends JFrame {
 
 
         //---- button2 ----
-        button2.setText("register");
+        button2.setText("注册");
         contentPane.add(button2);
         button2.setBounds(new Rectangle(new Point(350, 315), button2.getPreferredSize()));
         button2.addActionListener(e-> {
@@ -63,12 +110,12 @@ public class Login extends JFrame {
 
 
         //---- radioButton1 ----
-        radioButton1.setText("User");
+        radioButton1.setText("用户");
         contentPane.add(radioButton1);
         radioButton1.setBounds(new Rectangle(new Point(205, 105), radioButton1.getPreferredSize()));
 
         //---- radioButton2 ----
-        radioButton2.setText("Admin");
+        radioButton2.setText("管理员");
         contentPane.add(radioButton2);
         radioButton2.setBounds(new Rectangle(new Point(320, 105), radioButton2.getPreferredSize()));
 
@@ -78,12 +125,12 @@ public class Login extends JFrame {
 
 
         //---- label1 ----
-        label1.setText("account");
+        label1.setText("账号");
         contentPane.add(label1);
         label1.setBounds(170, 165, label1.getPreferredSize().width, 17);
 
         //---- label2 ----
-        label2.setText("password  ");
+        label2.setText("密码");
         contentPane.add(label2);
         label2.setBounds(new Rectangle(new Point(170, 220), label2.getPreferredSize()));
         contentPane.add(textField1);
