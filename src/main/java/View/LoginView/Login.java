@@ -27,7 +27,7 @@ public class Login extends JFrame {
         radioButton2 = new JRadioButton();
         label1 = new JLabel();
         label2 = new JLabel();
-        textField1 = new JTextField(1111);
+        textField1 = new JTextField("1111");
         textField2 = new JTextField();
 
         //======== this ========
