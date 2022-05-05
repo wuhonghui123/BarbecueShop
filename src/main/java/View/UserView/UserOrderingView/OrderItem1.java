@@ -16,10 +16,12 @@ import java.sql.SQLException;
 public class OrderItem1 extends JFrame {
     Ordering ordering;
     FoodItem foodItem;
+    String userid;
     Connection conn=null;
 
-    public OrderItem1(FoodItem foodItem){
+    public OrderItem1(FoodItem foodItem,String userid){
         this.foodItem = foodItem;
+        this.userid = userid;
         initComponents();
     }
 
@@ -130,6 +132,7 @@ public class OrderItem1 extends JFrame {
                     ordering.setTitle(textField2.getText());
                     ordering.setPrice(Float.valueOf(textField3.getText()));
                     ordering.setNumber(Integer.parseInt(textField6.getText()));
+                    ordering.setUser_id(Integer.parseInt(userid));
 
                     OrderDao orderDaoImpl=new OrderDaoImpl();
                     try {

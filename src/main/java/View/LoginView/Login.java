@@ -6,6 +6,7 @@ package View.LoginView;
 
 import View.AdminView.AdminOrderView.AdminOrder;
 import View.UserView.UserOrderView.UserMain;
+import Connectionsql.Connectionsqlimpl;
 
 import java.awt.*;
 import java.sql.*;
@@ -28,7 +29,8 @@ public class Login extends JFrame {
         label1 = new JLabel();
         label2 = new JLabel();
         textField1 = new JTextField();
-        textField2 = new JTextField();
+        //textField2 = new JTextField();
+        mima = new JPasswordField();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -41,11 +43,12 @@ public class Login extends JFrame {
         button1.addActionListener(e-> {
             if (radioButton1.isSelected()) {
                 String userid = textField1.getText();
-                String password = textField2.getText();
+                String password = mima.getText();
                 String user = "root";
                 String dbPassword = "123456";
                 String url = "jdbc:mysql://120.25.164.209:3306/barbecueshopsystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
                 Connection conn = null;
+                Connectionsqlimpl a = new Connectionsqlimpl();
                 String sql = "SELECT * FROM user WHERE user_id='" + userid + "' AND user_password='" + password + "'";
                 ResultSet rs = null;
                 Statement stmt = null;
@@ -66,7 +69,8 @@ public class Login extends JFrame {
                 }
             } else if (radioButton2.isSelected()) {
                 String adminname = textField1.getText();
-                String password = textField2.getText();
+                String password = mima.getText();
+
 
                 String user = "root";
                 String dbPassword = "123456";
@@ -91,6 +95,7 @@ public class Login extends JFrame {
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
+
             }
                 }
         );
@@ -136,9 +141,12 @@ public class Login extends JFrame {
         contentPane.add(textField1);
         textField1.setBounds(245, 165, 120, textField1.getPreferredSize().height);
         textField1.setText("10086");
-        contentPane.add(textField2);
-        textField2.setBounds(245, 215, 120, textField2.getPreferredSize().height);
-        textField2.setText("123456");
+//        contentPane.add(textField2);
+//        textField2.setBounds(245, 215, 120, textField2.getPreferredSize().height);
+//        textField2.setText("123456");
+        mima.setText("123456");
+        mima.setBounds(245, 215, 120, mima.getPreferredSize().height);
+        contentPane.add(mima);
 
         contentPane.setPreferredSize(new Dimension(600, 400));//窗口大小
         pack();
@@ -157,7 +165,8 @@ public class Login extends JFrame {
     private JLabel label1;
     private JLabel label2;
     private JTextField textField1;
-    private JTextField textField2;
+    private JPasswordField mima;
+  //  private JTextField textField2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
     public static void main(String[] args) {
         new Login();

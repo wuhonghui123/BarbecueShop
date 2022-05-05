@@ -6,7 +6,6 @@ public class Ordering {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -14,7 +13,6 @@ public class Ordering {
     public String getTitle() {
         return title;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
@@ -22,7 +20,6 @@ public class Ordering {
     public Float getPrice() {
         return price;
     }
-
     public void setPrice(Float price) {
         this.price = price;
     }
@@ -33,6 +30,9 @@ public class Ordering {
     public void setNumber(int number) {
         this.number = number;
     }
+
+    public int getUser_id() { return user_id; }
+    public void setUser_id(int user_id) { this.user_id = user_id; }
 
     @Override
     public boolean equals(Object o) {
@@ -60,4 +60,9 @@ public class Ordering {
     private String title;
     private Float price;
     private  int number;
+    private int user_id;
+
+
+
+
 }

@@ -29,8 +29,8 @@ public class UserOrdering extends JPanel {
     private JTable table1 = new JTable();
     private String head[] = {"id","商品名称", "单价", "描述", "销量", "商品图片"};
 
-    public JPanel init() {
-
+    public JPanel init(String string) {
+        String userid = string;
         JPanel panel=new JPanel();
         panel.setLayout(new BorderLayout());
         DefaultTableModel tableModel = new DefaultTableModel(getDataFromDatabase(), head) {
@@ -79,8 +79,6 @@ public class UserOrdering extends JPanel {
 
                     //Item item=new Item(id,title,price,description,sales,img_url);
                     Order order=new Order(id,title,price,number);*//*
-
-
                 }
         );*/
 
@@ -106,7 +104,7 @@ public class UserOrdering extends JPanel {
 
                     FoodItem foodItem =new FoodItem(id,title,price,description,sales,img_url);
 
-                    OrderItem1 orderItem1=new OrderItem1(foodItem);
+                    OrderItem1 orderItem1=new OrderItem1(foodItem,userid);
                     orderItem1.setVisible(true);
 
                    /* UpdateItem updateItem=new UpdateItem(item);
