@@ -137,6 +137,8 @@ public class PayView extends JFrame {
        // this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//设置默认关闭操作
         this.setResizable(false);//锁定窗口大小
         this.setVisible(true);
+        Image icon = Toolkit.getDefaultToolkit().getImage("src/main/java/image/logo.png");
+        this.setIconImage(icon);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 

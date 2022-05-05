@@ -1,6 +1,7 @@
 package View.AdminView.AdminOrderView;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class AdminOrder {
     String sql1="select * from adminItem;";
@@ -19,6 +20,8 @@ public class AdminOrder {
         frame.setBounds(400,400,1000,560);
         frame.setResizable(false);
         frame.setVisible(true);
+        Image icon = Toolkit.getDefaultToolkit().getImage("src/main/java/image/logo.png");
+        frame.setIconImage(icon);
     }
 
     public static void main(String[] args) {
