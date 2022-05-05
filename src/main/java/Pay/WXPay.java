@@ -57,7 +57,7 @@ public class WXPay {
         sdk.WXPay wxpay = new sdk.WXPay(config);
         String out_trade_no = DateUtil.getCurrentTime();
         Map<String, String> map = new HashMap<>(16);
-        map.put("attach", "订单额外描述");
+        map.put("attach", "祥麟烧烤");
         map.put("auth_code", auth_code);
         map.put("body", "小米手机");
         map.put("device_info", "蓝桥第6组");
@@ -173,6 +173,14 @@ public class WXPay {
         //商户订单号
         String out_trade_no = WXPayUtil.generateNonceStr();
         //统一下单接口参数
+//        map.put("attach", "祥麟烧烤");
+//        map.put("auth_code", auth_code);
+//        map.put("body", "小米手机");
+//        map.put("device_info", "蓝桥第6组");
+//        map.put("nonce_str", WXPayUtil.generateNonceStr());
+//        map.put("out_trade_no", out_trade_no);
+//        map.put("spbill_create_ip", spbill_create_ip);
+//        map.put("total_fee", "1");
         SortedMap<String, String> data = new TreeMap<String, String>();
         data.put("appid", "wxd9a46e74fc279fcc");
         data.put("body", body);
@@ -201,7 +209,7 @@ public class WXPay {
         //System.out.println("生成的二维码："+ewm);
         FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
         String url = map.get("code_url");
-        System.out.println("生成二维码的url：" + url);
+        //System.out.println("生成二维码的url：" + url);
         try {
             Map<EncodeHintType, Object> hints = new HashMap<EncodeHintType, Object>();
             hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");

@@ -1,5 +1,6 @@
 package View.UserView.UserOrderView;
 
+import Order.item.HistoryOrder;
 import Order.item.UserOrderitem;
 
 import javax.swing.*;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 
 public class historyPanel extends JPanel {
     private JScrollPane scrollPanel=null;
-    private String TableHead[] = {"订单号","商品号","商品名称","订单数量","订单提交日期","订单金额"};
+    private String TableHead[] = {"订单号","用户ID","商品总价格","订单提交日期","订单支付状态"};
     private Object[][] data = null;
     private JTable table=new JTable();
     public JPanel init(String sql){
@@ -81,7 +82,7 @@ public class historyPanel extends JPanel {
             String sql1 =new String();
             try {
                 int selectId=Integer.parseInt(text1.getText());
-                sql1 = "SELECT * FROM history where id="+selectId+";";
+                sql1 = "SELECT * FROM history where order_id="+selectId+";";
             }catch (Exception e1){
                 sql1 ="SELECT * FROM history;";
             }finally {
@@ -114,7 +115,7 @@ public class historyPanel extends JPanel {
 
     public Object[][] queryData(String sql) {
 
-        java.util.List<UserOrderitem> list = new ArrayList<UserOrderitem>();
+        java.util.List<HistoryOrder> list = new ArrayList<HistoryOrder>();
         Statement stmt = null;//SQL语句对象，拼SQL
         ResultSet rs = null;
         Connection conn=connection(sql);
@@ -128,13 +129,12 @@ public class historyPanel extends JPanel {
             }
             while (rs.next()) {
                 //每循环一次就是一个对象，把这个对象放入容器（List（有序可重复）、Set（无序不可重复）、Map（key、value结构）
-                UserOrderitem item = new UserOrderitem();
-                item.setId(rs.getInt(1));
-                item.setItemId(rs.getInt(2));
-                item.setNaem(rs.getString(3));
-                item.setNumber(rs.getInt(4));
-                item.setSubDate(rs.getTimestamp(5));
-                item.setScore(rs.getInt(6));
+                HistoryOrder item = new HistoryOrder();
+                item.setOrder_id(rs.getInt(1));
+                item.setUser_id(rs.getInt(2));
+                item.setOrder_price(rs.getFloat(3));
+                item.setOrder_date(rs.getTimestamp(4));
+                item.setOrser_pay(rs.getString(5));
                 list.add(item);
             }
         } catch (SQLException throwables) {
@@ -155,12 +155,11 @@ public class historyPanel extends JPanel {
         //把集合里的数据放入Obejct这个二维数组
         for (int i = 0; i < list.size(); i++) {
             for (int k = 0; k < TableHead.length; k++) {
-                data[i][0] = list.get(i).getId();
-                data[i][1] = list.get(i).getItemId();
-                data[i][2] = list.get(i).getNaem();
-                data[i][3] = list.get(i).getNumber();
-                data[i][4] = list.get(i).getSubDate();
-                data[i][5] = list.get(i).getScore();
+                data[i][0] = list.get(i).getOrder_id();
+                data[i][1] = list.get(i).getUser_id();
+                data[i][2] = list.get(i).getOrder_price();
+                data[i][3] = list.get(i).getOrder_date();
+                data[i][4] = list.get(i).getOrser_pay();
             }
         }
         return data;

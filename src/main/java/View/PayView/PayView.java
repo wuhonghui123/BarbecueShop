@@ -8,6 +8,7 @@ import Order.OrderDaoImpl;
 import Pay.WXPay;
 
 import java.awt.*;
+import java.io.File;
 import java.sql.SQLException;
 import javax.swing.*;
 
@@ -35,6 +36,7 @@ public class PayView extends JFrame {
         panel1 = new JPanel();
         label6 = new JLabel();
         textField = new TextField();
+        panel2 = new JPanel();
 
 
         //======== this ========
@@ -42,13 +44,21 @@ public class PayView extends JFrame {
         contentPane.setLayout(null);
 
         //---- label1 ----
-        label1.setText("订单号:");
-        contentPane.add(label1);
-        label1.setBounds(new Rectangle(new Point(90, 50), label1.getPreferredSize()));
+//        label1.setText("订单号:");
+//        contentPane.add(label1);
+//        label1.setBounds(new Rectangle(new Point(90, 50), label1.getPreferredSize()));
+//
+//        label4.setText(orderid);
+//        contentPane.add(label4);
+//        label4.setBounds(new Rectangle(new Point(155, 50), label4.getPreferredSize()));
 
-        label4.setText(orderid);
-        contentPane.add(label4);
-        label4.setBounds(new Rectangle(new Point(155, 50), label4.getPreferredSize()));
+
+
+        String path = "src/main/java/image/二维码.jpg";
+        File file = new File(path);
+        file.delete();//删除原来的二维码
+
+
 
         //---- label2 ----
         label2.setText("价格:");
@@ -81,13 +91,16 @@ public class PayView extends JFrame {
         contentPane.add(button1);
         button1.setBounds(new Rectangle(new Point(55, 230), button1.getPreferredSize()));
         button1.addActionListener(e->{
+            OrderDaoImpl orderDao=new OrderDaoImpl();
+            try {
+                orderDao.pay();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            WXPay wxpay = new WXPay();
+            wxpay.unifiedOrder();
 
-            JLabel label = new JLabel();
-            label.setIcon(new ImageIcon("src/main/java/image/二维码.jpg"));
-           // System.out.println(image);
-            label.setBounds(0,0,300,300);
-            panel1.add(label);
-
+            panel1 = panel2;
         });
 
         //---- button2 ----
@@ -96,13 +109,21 @@ public class PayView extends JFrame {
         button2.setBounds(new Rectangle(new Point(155, 230), button2.getPreferredSize()));
         button2.addActionListener(e -> {
 
+
         });
+        //======== panel2 ========
+        JLabel label2 = new JLabel();
+        label2.setIcon(new ImageIcon("src/main/java/image/二维码.jpg"));
+        label2.setBounds(0,0,300,300);
+        panel2.add(label2);
+
 
         //======== panel1 ========
         //添加二维码图片到窗口
 
         JLabel label = new JLabel();
-        label.setIcon(new ImageIcon("src/main/java/image/二维码.jpg"));
+        //label.setIcon(new ImageIcon("src/main/java/image/二维码.jpg"));
+        label.setText("二维码");
         label.setBounds(0,0,300,300);
         panel1.add(label);
         contentPane.add(panel1);
@@ -126,6 +147,7 @@ public class PayView extends JFrame {
     private JButton button1;
     private JButton button2;
     private JPanel panel1;
+    private JPanel panel2;
     private JLabel label6;
     private TextField textField;
     // JFormDesigner - End of variables declaration  //GEN-END:variables

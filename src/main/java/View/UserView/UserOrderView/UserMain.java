@@ -5,20 +5,19 @@ import View.UserView.UserOrderingView.*;
 public class UserMain {
 
     public void init(String string) {
-        String sql1 = "select * from item;";
+        String sql1 = "select * from `order`";
         String sql2 = "select * from history;";
         String sql3 = "ordering";
-        String userid = string;
+        String userid = string;//登录的用户id
 
         JPanel panel1 = new nowPanel().init(sql1);
         JPanel panel2 = new historyPanel().init(sql2);
-
         JPanel panel3 = new UserOrdering().init(userid);
         JPanel panel4 = new ShowOrder().Show(sql3);
 
         JTabbedPane jTabbedPane = new JTabbedPane(SwingConstants.NORTH, JTabbedPane.SCROLL_TAB_LAYOUT);
 
-        //String userid = string;//登录的用户id
+
         System.out.println("当前登录的用户ID: "+userid);
         JFrame frame = new JFrame("用户主页  "+userid);
 
@@ -34,9 +33,9 @@ public class UserMain {
         frame.setVisible(true);
     }
 
-  //  public static void main(String[] args) {
-   //     new UserOrder().init();
-   // }
+    public static void main(String[] args) {
+      new UserMain().init("10086");
+    }
 }
 
 
