@@ -109,6 +109,7 @@ public class OrderItem1 extends JFrame {
 
 
         ImageIcon icon = new ImageIcon(foodItem.getImg_url());//图片地址
+        icon.setImage(icon.getImage().getScaledInstance(120,120,Image.SCALE_DEFAULT));
         JLabel label = new JLabel();
         label.setIcon(icon);
         label.setBounds(0,0,120,120);//图片在面板中的位置和大小
