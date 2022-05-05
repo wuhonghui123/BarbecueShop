@@ -115,8 +115,9 @@ public class PayView extends JFrame {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
+            String orderid = orderDao.OrderId();
             WXPay wxpay = new WXPay();
-            wxpay.unifiedOrder();
+            wxpay.unifiedOrder(orderid);
             label.setIcon(new ImageIcon("src/main/java/image/二维码.jpg"));//显示二维码
         });
 
@@ -125,8 +126,6 @@ public class PayView extends JFrame {
         contentPane.add(button2);
         button2.setBounds(new Rectangle(new Point(155, 230), button2.getPreferredSize()));
         button2.addActionListener(e -> {
-
-
 
         });
 

@@ -137,7 +137,7 @@ public class WXPay {
     /*
     下单：生成二维码
      */
-    public void unifiedOrder() {
+    public void unifiedOrder(String orderid) {
         Map<String, String> resultMap = new HashMap();
        // String openid = "ouR0E1oP5UGTEBce8jZ_sChfH26g";
         MyConfig config = null;
@@ -149,7 +149,7 @@ public class WXPay {
             e.printStackTrace();
         }
         //生成的随机字符串
-        String nonce_str = WXPayUtil.generateNonceStr();
+        //String nonce_str = WXPayUtil.generateNonceStr();
         //获取客户端的ip地址
         //获取本机的ip地址
         InetAddress addr = null;
@@ -171,7 +171,7 @@ public class WXPay {
         //商品描述
         String body = "祥麟烧烤";
         //商户订单号
-        String out_trade_no = WXPayUtil.generateNonceStr();
+       // String out_trade_no = WXPayUtil.generateNonceStr();
         //统一下单接口参数
 //        map.put("attach", "祥麟烧烤");
 //        map.put("auth_code", auth_code);
@@ -188,7 +188,7 @@ public class WXPay {
         // 回调接口，必须是一个域名，不能使用IP
         // 腾讯会自动调用你（程序自己提供的接口）的接口，给你发送支付结果的数据，数据格式：xml格式
         data.put("notify_url", "http://34q9g42388.wicp.vip/result");
-        data.put("out_trade_no", out_trade_no);//交易号
+        data.put("out_trade_no", orderid);//交易号
         data.put("spbill_create_ip", spbill_create_ip);//下单的电脑IP地址
         data.put("trade_type", "NATIVE");//支付类型
         data.put("total_fee", String.valueOf(total_fee));
