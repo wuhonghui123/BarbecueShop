@@ -127,6 +127,12 @@ public class PayView{
         frame.add(button2);
         button2.setBounds(new Rectangle(new Point(155, 230), button2.getPreferredSize()));
         button2.addActionListener(e -> {
+            WXPay wxPay = new WXPay();
+            try {
+                wxPay.scanCodeToPay(ma,orderid,userid);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
 
         });
 

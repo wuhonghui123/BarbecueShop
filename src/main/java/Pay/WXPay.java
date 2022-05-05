@@ -44,7 +44,7 @@ public class WXPay {
      *
      * @throws Exception
      */
-    public  String scanCodeToPay(String auth_code) throws Exception {
+    public  String scanCodeToPay(String auth_code,String orderid,String userid) throws Exception {
         InetAddress addr = null;
         try {
             addr = InetAddress.getLocalHost();
@@ -60,7 +60,7 @@ public class WXPay {
         map.put("attach", "祥麟烧烤");
         map.put("auth_code", auth_code);
         map.put("body", "祥麟烧烤");
-        //map.put("device_info", "蓝桥第6组");
+        map.put("device_info", "蓝桥第6组");
         map.put("nonce_str", WXPayUtil.generateNonceStr());
         map.put("out_trade_no", out_trade_no);
         map.put("spbill_create_ip", spbill_create_ip);
