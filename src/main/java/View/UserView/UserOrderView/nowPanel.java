@@ -82,21 +82,10 @@ public class nowPanel extends JPanel {
 
         /*--------------------------------查询订单--------------------------------*/
         button1.addActionListener(e -> {
-            String sql12 =new String();
-            try {
-                int selectId=Integer.parseInt(text1.getText());
-                sql12 = "SELECT * FROM `order` where order_id="+selectId+";";
-            }catch (Exception e1){
-                sql12 ="SELECT * FROM `order`;";
-            }finally {
-                DefaultTableModel tableModel12 =new DefaultTableModel(queryData(sql12),TableHead){
-                    public boolean isCellEditable(int row, int column) {
-                        return false;
-                    }
-                };
-                table=new JTable(tableModel12);
-                scrollPanel.setViewportView(table);
-            }
+            int count= table.getSelectedRow();
+            int orderId=Integer.parseInt(table.getValueAt(count,0).toString());
+            String sql3="select * from completeorder where order_id="+orderId;
+            new completeorder().completeorder(sql3);
         });
         /*--------------------------------查询订单--------------------------------*/
 
