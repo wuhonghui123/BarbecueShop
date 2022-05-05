@@ -5,7 +5,7 @@ import View.UserView.UserOrderingView.*;
 public class UserMain {
 
     public void init(String string) {
-        String sql1 = "select * from item;";
+        String sql1 = "select * from `order`";
         String sql2 = "select * from history;";
         String sql3 = "ordering";
 
@@ -32,9 +32,9 @@ public class UserMain {
         frame.setVisible(true);
     }
 
-  //  public static void main(String[] args) {
-   //     new UserOrder().init();
-   // }
+    public static void main(String[] args) {
+      new UserMain().init("10086");
+    }
 }
 
 

@@ -1,6 +1,7 @@
 package View.UserView.UserOrderView;
 
 
+import Order.item.Orderitem;
 import View.UserView.*;
 import User.Useritem;
 
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 
 public class nowPanel extends JPanel {
     private JScrollPane scrollPanel=null;
-    private String TableHead[] = {"订单号","商品号","商品名称","订单数量","订单提交日期","订单金额"};
+    private String TableHead[] = {"订单号","用户ID","商品总价格","订单提交日期","订单支付状态"};
     private Object[][] data = null;
     private JTable table=new JTable();
     public JPanel init(String sql){
@@ -70,27 +71,23 @@ public class nowPanel extends JPanel {
         JTextField text4=new JTextField();
         JTextField text5=new JTextField();
         container1.setLayout(new GridLayout(1,12));
+        container1.add(new JLabel(""));
+        container1.add(new JLabel(""));
+        container1.add(new JLabel(""));
         container1.add(label1);
         container1.add(text1);
         container1.add(button1);
         container1.add(label4);
         container1.add(label5);
-        container1.add(label2);
-        container1.add(text4);
-        container1.add(label3);
-        container1.add(text5);
-        container1.add(button2);
-        container1.add(new JLabel(""));
-        container1.add(button3);
 
         /*--------------------------------查询订单--------------------------------*/
         button1.addActionListener(e -> {
             String sql12 =new String();
             try {
                 int selectId=Integer.parseInt(text1.getText());
-                sql12 = "SELECT * FROM item where id="+selectId+";";
+                sql12 = "SELECT * FROM `order` where order_id="+selectId+";";
             }catch (Exception e1){
-                sql12 ="SELECT * FROM item;";
+                sql12 ="SELECT * FROM `order`;";
             }finally {
                 DefaultTableModel tableModel12 =new DefaultTableModel(queryData(sql12),TableHead){
                     public boolean isCellEditable(int row, int column) {
@@ -104,12 +101,12 @@ public class nowPanel extends JPanel {
         /*--------------------------------查询订单--------------------------------*/
 
         /*--------------------------------修改订单--------------------------------*/
-        button2.addActionListener(e -> {
+        /*button2.addActionListener(e -> {
             String sql1=new String();
             try {
                 int updateId=Integer.parseInt(text4.getText());
                 int updateNum=Integer.parseInt(text5.getText());
-                sql1 = "update item set number="+updateNum+" where id="+updateId;
+                sql1 = "update order set number="+updateNum+" where order_id="+updateId;
                 DefaultTableModel tableModel13 =new DefaultTableModel(queryData(sql1),TableHead){
                     public boolean isCellEditable(int row, int column) {
                         return false;
@@ -132,7 +129,7 @@ public class nowPanel extends JPanel {
                 jDialog.add(button,BorderLayout.SOUTH);
                 button.addActionListener(e2 -> jDialog.dispose());
             }
-        });
+        });*/
         /*--------------------------------修改订单--------------------------------*/
 
         north.add(container1);
@@ -161,7 +158,7 @@ public class nowPanel extends JPanel {
             int getId=Integer.parseInt(table.getValueAt(count,0).toString());
             String sql2=new String();
             try {
-                sql2="delete from item where id="+getId;
+                sql2="delete from `order` where order_id="+getId;
                 DefaultTableModel tableModel1=new DefaultTableModel(queryData(sql2),TableHead){
                     public boolean isCellEditable(int row, int column) {
                         return false;
@@ -207,7 +204,7 @@ public class nowPanel extends JPanel {
 
     public Object[][] queryData(String sql) {
 
-        java.util.List<Useritem> list = new ArrayList<Useritem>();
+        java.util.List<Orderitem> list = new ArrayList<Orderitem>();
         Statement stmt = null;//SQL语句对象，拼SQL
         ResultSet rs = null;
         Connection conn=connection(sql);
@@ -217,17 +214,16 @@ public class nowPanel extends JPanel {
                 rs = stmt.executeQuery(sql);
             }else {
                 stmt.executeUpdate(sql);
-                rs = stmt.executeQuery("select * from item");
+                rs = stmt.executeQuery("select * from `order`;");
             }
             while (rs.next()) {
                 //每循环一次就是一个对象，把这个对象放入容器（List（有序可重复）、Set（无序不可重复）、Map（key、value结构）
-                Useritem item = new Useritem();
-                item.setId(rs.getInt(1));
-                item.setItemId(rs.getInt(2));
-                item.setNaem(rs.getString(3));
-                item.setNumber(rs.getInt(4));
-                item.setSubDate(rs.getTimestamp(5));
-                item.setScore(rs.getInt(6));
+                Orderitem item = new Orderitem();
+                item.setOrder_id(rs.getInt(1));
+                item.setUser_id(rs.getInt(2));
+                item.setOrder_price(rs.getFloat(3));
+                item.setOrder_date(rs.getTimestamp(4));
+                item.setOrser_pay(rs.getString(5));
                 list.add(item);
             }
         } catch (SQLException throwables) {
@@ -249,12 +245,11 @@ public class nowPanel extends JPanel {
         //把集合里的数据放入Obejct这个二维数组
         for (int i = 0; i < list.size(); i++) {
             for (int k = 0; k < TableHead.length; k++) {
-                data[i][0] = list.get(i).getId();
-                data[i][1] = list.get(i).getItemId();
-                data[i][2] = list.get(i).getNaem();
-                data[i][3] = list.get(i).getNumber();
-                data[i][4] = list.get(i).getSubDate();
-                data[i][5] = list.get(i).getScore();
+                data[i][0] = list.get(i).getOrder_id();
+                data[i][1] = list.get(i).getUser_id();
+                data[i][2] = list.get(i).getOrder_price();
+                data[i][3] = list.get(i).getOrder_date();
+                data[i][4] = list.get(i).getOrser_pay();
             }
         }
         return data;
