@@ -25,7 +25,7 @@ public class ShowOrder extends JPanel{
 
     private String head[] = {"id", "商品名称", "单价", "数量"};
     private Object[][] data = null;
-    public JPanel Show(String name){
+    public JPanel Show(String name,String userid){
         Connection conn=null;
         String user = "root";
         String dbPassword = "123456";
@@ -126,7 +126,7 @@ public class ShowOrder extends JPanel{
                           orderDao.pay();
 //                        WXPay wxpay = new WXPay();
 //                        wxpay.unifiedOrder();
-                        new PayView();
+                        new PayView().init(userid);
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                     }

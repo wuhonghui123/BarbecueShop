@@ -66,7 +66,7 @@ public class UserOrdering extends JPanel {
                         orderDao.pay();
 //                        WXPay wxpay = new WXPay();
 //                        wxpay.unifiedOrder();
-                        new PayView();
+                        new PayView().init(userid);
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                     }

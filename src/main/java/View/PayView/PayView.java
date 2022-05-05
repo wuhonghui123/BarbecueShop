@@ -15,33 +15,34 @@ import javax.swing.*;
 /**
  * @author 1
  */
-public class PayView extends JFrame {
-
-    public PayView() {
-        initComponents();
-    }
-    OrderDaoImpl pay = new OrderDaoImpl();
-    public String orderid = pay.OrderId();
+public class PayView{
+    // public PayView() {
+//        initComponents();
+//    }
 
 
-    private void initComponents() {
+
+
+    public void init(String userid) {
+        OrderDaoImpl pay = new OrderDaoImpl();
+        String orderid = pay.OrderId();
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        label1 = new JLabel();
-        label4 = new JLabel();
-        label2 = new JLabel();
-        label5 = new JLabel();
-        label3 = new JLabel();
-        button1 = new JButton();
-        button2 = new JButton();
-        panel1 = new JPanel();
-        label6 = new JLabel();
-        textField = new TextField();
-        panel2 = new JPanel();
+        JLabel label1 = new JLabel();
+        JLabel label4 = new JLabel();
+        JLabel label2 = new JLabel();
+        JLabel label5 = new JLabel();
+        JLabel label3 = new JLabel();
+        JButton button1 = new JButton();
+        JButton button2 = new JButton();
+        JPanel panel1 = new JPanel();
+        JLabel label6 = new JLabel();
+        TextField textField = new TextField();
+        JPanel panel2 = new JPanel();
 
-
+        JFrame frame = new JFrame("支付");
         //======== this ========
-        var contentPane = getContentPane();
-        contentPane.setLayout(null);
+        //var contentPane = getContentPane();
+        frame.setLayout(null);
 
         //---- label1 ----
 //        label1.setText("订单号:");
@@ -62,7 +63,7 @@ public class PayView extends JFrame {
 
         //---- label2 ----
         label2.setText("价格:");
-        contentPane.add(label2);
+        frame.add(label2);
         label2.setBounds(new Rectangle(new Point(90, 100), label2.getPreferredSize()));
 
         try {
@@ -70,20 +71,20 @@ public class PayView extends JFrame {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        contentPane.add(label5);
+        frame.add(label5);
         label5.setBounds(new Rectangle(new Point(155, 100), label5.getPreferredSize()));
 
         //---- label3 ----
         label3.setText("支付方式");
-        contentPane.add(label3);
+        frame.add(label3);
         label3.setBounds(new Rectangle(new Point(90, 160), label3.getPreferredSize()));
 
         label6.setText("付款码：");
-        contentPane.add(label6);
+        frame.add(label6);
         label6.setBounds(new Rectangle(new Point(90, 190), label6.getPreferredSize()));
 
         textField.setText("");
-        contentPane.add(textField);
+        frame.add(textField);
         textField.setBounds(150, 190,100,20);
         String ma = textField.getText();
 
@@ -101,12 +102,12 @@ public class PayView extends JFrame {
 
         label.setBounds(0,0,300,300);
         panel1.add(label);
-        contentPane.add(panel1);
+        frame.add(panel1);
         panel1.setBounds(285, 50, 300, 300);
 
         //---- button1 ----
         button1.setText("扫码支付");
-        contentPane.add(button1);
+        frame.add(button1);
         button1.setBounds(new Rectangle(new Point(55, 230), button1.getPreferredSize()));
         button1.addActionListener(e->{
             OrderDaoImpl orderDao=new OrderDaoImpl();
@@ -115,47 +116,40 @@ public class PayView extends JFrame {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-            String orderid = orderDao.OrderId();
+           // String orderid = orderDao.OrderId();
             WXPay wxpay = new WXPay();
-            wxpay.unifiedOrder(orderid);
+            wxpay.unifiedOrder(orderid,userid);
             label.setIcon(new ImageIcon("src/main/java/image/二维码.jpg"));//显示二维码
         });
 
         //---- button2 ----
         button2.setText("付款码支付");
-        contentPane.add(button2);
+        frame.add(button2);
         button2.setBounds(new Rectangle(new Point(155, 230), button2.getPreferredSize()));
         button2.addActionListener(e -> {
 
         });
 
 
-        contentPane.setPreferredSize(new Dimension(600, 400));//窗口大小
-        pack();
-        setLocationRelativeTo(getOwner());
+//        contentPane.setPreferredSize(new Dimension(600, 400));//窗口大小
+//        pack();
+//        setLocationRelativeTo(getOwner());
        // this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//设置默认关闭操作
-        this.setResizable(false);//锁定窗口大小
-        this.setVisible(true);
+
+        frame.setBounds(400, 400, 600, 400);
+        frame.setResizable(false);//锁定窗口大小
+        frame.setVisible(true);
         Image icon = Toolkit.getDefaultToolkit().getImage("src/main/java/image/logo.png");
-        this.setIconImage(icon);
+        frame.setIconImage(icon);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
+
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    private JLabel label1;
-    private JLabel label4;
-    private JLabel label2;
-    private JLabel label5;
-    private JLabel label3;
-    private JButton button1;
-    private JButton button2;
-    private JPanel panel1;
-    private JPanel panel2;
-    private JLabel label6;
-    private TextField textField;
+
     // JFormDesigner - End of variables declaration  //GEN-END:variables
     public static void main(String[] args) {
-        new PayView();
+        new PayView().init("10086");
     }
 }
 

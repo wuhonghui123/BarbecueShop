@@ -16,7 +16,7 @@ public class UserMain {
         JPanel panel1 = new nowPanel().init(sql1);
         JPanel panel2 = new historyPanel().init(sql2);
         JPanel panel3 = new UserOrdering().init(userid);
-        JPanel panel4 = new ShowOrder().Show(sql3);
+        JPanel panel4 = new ShowOrder().Show(sql3,userid);
 
         JTabbedPane jTabbedPane = new JTabbedPane(SwingConstants.NORTH, JTabbedPane.SCROLL_TAB_LAYOUT);
 
