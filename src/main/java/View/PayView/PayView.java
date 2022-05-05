@@ -86,6 +86,23 @@ public class PayView extends JFrame {
         contentPane.add(textField);
         textField.setBounds(150, 190,100,20);
 
+        //======== panel2 ========
+//        JLabel label2 = new JLabel();
+//        label2.setIcon(new ImageIcon("src/main/java/image/二维码.jpg"));
+//        label2.setBounds(0,0,300,300);
+//        panel2.add(label2);
+
+
+        //======== panel1 ========
+        //添加二维码图片到窗口
+
+        JLabel label = new JLabel();
+
+        label.setBounds(0,0,300,300);
+        panel1.add(label);
+        contentPane.add(panel1);
+        panel1.setBounds(285, 50, 300, 300);
+
         //---- button1 ----
         button1.setText("扫码支付");
         contentPane.add(button1);
@@ -99,7 +116,7 @@ public class PayView extends JFrame {
             }
             WXPay wxpay = new WXPay();
             wxpay.unifiedOrder();
-            panel1 = panel2;
+            label.setIcon(new ImageIcon("src/main/java/image/二维码.jpg"));
         });
 
         //---- button2 ----
@@ -110,23 +127,7 @@ public class PayView extends JFrame {
 
 
         });
-        //======== panel2 ========
-        JLabel label2 = new JLabel();
-        label2.setIcon(new ImageIcon("src/main/java/image/二维码.jpg"));
-        label2.setBounds(0,0,300,300);
-        panel2.add(label2);
 
-
-        //======== panel1 ========
-        //添加二维码图片到窗口
-
-        JLabel label = new JLabel();
-        //label.setIcon(new ImageIcon("src/main/java/image/二维码.jpg"));
-        label.setText("二维码");
-        label.setBounds(0,0,300,300);
-        panel1.add(label);
-        contentPane.add(panel1);
-        panel1.setBounds(285, 50, 300, 300);
 
         contentPane.setPreferredSize(new Dimension(600, 400));//窗口大小
         pack();
