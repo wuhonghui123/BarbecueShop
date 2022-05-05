@@ -99,7 +99,6 @@ public class PayView extends JFrame {
             }
             WXPay wxpay = new WXPay();
             wxpay.unifiedOrder();
-
             panel1 = panel2;
         });
 
