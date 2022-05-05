@@ -79,8 +79,6 @@ public class UserOrdering extends JPanel {
 
                     //Item item=new Item(id,title,price,description,sales,img_url);
                     Order order=new Order(id,title,price,number);*//*
-
-
                 }
         );*/
 
