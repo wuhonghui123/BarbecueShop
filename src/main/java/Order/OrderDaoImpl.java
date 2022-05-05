@@ -81,13 +81,14 @@ public class OrderDaoImpl implements OrderDao {
             String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
             conn = DriverManager.getConnection(url, user, dbPassword);
 
-            String sql="INSERT INTO `ordering` VALUES(?,?,?,?)";
+            String sql="INSERT INTO `ordering` VALUES(?,?,?,?,?)";
             PreparedStatement pstmt=conn.prepareStatement(sql);
 
             pstmt.setInt(1, ordering.getId());
             pstmt.setString(2, ordering.getTitle());
             pstmt.setFloat(3, ordering.getPrice());
             pstmt.setInt(4, ordering.getNumber());
+            pstmt.setInt(5,ordering.getUser_id());
             /*pstmt.setString(1,order.getId());
             pstmt.setInt(2,order.getMch_id());
             pstmt.setString(3,order.getOut_trade_no());

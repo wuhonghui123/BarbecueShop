@@ -6,6 +6,7 @@ package View.LoginView;
 
 import View.AdminView.AdminOrderView.AdminOrder;
 import View.UserView.UserOrderView.UserMain;
+import Connectionsql.Connectionsqlimpl;
 
 import java.awt.*;
 import java.sql.*;
@@ -47,6 +48,7 @@ public class Login extends JFrame {
                 String dbPassword = "123456";
                 String url = "jdbc:mysql://120.25.164.209:3306/barbecueshopsystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
                 Connection conn = null;
+                Connectionsqlimpl a = new Connectionsqlimpl();
                 String sql = "SELECT * FROM user WHERE user_id='" + userid + "' AND user_password='" + password + "'";
                 ResultSet rs = null;
                 Statement stmt = null;
@@ -68,6 +70,7 @@ public class Login extends JFrame {
             } else if (radioButton2.isSelected()) {
                 String adminname = textField1.getText();
                 String password = mima.getText();
+
 
                 String user = "root";
                 String dbPassword = "123456";
@@ -92,6 +95,7 @@ public class Login extends JFrame {
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
+
             }
                 }
         );
