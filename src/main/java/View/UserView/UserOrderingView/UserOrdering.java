@@ -3,11 +3,13 @@ package View.UserView.UserOrderingView;
 
 import Food.FoodItem;
 import Order.OrderDaoImpl;
+import View.PayView.PayView;
 import View.UserView.ConnectionHandler;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -57,7 +59,14 @@ public class UserOrdering extends JPanel {
                 (e)->{
                     OrderDaoImpl orderDao=new OrderDaoImpl();
                     try {
+                        String path = "src/main/java/image/二维码.jpg";
+                        File file = new File(path);
+                        file.delete();//删除原来的二维码
+
                         orderDao.pay();
+//                        WXPay wxpay = new WXPay();
+//                        wxpay.unifiedOrder();
+                        new PayView();
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                     }
@@ -120,15 +129,15 @@ public class UserOrdering extends JPanel {
                 }
         );
 
-        button4.setText("购物车");
-        panel.add(button4);
-        button4.setBounds(400, 360, 100, 30);
-        button4.addActionListener(
-                (e)-> {
-                    ShowOrder showOrder= new ShowOrder();
-                    showOrder.Show("`ordering`");
-                }
-        );
+//        button4.setText("购物车");
+//        panel.add(button4);
+//        button4.setBounds(400, 360, 100, 30);
+//        button4.addActionListener(
+//                (e)-> {
+//                    ShowOrder showOrder= new ShowOrder();
+//                    showOrder.Show("`ordering`");
+//                }
+//        );
 
 
         {

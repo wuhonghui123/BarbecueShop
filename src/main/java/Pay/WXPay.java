@@ -59,8 +59,8 @@ public class WXPay {
         Map<String, String> map = new HashMap<>(16);
         map.put("attach", "祥麟烧烤");
         map.put("auth_code", auth_code);
-        map.put("body", "小米手机");
-        map.put("device_info", "蓝桥第6组");
+        map.put("body", "祥麟烧烤");
+        //map.put("device_info", "蓝桥第6组");
         map.put("nonce_str", WXPayUtil.generateNonceStr());
         map.put("out_trade_no", out_trade_no);
         map.put("spbill_create_ip", spbill_create_ip);
@@ -137,7 +137,7 @@ public class WXPay {
     /*
     下单：生成二维码
      */
-    public  void unifiedOrder() {
+    public void unifiedOrder() {
         Map<String, String> resultMap = new HashMap();
        // String openid = "ouR0E1oP5UGTEBce8jZ_sChfH26g";
         MyConfig config = null;

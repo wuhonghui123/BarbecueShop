@@ -85,6 +85,7 @@ public class PayView extends JFrame {
         textField.setText("");
         contentPane.add(textField);
         textField.setBounds(150, 190,100,20);
+        String ma = textField.getText();
 
         //======== panel2 ========
 //        JLabel label2 = new JLabel();
@@ -116,7 +117,7 @@ public class PayView extends JFrame {
             }
             WXPay wxpay = new WXPay();
             wxpay.unifiedOrder();
-            label.setIcon(new ImageIcon("src/main/java/image/二维码.jpg"));
+            label.setIcon(new ImageIcon("src/main/java/image/二维码.jpg"));//显示二维码
         });
 
         //---- button2 ----
@@ -124,6 +125,7 @@ public class PayView extends JFrame {
         contentPane.add(button2);
         button2.setBounds(new Rectangle(new Point(155, 230), button2.getPreferredSize()));
         button2.addActionListener(e -> {
+
 
 
         });
