@@ -189,7 +189,7 @@ public class WXPay {
         // 腾讯会自动调用你（程序自己提供的接口）的接口，给你发送支付结果的数据，数据格式：xml格式
         data.put("notify_url", "http://34q9g42388.wicp.vip/result");
         data.put("out_trade_no", orderid);//交易号
-        data.put("userid",userid);//用户ID
+        data.put("attach",userid);//用户ID
         data.put("spbill_create_ip", spbill_create_ip);//下单的电脑IP地址
         data.put("trade_type", "NATIVE");//支付类型
         data.put("total_fee", String.valueOf(total_fee));

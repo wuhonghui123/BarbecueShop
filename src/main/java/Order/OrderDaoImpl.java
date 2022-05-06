@@ -34,7 +34,7 @@ public class OrderDaoImpl implements OrderDao {
         String str="0123456789";
         Random random=new Random();
         StringBuffer sb=new StringBuffer();
-        for(int i=0;i<10;i++){
+        for(int i=0;i<9;i++){
             int number=random.nextInt(10);
             sb.append(str.charAt(number));
         }
