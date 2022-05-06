@@ -13,20 +13,21 @@ import java.sql.*;
 import java.util.ArrayList;
 
 
-public class ShowOrder extends JPanel{
+public class ShowOrder extends JPanel {
     JScrollPane scrollPane1 = new JScrollPane();
     JTable table1 = new JTable();
     JLabel label1 = new JLabel();
-    JButton jButton1=new JButton();
-    JButton jButton2=new JButton();
-    JButton jButton3=new JButton();
-    JButton jButton4=new JButton();
-    JPanel jPanel2 = new JPanel();
+    JButton jButton1 = new JButton();
+    JButton jButton2 = new JButton();
+    JButton jButton3 = new JButton();
+    JButton jButton4 = new JButton();
+    //JPanel jPanel2 = new JPanel();
 
     private String head[] = {"id", "商品名称", "单价", "数量"};
     private Object[][] data = null;
-    public JPanel Show(String name,String userid){
-        Connection conn=null;
+
+    public JPanel Show(String name, String userid) {
+        Connection conn = null;
         String user = "root";
         String dbPassword = "123456";
         String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
@@ -35,12 +36,12 @@ public class ShowOrder extends JPanel{
             conn = DriverManager.getConnection(url, user, dbPassword);
 //                conn=ConnectionHandler.getConn();
             Statement stmt = null;
-            String sql = "SELECT * FROM "+name+" WHERE user_id = "+userid;
+            String sql = "SELECT * FROM " + name + " WHERE user_id = " + userid;
             ResultSet rs = null;
-            PreparedStatement pstmt=conn.prepareStatement(sql);
+            PreparedStatement pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery(sql);
             while (rs.next()) {
-                Ordering ordering =new Ordering();
+                Ordering ordering = new Ordering();
                 ordering.setId(rs.getInt(1));
                 ordering.setTitle(rs.getString(2));
                 ordering.setPrice(rs.getFloat(3));
@@ -50,7 +51,7 @@ public class ShowOrder extends JPanel{
             }
 
 
-        }  catch (SQLException throwables) {
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
 
         }
@@ -76,7 +77,7 @@ public class ShowOrder extends JPanel{
         table1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         table1.setModel(tableModel);
 
-        JPanel panel=new JPanel();
+        JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
 
 //        label1.setFont(new
@@ -90,10 +91,10 @@ public class ShowOrder extends JPanel{
         //this jButton1
         jButton1.setText("删除");
         panel.add(jButton1);
-        jButton1.setBounds(350,500,100,30);
+        jButton1.setBounds(350, 500, 100, 30);
         jButton1.addActionListener(
-                (e)-> {
-                    OrderDaoImpl orderDao=new OrderDaoImpl();
+                (e) -> {
+                    OrderDaoImpl orderDao = new OrderDaoImpl();
                     try {
                         int rowNo = table1.getSelectedRow();//获取所选的行号
                         int id = (int) table1.getValueAt(rowNo, 0);
@@ -106,24 +107,19 @@ public class ShowOrder extends JPanel{
         );
 
 
-
-
-
-
-
         //this jButton2
         jButton2.setText("支付");
         panel.add(jButton2);
-        jButton2.setBounds(450,500,100,30);
+        jButton2.setBounds(450, 500, 100, 30);
         jButton2.addActionListener(
-                (e)->{
-                    OrderDaoImpl orderDao=new OrderDaoImpl();
+                (e) -> {
+                    OrderDaoImpl orderDao = new OrderDaoImpl();
                     try {
                         String path = "src/main/java/image/二维码.jpg";
                         File file = new File(path);
                         file.delete();//删除原来的二维码
 
-                          orderDao.pay();
+                        orderDao.pay();
 //                        WXPay wxpay = new WXPay();
 //                        wxpay.unifiedOrder();
                         new PayView().init(userid);
@@ -145,10 +141,10 @@ public class ShowOrder extends JPanel{
 
         jButton4.setText("清空");
         panel.add(jButton4);
-        jButton4.setBounds(550,500,100,30);
+        jButton4.setBounds(550, 500, 100, 30);
         jButton4.addActionListener(
-                (e)->{
-                    OrderDaoImpl orderDao=new OrderDaoImpl();
+                (e) -> {
+                    OrderDaoImpl orderDao = new OrderDaoImpl();
                     try {
                         orderDao.DeleteOrdering();
                     } catch (SQLException throwables) {
@@ -161,10 +157,10 @@ public class ShowOrder extends JPanel{
         {
             scrollPane1.setViewportView(table1);//增加滚动条
         }
-        jPanel2.add(scrollPane1);
-        panel.add(jPanel2);
+        panel.add(scrollPane1);
+        //panel.add(jPanel2);
         scrollPane1.setBounds(0, 150, 1000, 600);
-        jPanel2.setBounds(0,150,1000,600);
+        //jPanel2.setBounds(0, 150, 1000, 600);
 
         //
         {
@@ -182,7 +178,7 @@ public class ShowOrder extends JPanel{
             panel.setPreferredSize(preferredSize);
         }
 
-return panel;
+        return panel;
     }
 
 }

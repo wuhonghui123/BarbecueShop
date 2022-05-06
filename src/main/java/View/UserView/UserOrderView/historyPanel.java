@@ -21,8 +21,8 @@ public class historyPanel extends JPanel {
         panel.setLayout(new BorderLayout());
 
         /*--------------------------------------中间部分----------------------------------------*/
-        JPanel center=new JPanel();
-        Container container2=new Container();//容器，存放中面板所用
+        //JPanel center=new JPanel();
+        //Container container2=new Container();//容器，存放中面板所用
         scrollPanel=new JScrollPane();
         DefaultTableModel tableModel=new DefaultTableModel(queryData(sql),TableHead){
             public boolean isCellEditable(int row, int column) {
@@ -31,7 +31,7 @@ public class historyPanel extends JPanel {
         };
         table=new JTable(tableModel);
         scrollPanel.setViewportView(table);
-        center.add(scrollPanel);
+        panel.add(scrollPanel);
         scrollPanel.setBounds(45, 35, 415, 295);
         {
             // compute preferred size
@@ -47,7 +47,7 @@ public class historyPanel extends JPanel {
             panel.setMinimumSize(preferredSize);
             panel.setPreferredSize(preferredSize);
         }
-        panel.add(center,BorderLayout.CENTER);
+       // panel.add(center,BorderLayout.CENTER);
         /*--------------------------------------中间部分----------------------------------------*/
 
         /*--------------------------------------上方部分----------------------------------------*/

@@ -1,33 +1,39 @@
 package View.AdminView.AdminFoodView;
 
 import Food.FoodItem;
+import Order.OrderDaoImpl;
+import View.PayView.PayView;
+import View.UserView.ConnectionSQL;
+import View.UserView.UserOrderingView.OrderItem1;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.sql.*;
+import java.io.File;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
-
 /**
- * @liwei
  */
-public class AdminFood extends JFrame {
-    public AdminFood() {
-        initComponents();
-    }
+public class AdminFood  extends JPanel {
+    //  Connection conn=null;
+    private JLabel label1 = new JLabel();
+    private JButton button5 = new JButton();
+    private JButton button1 = new JButton();
+    private JButton button3 = new JButton();
+    private JButton button4 = new JButton();
+    private Object[][] data = null;
+    private JScrollPane scrollPane1 = new JScrollPane();
+    private JTable table1 = new JTable();
+    private String head[] = {"id","商品名称", "单价", "描述", "销量", "商品图片"};
 
-    private void initComponents() {
-        scrollPane1 = new JScrollPane();
-        table1 = new JTable();
-        button1 = new JButton();
-        button2 = new JButton();
-        button3 = new JButton();
-        button4 = new JButton();
-        label1 = new JLabel();
-        textField1 = new JTextField();
-        textField2 = new JTextField();
+    public JPanel init() {
 
+        JPanel panel=new JPanel();
+        panel.setLayout(new BorderLayout());
         DefaultTableModel tableModel = new DefaultTableModel(getDataFromDatabase(), head) {
             public boolean isCellEditable(int row, int column) {
                 return false;
@@ -36,34 +42,46 @@ public class AdminFood extends JFrame {
         table1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         table1.setModel(tableModel);
 
-        JPanel contentPane = (JPanel) getContentPane();
-        contentPane.setLayout(null);
+
 
         label1.setFont(new
                 Font("STHeiti Light", Font.BOLD,
                 30));
         label1.setText("商品信息");
-        contentPane.add(label1);
-        label1.setBounds(460, 0, 800, 60);
+        // panel.add(label1);
+        label1.setBounds(460, 0, 600, 60);
 
-        button1.setText("删除");
-        contentPane.add(button1);
-        button1.setBounds(510, 355, 100, 30);
+        button1.setText("支付");
+        panel.add(button1);
+        button1.setBounds(500, 360, 100, 30);
+        button1.addActionListener(
+                (e)->{
 
-        button2.setText("新增");
+                }
+        );
+
+
+/*        button2.setText("删除");
         contentPane.add(button2);
         button2.setBounds(610, 355, 100, 30);
-        button2.addActionListener((e)->{
+        //button2.setBounds(610, 355, 100, 30);
+        button2.addActionListener(
+                (e)->{
+                    *//*int rowNo = table1.getSelectedRow();//获取所选的行号
+                    int id=(int)table1.getValueAt(rowNo, 0);
+                    String title=(String)table1.getValueAt(rowNo, 1);
+                    Float price=(Float)table1.getValueAt(rowNo, 2);
+                    int number=(int) table1.getValueAt(rowNo,3);
 
-        });
-        contentPane.add(textField1);
-        textField1.setBounds(270, 355, 130, 30);
+                    //Item item=new Item(id,title,price,description,sales,img_url);
+                    Order order=new Order(id,title,price,number);*//*
+                }
+        );*/
 
-
-
-        button3.setText("修改");
-        contentPane.add(button3);
-        button3.setBounds(710, 355, 100, 30);
+        button3.setText("购买");
+        panel.add(button3);
+//        button3.setBounds(510, 355, 100, 30);
+        button3.setBounds(300, 360, 100, 30);
         button3.addActionListener(
                 (e)->{
                     int rowNo = table1.getSelectedRow();//获取所选的行号
@@ -80,45 +98,69 @@ public class AdminFood extends JFrame {
                     System.out.println(sales);
                     System.out.println(img_url);*/
 
-                    FoodItem foodItem =new FoodItem(id,title,price,description,sales,img_url
-                    );
+                    FoodItem foodItem =new FoodItem(id,title,price,description,sales,img_url);
 
-                    UpdateFoodItem updateFoodItem =new UpdateFoodItem(foodItem);
-                    updateFoodItem.setVisible(true);
+
+
+
+                   /* UpdateItem updateItem=new UpdateItem(item);
+                    updateItem.setVisible(true);*/
                 }
         );
-        contentPane.add(textField1);
-        textField1.setBounds(270, 355, 130, 30);
 
-        button4.setText("查询");
-        contentPane.add(button4);
-        button4.setBounds(410, 355, 100, 30);
+        button5.setText("返回");
+        panel.add(button5);
+        button5.setBounds(600, 360, 130, 30);
+        button5.addActionListener((e)-> {
+                    //dispose()
+                }
+        );
+
+//        button4.setText("购物车");
+//        panel.add(button4);
+//        button4.setBounds(400, 360, 100, 30);
+//        button4.addActionListener(
+//                (e)-> {
+//                    ShowOrder showOrder= new ShowOrder();
+//                    showOrder.Show("`ordering`");
+//                }
+//        );
+
 
         {
-            scrollPane1.setViewportView(table1);
+            scrollPane1.setViewportView(table1);//增加滚动条
         }
-        contentPane.add(scrollPane1);
-        scrollPane1.setBounds(0, 50, 1000, 600);
-        contentPane.setPreferredSize(new Dimension(600, 400));//窗口大小
-        pack();
-        setLocationRelativeTo(getOwner());
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//设置默认关闭操作
-        this.setResizable(false);//锁定窗口大小
-        this.setVisible(true);
+        panel.add(scrollPane1);
+        scrollPane1.setBounds(0, 0, 1000, 300);
+        {
+            // compute preferred size
+            Dimension preferredSize = new Dimension();
+            for (int i = 0; i < panel.getComponentCount(); i++) {
+                Rectangle bounds = panel.getComponent(i).getBounds();
+                preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+                preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+            }
+            Insets insets = panel.getInsets();
+            preferredSize.width += insets.right;
+            preferredSize.height += insets.bottom;
+            panel.setMinimumSize(preferredSize);
+            panel.setPreferredSize(preferredSize);
+        }
+        return panel;
     }
 
     public Object[][] getDataFromDatabase() {
 
-        java.util.List<FoodItem> list = new ArrayList<FoodItem>();
+        java.util.List<FoodItem> list = new ArrayList<>();
         Connection conn = null;
-        String user = "root";
-        String dbPassword = "123456";
-        String url = "jdbc:mysql://localhost:3306/teashop?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+        /*String user = "root";
+        String dbPassword = "757722";
+        String url = "jdbc:mysql://localhost:3306/teashop?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";*/
         Statement stmt = null;
-        String sql = "SELECT * FROM item";
+        String sql = "SELECT * FROM food";
         ResultSet rs = null;
         try {
-            conn = DriverManager.getConnection(url, user, dbPassword);
+            conn = ConnectionSQL.getConn();
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
@@ -141,7 +183,6 @@ public class AdminFood extends JFrame {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-
         }
         // 把集合的数据（商品信息）转换成二维数组
         data = new Object[list.size()][head.length];
@@ -157,21 +198,5 @@ public class AdminFood extends JFrame {
             }
         }
         return data;
-    }
-
-    private JScrollPane scrollPane1;
-    private JTable table1;
-    private String head[] = {"id", "商品名称", "单价", "描述", "促销价", "商品图片"};
-    private Object[][] data = null;
-    private JButton button1;
-    private JButton button2;
-    private JButton button3;
-    private JButton button4;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JLabel label1;
-
-    public static void main(String[] args) {
-        new AdminFood();
     }
 }
