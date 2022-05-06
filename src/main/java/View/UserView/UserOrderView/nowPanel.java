@@ -83,9 +83,9 @@ public class nowPanel extends JPanel {
         /*--------------------------------查询订单--------------------------------*/
         button1.addActionListener(e -> {
             int count= table.getSelectedRow();
-            int orderId=Integer.parseInt(table.getValueAt(count,0).toString());
+            String orderId=table.getValueAt(count,0).toString();
             String sql3="select * from completeorder where order_id="+orderId;
-            new completeorder().completeorder(sql3);
+            new completeorder().completeorder(orderId);
         });
         /*--------------------------------查询订单--------------------------------*/
 
@@ -203,7 +203,7 @@ public class nowPanel extends JPanel {
                 rs = stmt.executeQuery(sql);
             }else {
                 stmt.executeUpdate(sql);
-                rs = stmt.executeQuery("select * from `order`;");
+                rs = stmt.executeQuery(sql);
             }
             while (rs.next()) {
                 //每循环一次就是一个对象，把这个对象放入容器（List（有序可重复）、Set（无序不可重复）、Map（key、value结构）

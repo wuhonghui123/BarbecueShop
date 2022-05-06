@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConnectionHandler {
+public class ConnectionSQL {
     public static ThreadLocal<Connection> threadLocal=new ThreadLocal<>();
 
     public static Connection getConn()throws SQLException{
@@ -31,7 +31,7 @@ public class ConnectionHandler {
         }
         return conn;
     }
-    public static void closeConnection() throws SQLException {
+    public static void closeConn() throws SQLException {
         Connection conn=threadLocal.get();
         if(conn!=null){
             conn.close();

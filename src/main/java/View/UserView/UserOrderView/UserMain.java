@@ -7,11 +7,10 @@ import java.awt.*;
 
 public class UserMain {
 
-    public void init(String string) {
-        String sql1 = "select * from `order`";
-        String sql2 = "select * from history;";
+    public void init(String userid) {
+        String sql1 = "select * from `order` WHERE user_id = "+userid;
+        String sql2 = "select * from history WHERE user_id = "+userid;
         String sql3 = "ordering";
-        String userid = string;//登录的用户id
 
         JPanel panel1 = new nowPanel().init(sql1);
         JPanel panel2 = new historyPanel().init(sql2);

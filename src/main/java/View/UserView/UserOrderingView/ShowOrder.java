@@ -35,7 +35,7 @@ public class ShowOrder extends JPanel{
             conn = DriverManager.getConnection(url, user, dbPassword);
 //                conn=ConnectionHandler.getConn();
             Statement stmt = null;
-            String sql = "SELECT * FROM "+name;
+            String sql = "SELECT * FROM "+name+" WHERE user_id = "+userid;
             ResultSet rs = null;
             PreparedStatement pstmt=conn.prepareStatement(sql);
             rs = pstmt.executeQuery(sql);

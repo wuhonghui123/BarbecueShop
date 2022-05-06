@@ -125,7 +125,7 @@ public class historyPanel extends JPanel {
                 rs = stmt.executeQuery(sql);
             }else {
                 stmt.executeUpdate(sql);
-                rs = stmt.executeQuery("select * from history");
+                rs = stmt.executeQuery(sql);
             }
             while (rs.next()) {
                 //每循环一次就是一个对象，把这个对象放入容器（List（有序可重复）、Set（无序不可重复）、Map（key、value结构）

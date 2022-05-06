@@ -4,7 +4,7 @@ package View.UserView.UserOrderingView;
 import Food.FoodItem;
 import Order.OrderDaoImpl;
 import View.PayView.PayView;
-import View.UserView.ConnectionHandler;
+import View.UserView.ConnectionSQL;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -173,7 +173,7 @@ public class UserOrdering extends JPanel {
         String sql = "SELECT * FROM food";
         ResultSet rs = null;
         try {
-            conn = ConnectionHandler.getConn();
+            conn = ConnectionSQL.getConn();
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
