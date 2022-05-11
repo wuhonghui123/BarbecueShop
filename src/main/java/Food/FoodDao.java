@@ -1,4 +1,6 @@
 package Food;
 
-public class FoodDao {
+
+public interface FoodDao {
+    public void addFood(FoodBean foodBean);
 }

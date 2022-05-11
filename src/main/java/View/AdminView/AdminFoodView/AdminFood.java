@@ -47,34 +47,26 @@ public class AdminFood  extends JPanel {
         // panel.add(label1);
         label1.setBounds(460, 0, 600, 60);
 
-        button1.setText("支付");
+        button1.setText("修改");
         panel.add(button1);
         button1.setBounds(500, 360, 100, 30);
         button1.addActionListener(
                 (e)->{
-
+                    int rowNo = table1.getSelectedRow();//获取所选的行号
+                    int id=(int)table1.getValueAt(rowNo, 0);
+                    String title=(String)table1.getValueAt(rowNo, 1);
+                    Float price=(Float)table1.getValueAt(rowNo, 2);
+                    String description=(String)table1.getValueAt(rowNo, 3);
+                    int sales=(int)table1.getValueAt(rowNo, 4);
+                    String img_url=(String)table1.getValueAt(rowNo, 5);
+                    FoodBean foodBean =new FoodBean(id,title,price,description,sales,img_url);
+                    GaiFood gaiFood = new GaiFood(foodBean);
+                    gaiFood.setVisible(true);
                 }
         );
 
 
-/*        button2.setText("删除");
-        contentPane.add(button2);
-        button2.setBounds(610, 355, 100, 30);
-        //button2.setBounds(610, 355, 100, 30);
-        button2.addActionListener(
-                (e)->{
-                    *//*int rowNo = table1.getSelectedRow();//获取所选的行号
-                    int id=(int)table1.getValueAt(rowNo, 0);
-                    String title=(String)table1.getValueAt(rowNo, 1);
-                    Float price=(Float)table1.getValueAt(rowNo, 2);
-                    int number=(int) table1.getValueAt(rowNo,3);
-
-                    //Item item=new Item(id,title,price,description,sales,img_url);
-                    Order order=new Order(id,title,price,number);*//*
-                }
-        );*/
-
-        button3.setText("购买");
+        button3.setText("查看");
         panel.add(button3);
 //        button3.setBounds(510, 355, 100, 30);
         button3.setBounds(300, 360, 100, 30);
@@ -87,40 +79,31 @@ public class AdminFood  extends JPanel {
                     String description=(String)table1.getValueAt(rowNo, 3);
                     int sales=(int)table1.getValueAt(rowNo, 4);
                     String img_url=(String)table1.getValueAt(rowNo, 5);
-                    /*System.out.println(id);
-                    System.out.println(title);
-                    System.out.println(price);
-                    System.out.println(description);
-                    System.out.println(sales);
-                    System.out.println(img_url);*/
-
                     FoodBean foodBean =new FoodBean(id,title,price,description,sales,img_url);
+                    SeeFood seeFood = new SeeFood(foodBean);
+                    seeFood.setVisible(true);
 
-
-
-
-                   /* UpdateItem updateItem=new UpdateItem(item);
-                    updateItem.setVisible(true);*/
                 }
         );
 
-        button5.setText("返回");
+        button5.setText("删除");
         panel.add(button5);
-        button5.setBounds(600, 360, 130, 30);
+        button5.setBounds(600, 360, 100, 30);
         button5.addActionListener((e)-> {
                     //dispose()
                 }
         );
 
-//        button4.setText("购物车");
-//        panel.add(button4);
-//        button4.setBounds(400, 360, 100, 30);
-//        button4.addActionListener(
-//                (e)-> {
-//                    ShowOrder showOrder= new ShowOrder();
-//                    showOrder.Show("`ordering`");
-//                }
-//        );
+        button4.setText("添加");
+        panel.add(button4);
+        button4.setBounds(400, 360, 100, 30);
+        button4.addActionListener(
+                (e)-> {
+
+                    new AddFood();
+
+                }
+        );
 
 
         {
