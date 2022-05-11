@@ -83,7 +83,7 @@ public class AddFood extends JFrame {
 //        textField4.setText(foodBean.getDescription());
 
         //---- label5 ----
-        label5.setText("\u4fc3\u9500\u4ef7\uff1a");
+        label5.setText("销量");
         contentPane.add(label5);
         label5.setBounds(20, 140, 55, 20);
         contentPane.add(textField5);

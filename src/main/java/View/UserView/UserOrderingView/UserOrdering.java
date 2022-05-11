@@ -3,8 +3,10 @@ package View.UserView.UserOrderingView;
 
 import Food.FoodBean;
 import Order.OrderDaoImpl;
+import View.LoginView.Login;
 import View.PayView.PayView;
 import View.UserView.ConnectionSQL;
+import View.UserView.UserOrderView.UserMain;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -54,7 +56,7 @@ public class UserOrdering extends JPanel {
 
         button1.setText("支付");
         panel.add(button1);
-        button1.setBounds(500, 360, 100, 30);
+        button1.setBounds(400, 360, 100, 30);
         button1.addActionListener(
                 (e)->{
                     OrderDaoImpl orderDao = new OrderDaoImpl();
@@ -123,9 +125,10 @@ public class UserOrdering extends JPanel {
 
         button5.setText("返回");
         panel.add(button5);
-        button5.setBounds(600, 360, 130, 30);
+        button5.setBounds(500, 360, 100, 30);
         button5.addActionListener((e)-> {
-                    //dispose()
+
+            new Login();
                 }
         );
 
