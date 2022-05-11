@@ -137,7 +137,7 @@ public class WXPay {
     /*
     下单：生成二维码
      */
-    public void unifiedOrder(String orderid,String userid) {
+    public void unifiedOrder(String orderid,String userid,float money) {
         Map<String, String> resultMap = new HashMap();
        // String openid = "ouR0E1oP5UGTEBce8jZ_sChfH26g";
         MyConfig config = null;
@@ -162,12 +162,8 @@ public class WXPay {
         //支付金额，需要转成字符串类型，否则后面的签名会失败
         OrderDaoImpl pay = new OrderDaoImpl();
         int total_fee = 0;//100分：1块钱
-        try {
-            float a= pay.pay()*100;
-            total_fee = (int) a;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        float a= money*100;
+        total_fee = (int) a;
         //商品描述
         String body = "祥麟烧烤";
         //商户订单号

@@ -118,10 +118,10 @@ public class ShowOrder extends JPanel {
                         File file = new File(path);
                         file.delete();//删除原来的二维码
 
-                        orderDao.pay();
+                         float money = orderDao.pay(userid);
 //                        WXPay wxpay = new WXPay();
 //                        wxpay.unifiedOrder();
-                        new PayView().init(userid);
+                        new PayView().init(userid,money);
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                     }

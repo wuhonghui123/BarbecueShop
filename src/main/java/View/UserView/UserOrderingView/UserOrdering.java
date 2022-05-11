@@ -57,16 +57,16 @@ public class UserOrdering extends JPanel {
         button1.setBounds(500, 360, 100, 30);
         button1.addActionListener(
                 (e)->{
-                    OrderDaoImpl orderDao=new OrderDaoImpl();
+                    OrderDaoImpl orderDao = new OrderDaoImpl();
                     try {
                         String path = "src/main/java/image/二维码.jpg";
                         File file = new File(path);
                         file.delete();//删除原来的二维码
 
-                        orderDao.pay();
+                        float money = orderDao.pay(userid);
 //                        WXPay wxpay = new WXPay();
 //                        wxpay.unifiedOrder();
-                        new PayView().init(userid);
+                        new PayView().init(userid,money);
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                     }

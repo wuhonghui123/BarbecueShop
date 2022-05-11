@@ -9,15 +9,14 @@ import java.util.Random;
 public class OrderDaoImpl implements OrderDao {
     Connection conn=null;
 
-
-@Override
-    public float pay()throws SQLException{
+    @Override
+    public float pay(String userid)throws SQLException{
         float money=0;
         String user = "root";
         String dbPassword = "123456";
         String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
         conn = DriverManager.getConnection(url, user, dbPassword);
-        String sql="SELECT sum(food_price*number) FROM `ordering`";
+        String sql="SELECT sum(food_price*number) FROM `ordering` WHERE user_id = "+userid;
         Statement stmt = null;
         ResultSet rs = null;
         stmt = conn.createStatement();

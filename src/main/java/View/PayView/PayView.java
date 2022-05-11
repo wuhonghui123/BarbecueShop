@@ -23,7 +23,7 @@ public class PayView{
 
 
 
-    public void init(String userid) {
+    public void init(String userid,float money) {
         OrderDaoImpl pay = new OrderDaoImpl();
         String orderid = pay.OrderId();
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -66,11 +66,7 @@ public class PayView{
         frame.add(label2);
         label2.setBounds(new Rectangle(new Point(90, 100), label2.getPreferredSize()));
 
-        try {
-            label5.setText(String.valueOf(pay.pay()));
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        label5.setText(String.valueOf(money));
         frame.add(label5);
         label5.setBounds(new Rectangle(new Point(155, 100), label5.getPreferredSize()));
 
@@ -110,15 +106,15 @@ public class PayView{
         frame.add(button1);
         button1.setBounds(new Rectangle(new Point(55, 230), button1.getPreferredSize()));
         button1.addActionListener(e->{
-            OrderDaoImpl orderDao=new OrderDaoImpl();
-            try {
-                orderDao.pay();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+//            OrderDaoImpl orderDao=new OrderDaoImpl();
+//            try {
+//                orderDao.pay();
+//            } catch (SQLException throwables) {
+//                throwables.printStackTrace();
+//            }
            // String orderid = orderDao.OrderId();
             WXPay wxpay = new WXPay();
-            wxpay.unifiedOrder(orderid,userid);
+            wxpay.unifiedOrder(orderid,userid,money);
             label.setIcon(new ImageIcon("src/main/java/image/二维码.jpg"));//显示二维码
         });
 
@@ -154,8 +150,5 @@ public class PayView{
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
 
     // JFormDesigner - End of variables declaration  //GEN-END:variables
-    public static void main(String[] args) {
-        new PayView().init("10086");
-    }
 }
 
