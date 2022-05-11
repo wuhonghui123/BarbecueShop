@@ -57,7 +57,7 @@ public class nowPanel extends JPanel {
         JLabel label2=new JLabel("订单号");
         JLabel label3=new JLabel("数量修改为");
         JButton button1=new JButton("查询");
-        JButton button2=new JButton("修改");
+        JButton button2=new JButton("确认送达");
         JButton button3=new JButton("返回");
         JTextField text1=new JTextField();
         JLabel text2=new JLabel("");

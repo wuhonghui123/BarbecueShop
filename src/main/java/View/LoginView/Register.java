@@ -169,7 +169,4 @@ public class Register extends JFrame {
     private JLabel label4;
     private JLabel label5;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
-    public static void main(String[] args) {
-        new Login();
-    }
 }

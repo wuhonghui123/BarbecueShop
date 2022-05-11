@@ -38,10 +38,6 @@ public class UserMain {
         Image icon = Toolkit.getDefaultToolkit().getImage("src/main/java/image/logo.png");
         frame.setIconImage(icon);
     }
-
-    public static void main(String[] args) {
-      new UserMain().init("10086");
-    }
 }
 
 

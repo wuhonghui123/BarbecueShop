@@ -30,14 +30,14 @@ public class WXPay {
     private static final String PAY_SUCCESS = "SUCCESS";
     private static final String PAY_USERPAYING = "USERPAYING";
 
-    public static void main(String[] args) throws Exception {
-
-        // 生成二维码，完成支付
-      //   unifiedOrder();
-        // 商家扫用户手机的条形码
-        //scanCodeToPay("133958845598205196");
-
-    }
+//    public static void main(String[] args) throws Exception {
+//
+//        // 生成二维码，完成支付
+//      //   unifiedOrder();
+//        // 商家扫用户手机的条形码
+//        //scanCodeToPay("133958845598205196");
+//
+//    }
 
     /**
      * 扫码支付
