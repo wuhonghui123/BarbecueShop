@@ -2,9 +2,9 @@ package View.UserView.UserOrderingView;
 
 
 
-import Food.FoodItem;
+import Food.FoodBean;
 import Order.*;
-import Order.item.Ordering;
+import Order.bean.Ordering;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,12 +15,12 @@ import java.sql.SQLException;
  */
 public class OrderItem1 extends JFrame {
     Ordering ordering;
-    FoodItem foodItem;
+    FoodBean foodBean;
     String userid;
     Connection conn=null;
 
-    public OrderItem1(FoodItem foodItem,String userid){
-        this.foodItem = foodItem;
+    public OrderItem1(FoodBean foodBean, String userid){
+        this.foodBean = foodBean;
         this.userid = userid;
         initComponents();
     }
@@ -56,7 +56,7 @@ public class OrderItem1 extends JFrame {
         label1.setBounds(20, 20, 55, 20);
         contentPane.add(textField1);
         textField1.setBounds(70, 20, 130, 20);
-        textField1.setText(String.valueOf(foodItem.getId()));
+        textField1.setText(String.valueOf(foodBean.getId()));
 
         //---- label2 ----
         label2.setText("\u5546\u54c1\u540d\u79f0\uff1a");
@@ -64,7 +64,7 @@ public class OrderItem1 extends JFrame {
         label2.setBounds(240, 20, 90, 20);
         contentPane.add(textField2);
         textField2.setBounds(300, 20, 130, 20);
-        textField2.setText(foodItem.getTitle());
+        textField2.setText(foodBean.getTitle());
 
         //---- label3 ----
         label3.setText("\u5355\u4ef7\uff1a");
@@ -72,7 +72,7 @@ public class OrderItem1 extends JFrame {
         label3.setBounds(20, 80, 55, 20);
         contentPane.add(textField3);
         textField3.setBounds(70, 80, 130, 20);
-        textField3.setText(String.valueOf(foodItem.getPrice()));
+        textField3.setText(String.valueOf(foodBean.getPrice()));
 
         //---- label4 ----
         label4.setText("\u63cf\u8ff0\uff1a");
@@ -80,7 +80,7 @@ public class OrderItem1 extends JFrame {
         label4.setBounds(240, 80, 90, 20);
         contentPane.add(textField4);
         textField4.setBounds(300, 80, 130, 20);
-        textField4.setText(foodItem.getDescription());
+        textField4.setText(foodBean.getDescription());
 
         //---- label5 ----
         label5.setText("\u4fc3\u9500\u4ef7\uff1a");
@@ -88,7 +88,7 @@ public class OrderItem1 extends JFrame {
         label5.setBounds(20, 140, 55, 20);
         contentPane.add(textField5);
         textField5.setBounds(70, 140, 130, 20);
-        textField5.setText(String.valueOf(foodItem.getSales()));
+        textField5.setText(String.valueOf(foodBean.getSales()));
 
         //---- label6 ----
         label6.setText("购买数量：");
@@ -108,7 +108,7 @@ public class OrderItem1 extends JFrame {
        // textField7.setText(foodItem.getImg_url());
 
 
-        ImageIcon icon = new ImageIcon(foodItem.getImg_url());//图片地址
+        ImageIcon icon = new ImageIcon(foodBean.getImg_url());//图片地址
         icon.setImage(icon.getImage().getScaledInstance(120,120,Image.SCALE_DEFAULT));
         JLabel label = new JLabel();
         label.setIcon(icon);

@@ -1,4 +1,4 @@
-package Order.item;
+package Order.bean;
 
 import java.util.Objects;
 

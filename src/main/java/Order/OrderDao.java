@@ -1,6 +1,6 @@
 package Order;
 
-import Order.item.Ordering;
+import Order.bean.Ordering;
 
 import java.sql.SQLException;
 

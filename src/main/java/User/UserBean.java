@@ -1,20 +1,19 @@
-package Order.item;
+package User;
 
 import java.sql.Timestamp;
 import java.util.Objects;
 
-public class UserOrderitem {
+public class UserBean {
     private int id;
     private int itemId;
     private String naem;
     private int number;
     private Timestamp subDate;
     private int score;
-
-    public UserOrderitem(){
+    public UserBean(){
 
     }
-    public UserOrderitem(int id,int itemId,String naem,int number,Timestamp subDateint,int score){
+    public UserBean(int id, int itemId, String naem, int number, Timestamp subDateint, int score){
         this.id = id;
         this.itemId = itemId;
         this.naem = naem;
@@ -22,7 +21,6 @@ public class UserOrderitem {
         this.subDate = subDate;
         this.score = score;
     }
-
 
     public int getId() {
         return id;
@@ -72,29 +70,13 @@ public class UserOrderitem {
         this.score = score;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserOrderitem item = (UserOrderitem) o;
+        UserBean item = (UserBean) o;
         return id == item.id && itemId == item.itemId && number == item.number && score == item.score && Objects.equals(naem, item.naem) && Objects.equals(subDate, item.subDate);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, itemId, naem, number, subDate, score);
-    }
-
-    @Override
-    public String toString() {
-        return "Item{" +
-                "id=" + id +
-                ", itemId=" + itemId +
-                ", naem='" + naem + '\'' +
-                ", number=" + number +
-                ", subDate=" + subDate +
-                ", score=" + score +
-                '}';
     }
 }
 

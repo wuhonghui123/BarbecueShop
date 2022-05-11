@@ -2,16 +2,17 @@ package Connectionsql;
 
 import java.sql.*;
 
-public class Connectionsqlimpl implements Connectionsql {
-
-    static String Url = "jdbc:mysql://127.0.0.1:3306/supermarket?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
-    static String UserName = "root";
-    static String Password = "123456";
+public class Connectionimpl implements Connectionsql {
     @Override
     public  Connection getConnection()
     {
+        String Url = "jdbc:mysql://127.0.0.1:3306/supermarket?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+        String UserName = "root";
+        String Password = "123456";
+        Connection conn = null;
         try {
-            return DriverManager.getConnection(Url,UserName,Password);
+             conn = DriverManager.getConnection(Url,UserName,Password);
+            return conn;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return null;

@@ -1,8 +1,8 @@
-package Order.item;
+package Order.bean;
 
 import java.util.Objects;
 
-public class CompleteOrderItem {
+public class CompleteOrderBean {
 
     private int userId;
 
@@ -27,8 +27,8 @@ public class CompleteOrderItem {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof CompleteOrderItem)) return false;
-        CompleteOrderItem that = (CompleteOrderItem) o;
+        if (!(o instanceof CompleteOrderBean)) return false;
+        CompleteOrderBean that = (CompleteOrderBean) o;
         return getUserId() == that.getUserId() && getOrderid() == that.getOrderid() && getFoodid() == that.getFoodid() && getNumber() == that.getNumber() && getFoodtitle().equals(that.getFoodtitle()) && getFoodprice().equals(that.getFoodprice());
     }
 
@@ -89,9 +89,9 @@ public class CompleteOrderItem {
 
 
 
-    public CompleteOrderItem(){}
+    public CompleteOrderBean(){}
 
-    public CompleteOrderItem(int userId, int orderid, int foodid, String foodtitle, String foodprice, int number) {
+    public CompleteOrderBean(int userId, int orderid, int foodid, String foodtitle, String foodprice, int number) {
         this.userId = userId;
         this.orderid = orderid;
         this.foodid = foodid;

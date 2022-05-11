@@ -1,15 +1,11 @@
 package View.UserView.UserOrderView;
 
 
-import Order.item.Orderitem;
-import View.UserView.*;
-import User.Useritem;
+import Order.bean.OrderBean;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -193,7 +189,7 @@ public class nowPanel extends JPanel {
 
     public Object[][] queryData(String sql) {
 
-        java.util.List<Orderitem> list = new ArrayList<Orderitem>();
+        java.util.List<OrderBean> list = new ArrayList<OrderBean>();
         Statement stmt = null;//SQL语句对象，拼SQL
         ResultSet rs = null;
         Connection conn=connection(sql);
@@ -207,7 +203,7 @@ public class nowPanel extends JPanel {
             }
             while (rs.next()) {
                 //每循环一次就是一个对象，把这个对象放入容器（List（有序可重复）、Set（无序不可重复）、Map（key、value结构）
-                Orderitem item = new Orderitem();
+                OrderBean item = new OrderBean();
                 item.setOrder_id(rs.getInt(1));
                 item.setUser_id(rs.getInt(2));
                 item.setOrder_price(rs.getFloat(3));

@@ -1,6 +1,6 @@
 package View.AdminView.AdminOrderView;
 
-import Order.item.AdminOrderitem;
+import Order.bean.AdminOrderBean;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -110,7 +110,7 @@ public class finishPanel extends JPanel{
 
     public Object[][] queryData(String sql) {
 
-        java.util.List<AdminOrderitem> list = new ArrayList<>();
+        java.util.List<AdminOrderBean> list = new ArrayList<>();
         Statement stmt = null;//SQL语句对象，拼SQL
         ResultSet rs = null;
         Connection conn=connection(sql);
@@ -124,7 +124,7 @@ public class finishPanel extends JPanel{
             }
             while (rs.next()) {
                 //每循环一次就是一个对象，把这个对象放入容器（List（有序可重复）、Set（无序不可重复）、Map（key、value结构）
-                AdminOrderitem adminItem = new AdminOrderitem();
+                AdminOrderBean adminItem = new AdminOrderBean();
                 adminItem.setUserId(rs.getInt(1));
                 adminItem.setId(rs.getInt(2));
                 adminItem.setItemId(rs.getInt(3));

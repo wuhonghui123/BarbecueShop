@@ -1,15 +1,11 @@
 package View.AdminView.AdminFoodView;
 
-import Food.FoodItem;
-import Order.OrderDaoImpl;
-import View.PayView.PayView;
+import Food.FoodBean;
 import View.UserView.ConnectionSQL;
-import View.UserView.UserOrderingView.OrderItem1;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -98,7 +94,7 @@ public class AdminFood  extends JPanel {
                     System.out.println(sales);
                     System.out.println(img_url);*/
 
-                    FoodItem foodItem =new FoodItem(id,title,price,description,sales,img_url);
+                    FoodBean foodBean =new FoodBean(id,title,price,description,sales,img_url);
 
 
 
@@ -151,7 +147,7 @@ public class AdminFood  extends JPanel {
 
     public Object[][] getDataFromDatabase() {
 
-        java.util.List<FoodItem> list = new ArrayList<>();
+        java.util.List<FoodBean> list = new ArrayList<>();
         Connection conn = null;
         /*String user = "root";
         String dbPassword = "757722";
@@ -164,14 +160,14 @@ public class AdminFood  extends JPanel {
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                FoodItem foodItem = new FoodItem();
-                foodItem.setId(rs.getInt(1));
-                foodItem.setTitle(rs.getString(2));
-                foodItem.setPrice(rs.getFloat(3));
-                foodItem.setDescription(rs.getString(4));
-                foodItem.setSales(rs.getInt(5));
-                foodItem.setImg_url(rs.getString(6));
-                list.add(foodItem);
+                FoodBean foodBean = new FoodBean();
+                foodBean.setId(rs.getInt(1));
+                foodBean.setTitle(rs.getString(2));
+                foodBean.setPrice(rs.getFloat(3));
+                foodBean.setDescription(rs.getString(4));
+                foodBean.setSales(rs.getInt(5));
+                foodBean.setImg_url(rs.getString(6));
+                list.add(foodBean);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

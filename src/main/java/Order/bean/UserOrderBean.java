@@ -1,21 +1,20 @@
-package Order.item;
+package Order.bean;
 
 import java.sql.Timestamp;
 import java.util.Objects;
 
-public class AdminOrderitem {
-    private int UserId;
+public class UserOrderBean {
     private int id;
     private int itemId;
     private String naem;
     private int number;
     private Timestamp subDate;
     private int score;
-    public AdminOrderitem(){
+
+    public UserOrderBean(){
 
     }
-    public AdminOrderitem(int UserId,int id,int itemId,String naem,int number,Timestamp subDate,int score){
-        this.UserId = UserId;
+    public UserOrderBean(int id, int itemId, String naem, int number, Timestamp subDateint, int score){
         this.id = id;
         this.itemId = itemId;
         this.naem = naem;
@@ -24,13 +23,6 @@ public class AdminOrderitem {
         this.score = score;
     }
 
-    public int getUserId() {
-        return UserId;
-    }
-
-    public void setUserId(int userId) {
-        UserId = userId;
-    }
 
     public int getId() {
         return id;
@@ -84,20 +76,19 @@ public class AdminOrderitem {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AdminOrderitem AdminOrderitem = (AdminOrderitem) o;
-        return UserId == AdminOrderitem.UserId && id == AdminOrderitem.id && itemId == AdminOrderitem.itemId && number == AdminOrderitem.number && score == AdminOrderitem.score && Objects.equals(naem, AdminOrderitem.naem) && Objects.equals(subDate, AdminOrderitem.subDate);
+        UserOrderBean item = (UserOrderBean) o;
+        return id == item.id && itemId == item.itemId && number == item.number && score == item.score && Objects.equals(naem, item.naem) && Objects.equals(subDate, item.subDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(UserId, id, itemId, naem, number, subDate, score);
+        return Objects.hash(id, itemId, naem, number, subDate, score);
     }
 
     @Override
     public String toString() {
-        return "adminItem{" +
-                "UserId=" + UserId +
-                ", id=" + id +
+        return "Item{" +
+                "id=" + id +
                 ", itemId=" + itemId +
                 ", naem='" + naem + '\'' +
                 ", number=" + number +

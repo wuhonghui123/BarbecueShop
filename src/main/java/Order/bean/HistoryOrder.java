@@ -1,20 +1,20 @@
-package Order.item;
+package Order.bean;
 
 import java.sql.Timestamp;
 import java.util.Objects;
 
-public class Orderitem {
+public class HistoryOrder {
     private int order_id;
     private int user_id;
     private float order_price;
     private Timestamp order_date;
     private String orser_pay;
 
-    public Orderitem(){
+    public HistoryOrder(){
 
     }
 
-    public Orderitem(int order_id) {
+    public HistoryOrder(int order_id) {
         this.order_id = order_id;
     }
 
@@ -62,8 +62,8 @@ public class Orderitem {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Orderitem orderitem = (Orderitem) o;
-        return order_id == orderitem.order_id && user_id == orderitem.user_id && Float.compare(orderitem.order_price, order_price) == 0 && Objects.equals(order_date, orderitem.order_date) && Objects.equals(orser_pay, orderitem.orser_pay);
+        HistoryOrder that = (HistoryOrder) o;
+        return order_id == that.order_id && user_id == that.user_id && Float.compare(that.order_price, order_price) == 0 && Objects.equals(order_date, that.order_date) && Objects.equals(orser_pay, that.orser_pay);
     }
 
     @Override
@@ -82,4 +82,3 @@ public class Orderitem {
                 '}';
     }
 }
-

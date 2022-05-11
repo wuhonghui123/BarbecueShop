@@ -1,7 +1,6 @@
 package View.UserView.UserOrderView;
 
-import Order.item.HistoryOrder;
-import Order.item.UserOrderitem;
+import Order.bean.HistoryOrder;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

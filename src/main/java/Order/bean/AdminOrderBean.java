@@ -1,25 +1,35 @@
-package User;
+package Order.bean;
 
 import java.sql.Timestamp;
 import java.util.Objects;
 
-public class Useritem {
+public class AdminOrderBean {
+    private int UserId;
     private int id;
     private int itemId;
     private String naem;
     private int number;
     private Timestamp subDate;
     private int score;
-    public Useritem(){
+    public AdminOrderBean(){
 
     }
-    public Useritem(int id,int itemId,String naem,int number,Timestamp subDateint,int score){
+    public AdminOrderBean(int UserId, int id, int itemId, String naem, int number, Timestamp subDate, int score){
+        this.UserId = UserId;
         this.id = id;
         this.itemId = itemId;
         this.naem = naem;
         this.number = number;
         this.subDate = subDate;
         this.score = score;
+    }
+
+    public int getUserId() {
+        return UserId;
+    }
+
+    public void setUserId(int userId) {
+        UserId = userId;
     }
 
     public int getId() {
@@ -70,13 +80,30 @@ public class Useritem {
         this.score = score;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Useritem item = (Useritem) o;
-        return id == item.id && itemId == item.itemId && number == item.number && score == item.score && Objects.equals(naem, item.naem) && Objects.equals(subDate, item.subDate);
+        AdminOrderBean AdminOrderBean = (AdminOrderBean) o;
+        return UserId == AdminOrderBean.UserId && id == AdminOrderBean.id && itemId == AdminOrderBean.itemId && number == AdminOrderBean.number && score == AdminOrderBean.score && Objects.equals(naem, AdminOrderBean.naem) && Objects.equals(subDate, AdminOrderBean.subDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(UserId, id, itemId, naem, number, subDate, score);
+    }
+
+    @Override
+    public String toString() {
+        return "adminItem{" +
+                "UserId=" + UserId +
+                ", id=" + id +
+                ", itemId=" + itemId +
+                ", naem='" + naem + '\'' +
+                ", number=" + number +
+                ", subDate=" + subDate +
+                ", score=" + score +
+                '}';
     }
 }
 

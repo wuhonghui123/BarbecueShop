@@ -1,8 +1,7 @@
 package View.UserView.UserOrderingView;
 
 import Order.*;
-import Order.item.Ordering;
-import Pay.WXPay;
+import Order.bean.Ordering;
 import View.PayView.PayView;
 
 import javax.swing.*;

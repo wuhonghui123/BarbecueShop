@@ -2,7 +2,7 @@ package Food;
 
 import java.util.Objects;
 
-public class FoodItem {
+public class FoodBean {
     private int id;
     private String title;
     private Float price;
@@ -10,10 +10,10 @@ public class FoodItem {
     private int sales;
     private String img_url;
 
-    public FoodItem() {
+    public FoodBean() {
     }
 
-    public FoodItem(int id, String title, Float price, String description, int sales, String img_url) {
+    public FoodBean(int id, String title, Float price, String description, int sales, String img_url) {
         this.id = id;
         this.title = title;
         this.price = price;
@@ -74,8 +74,8 @@ public class FoodItem {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FoodItem foodItem = (FoodItem) o;
-        return id == foodItem.id && sales == foodItem.sales && Objects.equals(title, foodItem.title) && Objects.equals(price, foodItem.price) && Objects.equals(description, foodItem.description) && Objects.equals(img_url, foodItem.img_url);
+        FoodBean foodBean = (FoodBean) o;
+        return id == foodBean.id && sales == foodBean.sales && Objects.equals(title, foodBean.title) && Objects.equals(price, foodBean.price) && Objects.equals(description, foodBean.description) && Objects.equals(img_url, foodBean.img_url);
     }
 
     @Override

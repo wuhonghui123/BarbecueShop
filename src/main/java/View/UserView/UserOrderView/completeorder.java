@@ -1,6 +1,6 @@
 package View.UserView.UserOrderView;
 
-import Order.item.CompleteOrderItem;
+import Order.bean.CompleteOrderBean;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -33,7 +33,7 @@ public class completeorder extends JFrame {
 
 
     public Object[][] queryData(String orderId){
-        java.util.List<CompleteOrderItem> list=new ArrayList<>();
+        java.util.List<CompleteOrderBean> list=new ArrayList<>();
         Statement stmt=null;
         ResultSet rs=null;
         //String sql="select * from completeorder";
@@ -51,7 +51,7 @@ public class completeorder extends JFrame {
             stmt = conn.createStatement();
             rs=stmt.executeQuery(sql);
             while (rs.next()){
-                CompleteOrderItem item=new CompleteOrderItem();
+                CompleteOrderBean item=new CompleteOrderBean();
                 //item.setUserId(rs.getInt(1));
                // item.setOrderid(rs.getInt(2));
                 item.setFoodid(rs.getInt(1));

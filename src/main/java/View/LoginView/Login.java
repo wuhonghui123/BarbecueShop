@@ -6,7 +6,7 @@ package View.LoginView;
 
 import View.AdminView.AdminOrderView.AdminOrder;
 import View.UserView.UserOrderView.UserMain;
-import Connectionsql.Connectionsqlimpl;
+import Connectionsql.Connectionimpl;
 
 import java.awt.*;
 import java.sql.*;
@@ -48,7 +48,7 @@ public class Login extends JFrame {
                 String dbPassword = "123456";
                 String url = "jdbc:mysql://120.25.164.209:3306/barbecueshopsystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
                 Connection conn = null;
-                Connectionsqlimpl a = new Connectionsqlimpl();
+                Connectionimpl a = new Connectionimpl();
                 String sql = "SELECT * FROM user WHERE user_id='" + userid + "' AND user_password='" + password + "'";
                 ResultSet rs = null;
                 Statement stmt = null;
@@ -156,6 +156,7 @@ public class Login extends JFrame {
         this.setVisible(true);
         Image icon = Toolkit.getDefaultToolkit().getImage("src/main/java/image/logo.png");
         this.setIconImage(icon);
+
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
