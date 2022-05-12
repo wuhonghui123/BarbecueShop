@@ -125,7 +125,7 @@ public class PayView{
         button2.addActionListener(e -> {
             WXPay wxPay = new WXPay();
             try {
-                wxPay.scanCodeToPay(ma,orderid,userid);
+                wxPay.scanCodeToPay(ma,orderid,userid,money);
             } catch (Exception exception) {
                 exception.printStackTrace();
             }

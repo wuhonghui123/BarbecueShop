@@ -44,7 +44,7 @@ public class WXPay {
      *
      * @throws Exception
      */
-    public  String scanCodeToPay(String auth_code,String orderid,String userid) throws Exception {
+    public  String scanCodeToPay(String auth_code,String orderid,String userid,float money) throws Exception {
         InetAddress addr = null;
         try {
             addr = InetAddress.getLocalHost();
@@ -57,14 +57,14 @@ public class WXPay {
         sdk.WXPay wxpay = new sdk.WXPay(config);
         String out_trade_no = DateUtil.getCurrentTime();
         Map<String, String> map = new HashMap<>(16);
-        map.put("attach", "祥麟烧烤");
+        map.put("attach", userid);//用户ID
         map.put("auth_code", auth_code);
         map.put("body", "祥麟烧烤");
         map.put("device_info", "蓝桥第6组");
         map.put("nonce_str", WXPayUtil.generateNonceStr());
-        map.put("out_trade_no", out_trade_no);
+        map.put("out_trade_no", orderid);
         map.put("spbill_create_ip", spbill_create_ip);
-        map.put("total_fee", "1");
+        map.put("total_fee", String.valueOf(money*100));
         //生成签名
         String sign = WXPayUtil.generateSignature(map, config.getKey());
         map.put("sign", sign);
