@@ -1,6 +1,7 @@
 package View.AdminView.AdminFoodView;
 
 import Food.FoodBean;
+import Food.FoodDaoImpl;
 import View.UserView.ConnectionSQL;
 
 import javax.swing.*;
@@ -90,7 +91,10 @@ public class AdminFood  extends JPanel {
         panel.add(button5);
         button5.setBounds(600, 360, 100, 30);
         button5.addActionListener((e)-> {
-                    //dispose()
+            int rowNo = table1.getSelectedRow();
+            int id=(int)table1.getValueAt(rowNo, 0);
+            FoodDaoImpl foodDao = new FoodDaoImpl();
+            foodDao.DeleteFood(id);
                 }
         );
 

@@ -90,33 +90,32 @@ public class AddFood extends JFrame {
         textField5.setBounds(70, 140, 130, 20);
 //        textField5.setText(String.valueOf(foodBean.getSales()));
 
-//        //---- label6 ----
-//        label6.setText("购买数量：");
-//        contentPane.add(label6);
-//        label6.setBounds(240, 140, 90, 20);
-//        contentPane.add(textField6);
-//        textField6.setBounds(300, 140, 130, 20);
+        //---- label6 ----
+        label6.setText("图片地址：");
+        contentPane.add(label6);
+        label6.setBounds(240, 140, 90, 20);
+        contentPane.add(textField6);
+        textField6.setBounds(300, 140, 130, 20);
 
 
-
-        //---- label7 ----
-        label7.setText("\u5546\u54c1\u56fe\u7247\uff1a");
-        contentPane.add(label7);
-        label7.setBounds(20, 200, 90, 20);
-        // contentPane.add(textField6);
-        // textField7.setBounds(70, 200, 130, 20);
-        // textField7.setText(foodItem.getImg_url());
-
-
-        //ImageIcon icon = new ImageIcon(foodBean.getImg_url());//图片地址
-        //icon.setImage(icon.getImage().getScaledInstance(120,120, Image.SCALE_DEFAULT));
-        JLabel label = new JLabel();
-        //label.setIcon(icon);
-        label.setBounds(0,0,120,120);//图片在面板中的位置和大小
-        panel1.add(label);
-        contentPane.add(panel1);
-        panel1.setBounds(100, 170, 120, 120);//放置图片的面板的位置和大小
-
+//        //---- label7 ----
+//        label7.setText("\u5546\u54c1\u56fe\u7247\uff1a");
+//        contentPane.add(label7);
+//        label7.setBounds(20, 200, 90, 20);
+//        // contentPane.add(textField6);
+//        // textField7.setBounds(70, 200, 130, 20);
+//        // textField7.setText(foodItem.getImg_url());
+//
+//
+//        //ImageIcon icon = new ImageIcon(foodBean.getImg_url());//图片地址
+//        //icon.setImage(icon.getImage().getScaledInstance(120,120, Image.SCALE_DEFAULT));
+//        JLabel label = new JLabel();
+//        //label.setIcon(icon);
+//        label.setBounds(0,0,120,120);//图片在面板中的位置和大小
+//        panel1.add(label);
+//        contentPane.add(panel1);
+//        panel1.setBounds(100, 170, 120, 120);//放置图片的面板的位置和大小
+//
 
 
 
@@ -129,11 +128,12 @@ public class AddFood extends JFrame {
                 (e)->{
                     // 执行UPDATE
                     FoodBean foodBean = new FoodBean();
-                    ordering.setId(Integer.parseInt(textField1.getText()));
-                    ordering.setTitle(textField2.getText());
-                    ordering.setPrice(Float.valueOf(textField3.getText()));
-                    ordering.setNumber(Integer.parseInt(textField6.getText()));
-                    ordering.setUser_id(Integer.parseInt(userid));
+                    foodBean.setId(Integer.parseInt(textField1.getText()));
+                    foodBean.setTitle(textField2.getText());
+                    foodBean.setPrice(Float.valueOf(textField3.getText()));
+                    foodBean.setDescription(textField4.getText());
+                    foodBean.setSales(0);
+                    foodBean.setImg_url(textField6.getText());
                     FoodDaoImpl foodDao = new FoodDaoImpl();
                     foodDao.addFood(foodBean);
                     dispose();
@@ -146,9 +146,7 @@ public class AddFood extends JFrame {
         contentPane.add(button2);
         button2.setBounds(250, 300, 100, 30);
         button2.addActionListener(
-                (e)->{
-                    dispose();
-                }
+                (e)-> dispose()
         );
 
         {

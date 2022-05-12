@@ -101,9 +101,9 @@ public class SeeFood extends JFrame {
         label7.setText("\u5546\u54c1\u56fe\u7247\uff1a");
         contentPane.add(label7);
         label7.setBounds(20, 200, 90, 20);
-        // contentPane.add(textField6);
-        // textField7.setBounds(70, 200, 130, 20);
-        // textField7.setText(foodItem.getImg_url());
+         contentPane.add(textField6);
+         textField7.setBounds(70, 200, 130, 20);
+         textField7.setText(foodBean.getImg_url());
 
 
         ImageIcon icon = new ImageIcon(foodBean.getImg_url());//图片地址

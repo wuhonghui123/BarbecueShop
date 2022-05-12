@@ -145,7 +145,7 @@ public class ShowOrder extends JPanel {
                 (e) -> {
                     OrderDaoImpl orderDao = new OrderDaoImpl();
                     try {
-                        orderDao.DeleteOrdering();
+                        orderDao.DeleteOrdering(userid);
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }

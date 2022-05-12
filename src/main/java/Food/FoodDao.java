@@ -2,5 +2,7 @@ package Food;
 
 
 public interface FoodDao {
-    public void addFood(FoodBean foodBean);
+    void addFood(FoodBean foodBean);
+    void GaiFood(FoodBean foodBean);
+    void DeleteFood(int foodid);
 }

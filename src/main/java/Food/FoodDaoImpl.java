@@ -49,4 +49,45 @@ public class FoodDaoImpl implements FoodDao{
             }
         }
     }
+@Override
+    public void GaiFood(FoodBean foodBean){
+    String user = "root";
+    String dbPassword = "123456";
+    String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+    try {
+        conn = DriverManager.getConnection(url, user, dbPassword);
+
+
+    String sql="UPDATE `food` set food_title = ? ,food_price = ? ,food_description = ? ,food_img = ? where food_id = ?";
+    PreparedStatement pstmt=conn.prepareStatement(sql);
+
+
+    pstmt.setString(1, foodBean.getTitle());
+    pstmt.setFloat(2, foodBean.getPrice());
+    pstmt.setString(3, foodBean.getDescription());
+//  pstmt.setInt(5,0);
+    pstmt.setString(4, foodBean.getImg_url());
+    pstmt.setInt(5, foodBean.getId());
+    pstmt.executeUpdate();
+    } catch (SQLException throwables) {
+        throwables.printStackTrace();
+    }
+}
+@Override
+    public void DeleteFood(int foodid){
+    String user = "root";
+    String dbPassword = "123456";
+    String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+    try {
+        conn = DriverManager.getConnection(url, user, dbPassword);
+
+
+        String sql="DELETE FROM `food` WHERE food_id=?";
+        PreparedStatement pstmt=conn.prepareStatement(sql);
+        pstmt.setString(1, String.valueOf(foodid));
+        pstmt.executeUpdate();
+    } catch (SQLException throwables) {
+        throwables.printStackTrace();
+    }
+}
 }

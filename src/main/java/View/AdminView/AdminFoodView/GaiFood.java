@@ -49,7 +49,7 @@ public class GaiFood extends JFrame {
         contentPane.setLayout(null);
 
         //---- label1 ----
-        label1.setText("\u5546\u54c1ID\uff1a");
+        label1.setText("商品ID：");
         contentPane.add(label1);
         label1.setBounds(20, 20, 55, 20);
         contentPane.add(textField1);
@@ -57,7 +57,7 @@ public class GaiFood extends JFrame {
         textField1.setText(String.valueOf(foodBean.getId()));
 
         //---- label2 ----
-        label2.setText("\u5546\u54c1\u540d\u79f0\uff1a");
+        label2.setText("商品名称：");
         contentPane.add(label2);
         label2.setBounds(240, 20, 90, 20);
         contentPane.add(textField2);
@@ -65,7 +65,7 @@ public class GaiFood extends JFrame {
         textField2.setText(foodBean.getTitle());
 
         //---- label3 ----
-        label3.setText("\u5355\u4ef7\uff1a");
+        label3.setText("单价");
         contentPane.add(label3);
         label3.setBounds(20, 80, 55, 20);
         contentPane.add(textField3);
@@ -73,7 +73,7 @@ public class GaiFood extends JFrame {
         textField3.setText(String.valueOf(foodBean.getPrice()));
 
         //---- label4 ----
-        label4.setText("\u63cf\u8ff0\uff1a");
+        label4.setText("描述");
         contentPane.add(label4);
         label4.setBounds(240, 80, 90, 20);
         contentPane.add(textField4);
@@ -88,12 +88,13 @@ public class GaiFood extends JFrame {
         textField5.setBounds(70, 140, 130, 20);
         textField5.setText(String.valueOf(foodBean.getSales()));
 
-//        //---- label6 ----
-//        label6.setText("购买数量：");
-//        contentPane.add(label6);
-//        label6.setBounds(240, 140, 90, 20);
-//        contentPane.add(textField6);
-//        textField6.setBounds(300, 140, 130, 20);
+        //---- label6 ----
+        label6.setText("图片地址：");
+        contentPane.add(label6);
+        label6.setBounds(240, 140, 90, 20);
+        contentPane.add(textField6);
+        textField6.setBounds(300, 140, 130, 20);
+        textField6.setText(foodBean.getImg_url());
 
 
 
@@ -101,9 +102,9 @@ public class GaiFood extends JFrame {
         label7.setText("\u5546\u54c1\u56fe\u7247\uff1a");
         contentPane.add(label7);
         label7.setBounds(20, 200, 90, 20);
-        // contentPane.add(textField6);
-        // textField7.setBounds(70, 200, 130, 20);
-        // textField7.setText(foodItem.getImg_url());
+         contentPane.add(textField6);
+         textField7.setBounds(70, 200, 130, 20);
+         textField7.setText(foodBean.getImg_url());
 
 
         ImageIcon icon = new ImageIcon(foodBean.getImg_url());//图片地址
@@ -127,13 +128,14 @@ public class GaiFood extends JFrame {
                 (e)->{
                     // 执行UPDATE
                     FoodBean foodBean = new FoodBean();
-                    ordering.setId(Integer.parseInt(textField1.getText()));
-                    ordering.setTitle(textField2.getText());
-                    ordering.setPrice(Float.valueOf(textField3.getText()));
-                    ordering.setNumber(Integer.parseInt(textField6.getText()));
-                    ordering.setUser_id(Integer.parseInt(userid));
+                    foodBean.setId(Integer.parseInt(textField1.getText()));
+                    foodBean.setTitle(textField2.getText());
+                    foodBean.setPrice(Float.valueOf(textField3.getText()));
+                    foodBean.setDescription(textField4.getText());
+                    foodBean.setSales(Integer.parseInt(textField5.getText()));
+                    foodBean.setImg_url(textField6.getText());
                     FoodDaoImpl foodDao = new FoodDaoImpl();
-                    foodDao.addFood(foodBean);
+                    foodDao.GaiFood(foodBean);
                     dispose();
 
                 }

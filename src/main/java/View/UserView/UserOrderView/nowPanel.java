@@ -53,8 +53,8 @@ public class nowPanel extends JPanel {
 
         JPanel north=new JPanel();
         Container container1=new Container();//容器，存放上面板所用
-        JLabel label1=new JLabel("订单号");
-        JLabel label2=new JLabel("订单号");
+//        JLabel label1=new JLabel("订单号");
+//        JLabel label2=new JLabel("订单号");
         JLabel label3=new JLabel("数量修改为");
         JButton button1=new JButton("查询");
         JButton button2=new JButton("确认送达");
@@ -70,9 +70,10 @@ public class nowPanel extends JPanel {
         container1.add(new JLabel(""));
         container1.add(new JLabel(""));
         container1.add(new JLabel(""));
-        container1.add(label1);
-        container1.add(text1);
+//        container1.add(label1);
+//        container1.add(text1);
         container1.add(button1);
+        container1.add(button2);
         container1.add(label4);
         container1.add(label5);
 
@@ -80,10 +81,19 @@ public class nowPanel extends JPanel {
         button1.addActionListener(e -> {
             int count= table.getSelectedRow();
             String orderId=table.getValueAt(count,0).toString();
-            String sql3="select * from completeorder where order_id="+orderId;
+//            String sql3="select * from completeorder where order_id="+orderId;
             new completeorder().completeorder(orderId);
         });
         /*--------------------------------查询订单--------------------------------*/
+
+
+        /*--------------------------------确认送达--------------------------------*/
+        button2.addActionListener(e -> {
+        int count= table.getSelectedRow();
+        String orderId=table.getValueAt(count,0).toString();
+        String sql3="insert into history select * from order where order_id="+orderId;
+});
+        /*--------------------------------确认送达--------------------------------*/
 
         /*--------------------------------修改订单--------------------------------*/
         /*button2.addActionListener(e -> {
@@ -123,50 +133,50 @@ public class nowPanel extends JPanel {
 
         /*--------------------------------------下方部分----------------------------------------*/
 
-        JPanel south=new JPanel();
-        south.setLayout(new GridLayout(1,5,50,0));
-        JButton S_button1=new JButton("支付已选的订单");
-        JButton S_button2=new JButton("取消已选的订单");
-        south.add(new JLabel(""));
-        south.add(S_button1);
-        south.add(S_button2);
-        south.add(new JLabel(""));
-        panel.add(south,BorderLayout.SOUTH);
+//        JPanel south=new JPanel();
+//        south.setLayout(new GridLayout(1,5,50,0));
+//        JButton S_button1=new JButton("支付已选的订单");
+//        JButton S_button2=new JButton("取消已选的订单");
+//        south.add(new JLabel(""));
+//        south.add(S_button1);
+//        south.add(S_button2);
+//        south.add(new JLabel(""));
+//        panel.add(south,BorderLayout.SOUTH);
 
         /*--------------------------------------下方部分----------------------------------------*/
 
         /*--------------------------------------删除部分----------------------------------------*/
 
 
-        S_button2.addActionListener(e -> {
-            int count= table.getSelectedRow();
-            int getId=Integer.parseInt(table.getValueAt(count,0).toString());
-            String sql2=new String();
-            try {
-                sql2="delete from `order` where order_id="+getId;
-                DefaultTableModel tableModel1=new DefaultTableModel(queryData(sql2),TableHead){
-                    public boolean isCellEditable(int row, int column) {
-                        return false;
-                    }
-                };
-                table=new JTable(tableModel1);
-                scrollPanel.setViewportView(table);
-            }catch (Exception e1){
-                e1.printStackTrace();
-                JDialog jDialog=new JDialog();
-                jDialog.setVisible(true);
-                jDialog.setLayout(new BorderLayout());
-                jDialog.setBounds(500,500,450,300);
-                JLabel lab=new JLabel("您未输入订单id或者修改的数量");
-                Font font=new Font("宋体",Font.PLAIN,28);
-                lab.setFont(font);
-                jDialog.add(lab, JLabel.CENTER);
-                JButton button=new JButton("确定");
-                button.setBounds(450,450,20,10);
-                jDialog.add(button,BorderLayout.SOUTH);
-                button.addActionListener(e22 -> jDialog.dispose());
-            }
-        });
+//        S_button2.addActionListener(e -> {
+//            int count= table.getSelectedRow();
+//            int getId=Integer.parseInt(table.getValueAt(count,0).toString());
+//            String sql2=new String();
+//            try {
+//                sql2="delete from `order` where order_id="+getId;
+//                DefaultTableModel tableModel1=new DefaultTableModel(queryData(sql2),TableHead){
+//                    public boolean isCellEditable(int row, int column) {
+//                        return false;
+//                    }
+//                };
+//                table=new JTable(tableModel1);
+//                scrollPanel.setViewportView(table);
+//            }catch (Exception e1){
+//                e1.printStackTrace();
+//                JDialog jDialog=new JDialog();
+//                jDialog.setVisible(true);
+//                jDialog.setLayout(new BorderLayout());
+//                jDialog.setBounds(500,500,450,300);
+//                JLabel lab=new JLabel("您未输入订单id或者修改的数量");
+//                Font font=new Font("宋体",Font.PLAIN,28);
+//                lab.setFont(font);
+//                jDialog.add(lab, JLabel.CENTER);
+//                JButton button=new JButton("确定");
+//                button.setBounds(450,450,20,10);
+//                jDialog.add(button,BorderLayout.SOUTH);
+//                button.addActionListener(e22 -> jDialog.dispose());
+//            }
+//        });
 
         /*--------------------------------------删除部分----------------------------------------*/
 
