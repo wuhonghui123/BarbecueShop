@@ -108,6 +108,7 @@ public class PayView{
         button1.addActionListener(e->{
             OrderDaoImpl orderDao=new OrderDaoImpl();
             orderDao.addOrder(orderid,userid);
+            orderDao.Updatecompeteorder(orderid,userid);
             try {
                 orderDao.DeleteOrdering(userid);
             } catch (SQLException throwables) {

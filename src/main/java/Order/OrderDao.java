@@ -28,4 +28,6 @@ public interface OrderDao {
     void addOrder(String orderid,String userid);
 
     void confirm(String orderid);
+
+    void Updatecompeteorder(String orderid,String userid);
 }
