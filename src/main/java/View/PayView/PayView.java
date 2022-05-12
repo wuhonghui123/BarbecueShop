@@ -107,8 +107,8 @@ public class PayView{
         button1.setBounds(new Rectangle(new Point(55, 230), button1.getPreferredSize()));
         button1.addActionListener(e->{
             OrderDaoImpl orderDao=new OrderDaoImpl();
+            orderDao.Updateordering(orderid,userid);
             orderDao.addOrder(orderid,userid);
-            orderDao.Updatecompeteorder(orderid,userid);
             try {
                 orderDao.DeleteOrdering(userid);
             } catch (SQLException throwables) {

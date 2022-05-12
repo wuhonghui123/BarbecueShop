@@ -51,7 +51,7 @@ public class AdminFood  extends JPanel {
 
         button1.setText("修改");
         panel.add(button1);
-        button1.setBounds(500, 360, 100, 30);
+        button1.setBounds(450, 400, 100, 30);
         button1.addActionListener(
                 (e)->{
                     int rowNo = table1.getSelectedRow();//获取所选的行号
@@ -78,7 +78,7 @@ public class AdminFood  extends JPanel {
         button3.setText("查看");
         panel.add(button3);
 //        button3.setBounds(510, 355, 100, 30);
-        button3.setBounds(300, 360, 100, 30);
+        button3.setBounds(250, 400, 100, 30);
         button3.addActionListener(
                 (e)->{
                     int rowNo = table1.getSelectedRow();//获取所选的行号
@@ -97,7 +97,7 @@ public class AdminFood  extends JPanel {
 
         button5.setText("删除");
         panel.add(button5);
-        button5.setBounds(600, 360, 100, 30);
+        button5.setBounds(550, 400, 100, 30);
         button5.addActionListener((e)-> {
             int rowNo = table1.getSelectedRow();
             int id=(int)table1.getValueAt(rowNo, 0);
@@ -115,7 +115,7 @@ public class AdminFood  extends JPanel {
 
         button2.setText("刷新");
         panel.add(button2);
-        button2.setBounds(700, 360, 100, 30);
+        button2.setBounds(650, 400, 100, 30);
         button2.addActionListener(
                 (e)-> {
                         DefaultTableModel tableModel3 = new DefaultTableModel(getDataFromDatabase(), head) {
@@ -130,7 +130,7 @@ public class AdminFood  extends JPanel {
 
         button4.setText("添加");
         panel.add(button4);
-        button4.setBounds(400, 360, 100, 30);
+        button4.setBounds(350, 400, 100, 30);
         button4.addActionListener(
                 (e)-> {
                     try {

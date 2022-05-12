@@ -56,7 +56,7 @@ public class UserOrdering extends JPanel {
 
         button1.setText("支付");
         panel.add(button1);
-        button1.setBounds(400, 360, 100, 30);
+        button1.setBounds(450, 500, 100, 30);
         button1.addActionListener(
                 (e)->{
                     OrderDaoImpl orderDao = new OrderDaoImpl();
@@ -96,7 +96,7 @@ public class UserOrdering extends JPanel {
         button3.setText("购买");
         panel.add(button3);
 //        button3.setBounds(510, 355, 100, 30);
-        button3.setBounds(300, 360, 100, 30);
+        button3.setBounds(350, 500, 100, 30);
         button3.addActionListener(
                 (e)->{
                     int rowNo = table1.getSelectedRow();//获取所选的行号
@@ -123,12 +123,17 @@ public class UserOrdering extends JPanel {
                 }
         );
 
-        button5.setText("返回");
+        button5.setText("刷新");
         panel.add(button5);
-        button5.setBounds(500, 360, 100, 30);
+        button5.setBounds(550, 500, 100, 30);
         button5.addActionListener((e)-> {
-
-            new Login();
+            DefaultTableModel tableModel2 = new DefaultTableModel(getDataFromDatabase(), head) {
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            table1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            table1.setModel(tableModel2);
                 }
         );
 

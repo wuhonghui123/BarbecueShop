@@ -57,18 +57,11 @@ public class historyPanel extends JPanel {
         JButton button1=new JButton("查询");
         JButton button3=new JButton("刷新");
 //        JTextField text1=new JTextField();
-        JLabel text2=new JLabel("");
-        container1.setLayout(new GridLayout(1,12));
+
+        container1.setLayout(new GridLayout(1,2));
 //        container1.add(label1);
 //        container1.add(text1);
         container1.add(button1);
-        container1.add(text2);
-        container1.add(text2);
-        container1.add(text2);
-        container1.add(text2);
-        container1.add(text2);
-        container1.add(text2);
-        container1.add(text2);
         container1.add(new JLabel(""));
         container1.add(button3);
         north.add(container1);

@@ -56,7 +56,7 @@ public class completeorder extends JFrame {
                // item.setOrderid(rs.getInt(2));
                 item.setFoodid(rs.getInt(1));
                 item.setFoodtitle(rs.getString(2));
-                item.setFoodprice(rs.getString(3));
+                item.setFoodprice(rs.getFloat(3));
                 item.setNumber(rs.getInt(4));
                 list.add(item);
             }

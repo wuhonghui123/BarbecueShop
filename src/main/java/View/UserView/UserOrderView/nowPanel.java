@@ -54,30 +54,20 @@ public class nowPanel extends JPanel {
 
         JPanel north=new JPanel();
         Container container1=new Container();//容器，存放上面板所用
-//        JLabel label1=new JLabel("订单号");
-//        JLabel label2=new JLabel("订单号");
-        JLabel label3=new JLabel("数量修改为");
         JButton button1=new JButton("查询");
         JButton button2=new JButton("确认送达");
         JButton button3=new JButton("刷新");
-        JTextField text1=new JTextField();
-        JLabel text2=new JLabel("");
-        JLabel text3=new JLabel("");
-        JLabel label5=new JLabel("");
-        JLabel label4=new JLabel("");
-        JTextField text4=new JTextField();
-        JTextField text5=new JTextField();
-        container1.setLayout(new GridLayout(1,12));
-        container1.add(new JLabel(""));
-        container1.add(new JLabel(""));
-        container1.add(new JLabel(""));
+//        JLabel label5=new JLabel("");
+//        JLabel label4=new JLabel("");
+        container1.setLayout(new GridLayout(1,3));
+
 //        container1.add(label1);
 //        container1.add(text1);
         container1.add(button1);
         container1.add(button2);
         container1.add(button3);
-        container1.add(label4);
-        container1.add(label5);
+//        container1.add(label4);
+//        container1.add(label5);
 
         /*--------------------------------查询订单--------------------------------*/
         button1.addActionListener(e -> {

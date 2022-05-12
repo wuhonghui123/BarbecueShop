@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class CompleteOrderBean {
 
-    private int userId;
+
 
     @Override
     public String toString() {
@@ -17,25 +17,28 @@ public class CompleteOrderBean {
                 ", number=" + number +
                 '}';
     }
-
-    private int orderid;
-    private int foodid;
-    private String foodtitle;
-    private String foodprice;
-    private int number;
+    private int userId;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof CompleteOrderBean)) return false;
         CompleteOrderBean that = (CompleteOrderBean) o;
-        return getUserId() == that.getUserId() && getOrderid() == that.getOrderid() && getFoodid() == that.getFoodid() && getNumber() == that.getNumber() && getFoodtitle().equals(that.getFoodtitle()) && getFoodprice().equals(that.getFoodprice());
+        return getUserId() == that.getUserId() && getOrderid() == that.getOrderid() && getFoodid() == that.getFoodid() && Float.compare(that.getFoodprice(), getFoodprice()) == 0 && getNumber() == that.getNumber() && Objects.equals(getFoodtitle(), that.getFoodtitle());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getUserId(), getOrderid(), getFoodid(), getFoodtitle(), getFoodprice(), getNumber());
     }
+
+    private int orderid;
+    private int foodid;
+    private String foodtitle;
+    private float foodprice;
+    private int number;
+
+
 
 
 
@@ -71,11 +74,11 @@ public class CompleteOrderBean {
         this.foodtitle = foodtitle;
     }
 
-    public String getFoodprice() {
+    public float getFoodprice() {
         return foodprice;
     }
 
-    public void setFoodprice(String foodprice) {
+    public void setFoodprice(float foodprice) {
         this.foodprice = foodprice;
     }
 
@@ -91,7 +94,7 @@ public class CompleteOrderBean {
 
     public CompleteOrderBean(){}
 
-    public CompleteOrderBean(int userId, int orderid, int foodid, String foodtitle, String foodprice, int number) {
+    public CompleteOrderBean(int userId, int orderid, int foodid, String foodtitle, float foodprice, int number) {
         this.userId = userId;
         this.orderid = orderid;
         this.foodid = foodid;

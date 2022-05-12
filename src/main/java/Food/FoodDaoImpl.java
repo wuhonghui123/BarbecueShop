@@ -47,6 +47,12 @@ public class FoodDaoImpl implements FoodDao{
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }finally {
+            try {
+                conn.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
     }
 @Override
@@ -71,6 +77,12 @@ public class FoodDaoImpl implements FoodDao{
     pstmt.executeUpdate();
     } catch (SQLException throwables) {
         throwables.printStackTrace();
+    }finally {
+        try {
+            conn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
 @Override
@@ -88,6 +100,12 @@ public class FoodDaoImpl implements FoodDao{
         pstmt.executeUpdate();
     } catch (SQLException throwables) {
         throwables.printStackTrace();
+    }finally {
+        try {
+            conn.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
 }

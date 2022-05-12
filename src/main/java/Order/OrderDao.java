@@ -29,5 +29,5 @@ public interface OrderDao {
 
     void confirm(String orderid);
 
-    void Updatecompeteorder(String orderid,String userid);
+    void Updateordering(String orderid,String userid);
 }

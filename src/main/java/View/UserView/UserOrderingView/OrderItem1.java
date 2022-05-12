@@ -134,6 +134,7 @@ public class OrderItem1 extends JFrame {
                     ordering.setPrice(Float.valueOf(textField3.getText()));
                     ordering.setNumber(Integer.parseInt(textField6.getText()));
                     ordering.setUser_id(Integer.parseInt(userid));
+                    ordering.setOrder_id(1);
 
                     OrderDao orderDaoImpl=new OrderDaoImpl();
                     try {

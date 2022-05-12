@@ -23,6 +23,12 @@ public class OrderDaoImpl implements OrderDao {
             pstmt.executeUpdate();//真正执行sql语句
         } catch (SQLException ex) {
             ex.printStackTrace();
+        }finally {
+            try {
+                conn.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
     }
 
@@ -33,31 +39,43 @@ public class OrderDaoImpl implements OrderDao {
             String dbPassword = "123456";
             String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
             conn = DriverManager.getConnection(url, user, dbPassword);
-            String sql="INSERT INTO completeorder (food_id,food_title,food_price,number,user_id)\n" +
-                    "SELECT food_id,food_title,food_price,number,user_id FROM ordering WHERE user_id = ?";
+            String sql="INSERT INTO completeorder (food_id,food_title,food_price,number,user_id,order_id)\n" +
+                    "SELECT food_id,food_title,food_price,number,user_id,order_id FROM ordering WHERE user_id = ?";
             PreparedStatement pstmt=conn.prepareStatement(sql);
             pstmt.setString(1,userid);
 
             pstmt.executeUpdate();//真正执行sql语句
         } catch (SQLException ex) {
             ex.printStackTrace();
+        }finally {
+            try {
+                conn.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
     }
 
     @Override
-    public void Updatecompeteorder(String orderid,String userid){
+    public void Updateordering(String orderid,String userid){
         try {
             String user = "root";
             String dbPassword = "123456";
             String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
             conn = DriverManager.getConnection(url, user, dbPassword);
-            String sql="UPDATE completeorder SET order_id = ? WHERE user_id = ?";
+            String sql="UPDATE ordering SET order_id = ? WHERE user_id = ?";
             PreparedStatement pstmt=conn.prepareStatement(sql);
             pstmt.setString(1,orderid);
             pstmt.setString(2,userid);
             pstmt.executeUpdate();//真正执行sql语句
         } catch (SQLException ex) {
             ex.printStackTrace();
+        }finally {
+            try {
+                conn.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
 
     }
@@ -76,6 +94,8 @@ public class OrderDaoImpl implements OrderDao {
         while (rs.next()) {
             money= rs.getFloat(1);
         }
+        conn.close();
+
         return money;
     }
 
@@ -109,6 +129,8 @@ public class OrderDaoImpl implements OrderDao {
             pstmt.executeUpdate();//真正执行sql语句
         } catch (SQLException ex) {
             ex.printStackTrace();
+        }finally {
+            conn.close();
         }
     }
 
@@ -126,6 +148,8 @@ public class OrderDaoImpl implements OrderDao {
             pstmt.executeUpdate();//真正执行sql语句
         } catch (SQLException ex) {
             ex.printStackTrace();
+        }finally {
+            conn.close();
         }
     }
 
@@ -145,6 +169,8 @@ public class OrderDaoImpl implements OrderDao {
             pstmt.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }finally {
+            conn.close();
         }
     }
 
@@ -159,7 +185,7 @@ public class OrderDaoImpl implements OrderDao {
             String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
             conn = DriverManager.getConnection(url, user, dbPassword);
 
-            String sql="INSERT INTO `ordering` VALUES(?,?,?,?,?)";
+            String sql="INSERT INTO `ordering` VALUES(?,?,?,?,?,?)";
             PreparedStatement pstmt=conn.prepareStatement(sql);
 
             pstmt.setInt(1, ordering.getId());
@@ -167,6 +193,7 @@ public class OrderDaoImpl implements OrderDao {
             pstmt.setFloat(3, ordering.getPrice());
             pstmt.setInt(4, ordering.getNumber());
             pstmt.setInt(5,ordering.getUser_id());
+            pstmt.setInt(6,ordering.getOrder_id());
             /*pstmt.setString(1,order.getId());
             pstmt.setInt(2,order.getMch_id());
             pstmt.setString(3,order.getOut_trade_no());
@@ -183,6 +210,8 @@ public class OrderDaoImpl implements OrderDao {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             throw new SQLException("新增订单失败");
+        }finally {
+            conn.close();
         }
     }
 }
