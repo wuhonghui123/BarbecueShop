@@ -107,6 +107,14 @@ public class nowPanel extends JPanel {
                 orderDao.DeleteOrders(orderId);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
+            }finally {
+                DefaultTableModel tableModel4=new DefaultTableModel(queryData(sql),TableHead){
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
+                    }
+                };
+                table=new JTable(tableModel4);
+                scrollPanel.setViewportView(table);
             }
         });
         /*--------------------------------确认送达--------------------------------*/

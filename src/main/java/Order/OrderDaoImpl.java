@@ -16,8 +16,7 @@ public class OrderDaoImpl implements OrderDao {
             String dbPassword = "123456";
             String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
             conn = DriverManager.getConnection(url, user, dbPassword);
-            String sql="INSERT INTO history (order_id,user_id,order_price,order_date,order_pay) " +
-                    "SELECT order_id,user_id,order_price,order_date,order_pay FROM 'order' WHERE order_id = ?";
+            String sql="INSERT INTO history SELECT * FROM `order` WHERE order_id = ?";
             PreparedStatement pstmt=conn.prepareStatement(sql);
             pstmt.setString(1, orderid);
 
