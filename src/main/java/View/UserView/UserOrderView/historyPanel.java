@@ -53,14 +53,14 @@ public class historyPanel extends JPanel {
 
         JPanel north=new JPanel();
         Container container1=new Container();//容器，存放上面板所用
-        JLabel label1=new JLabel("订单号");
+//        JLabel label1=new JLabel("订单号");
         JButton button1=new JButton("查询");
-        JButton button3=new JButton("返回");
-        JTextField text1=new JTextField();
+        JButton button3=new JButton("刷新");
+//        JTextField text1=new JTextField();
         JLabel text2=new JLabel("");
         container1.setLayout(new GridLayout(1,12));
-        container1.add(label1);
-        container1.add(text1);
+//        container1.add(label1);
+//        container1.add(text1);
         container1.add(button1);
         container1.add(text2);
         container1.add(text2);
@@ -78,21 +78,20 @@ public class historyPanel extends JPanel {
 
         /*--------------------------------查询订单--------------------------------*/
         button1.addActionListener(e -> {
-            String sql1 =new String();
-            try {
-                int selectId=Integer.parseInt(text1.getText());
-                sql1 = "SELECT * FROM history where order_id="+selectId+";";
-            }catch (Exception e1){
-                sql1 ="SELECT * FROM history;";
-            }finally {
-                DefaultTableModel tableModel1 =new DefaultTableModel(queryData(sql1),TableHead){
-                    public boolean isCellEditable(int row, int column) {
-                        return false;
-                    }
-                };
-                table=new JTable(tableModel1);
-                scrollPanel.setViewportView(table);
-            }
+            int count= table.getSelectedRow();
+            String orderId=table.getValueAt(count,0).toString();
+//            String sql3="select * from completeorder where order_id="+orderId;
+            new completeorder().completeorder(orderId);
+        });
+
+        button3.addActionListener(e -> {
+            DefaultTableModel tableModel1=new DefaultTableModel(queryData(sql),TableHead){
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            table=new JTable(tableModel1);
+            scrollPanel.setViewportView(table);
         });
         /*--------------------------------查询订单--------------------------------*/
         return panel;

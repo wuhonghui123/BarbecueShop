@@ -20,6 +20,7 @@ public class AdminFood  extends JPanel {
     private JLabel label1 = new JLabel();
     private JButton button5 = new JButton();
     private JButton button1 = new JButton();
+    private JButton button2 = new JButton();
     private JButton button3 = new JButton();
     private JButton button4 = new JButton();
     private Object[][] data = null;
@@ -109,6 +110,21 @@ public class AdminFood  extends JPanel {
             };
             table1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             table1.setModel(tableModel2);
+                }
+        );
+
+        button2.setText("刷新");
+        panel.add(button2);
+        button2.setBounds(700, 360, 100, 30);
+        button2.addActionListener(
+                (e)-> {
+                        DefaultTableModel tableModel3 = new DefaultTableModel(getDataFromDatabase(), head) {
+                            public boolean isCellEditable(int row, int column) {
+                                return false;
+                            }
+                        };
+                        table1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                        table1.setModel(tableModel3);
                 }
         );
 

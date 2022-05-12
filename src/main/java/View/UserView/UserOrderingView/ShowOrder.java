@@ -51,7 +51,7 @@ public class ShowOrder extends JPanel {
         //this jButton1
         jButton1.setText("删除");
         panel.add(jButton1);
-        jButton1.setBounds(350, 500, 100, 30);
+        jButton1.setBounds(300, 500, 100, 30);
         jButton1.addActionListener(
                 (e) -> {
                     OrderDaoImpl orderDao = new OrderDaoImpl();
@@ -79,7 +79,7 @@ public class ShowOrder extends JPanel {
         //this jButton2
         jButton2.setText("支付");
         panel.add(jButton2);
-        jButton2.setBounds(450, 500, 100, 30);
+        jButton2.setBounds(400, 500, 100, 30);
         jButton2.addActionListener(
                 (e) -> {
                     OrderDaoImpl orderDao = new OrderDaoImpl();
@@ -98,19 +98,25 @@ public class ShowOrder extends JPanel {
                 }
         );
 
-//        //this jButton3
-//        jButton3.setText("返回");
-//        panel.add(jButton3);
-//        jButton3.setBounds(550,500,100,30);
-//        jButton3.addActionListener(
-//                (e)->{
-//                   // dispose();
-//                }
-//        );
+        //this jButton3
+        jButton3.setText("刷新");
+        panel.add(jButton3);
+        jButton3.setBounds(600,500,100,30);
+        jButton3.addActionListener(
+                (e)->{
+                    DefaultTableModel tableModel2 = new DefaultTableModel(getDataFromDatabase(name,userid), head) {
+                        public boolean isCellEditable(int row, int column) {
+                            return false;
+                        }
+                    };
+                    table1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                    table1.setModel(tableModel2);
+                }
+        );
 
         jButton4.setText("清空");
         panel.add(jButton4);
-        jButton4.setBounds(550, 500, 100, 30);
+        jButton4.setBounds(500, 500, 100, 30);
         jButton4.addActionListener(
                 (e) -> {
                     OrderDaoImpl orderDao = new OrderDaoImpl();

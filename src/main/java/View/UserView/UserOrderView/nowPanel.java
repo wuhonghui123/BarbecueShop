@@ -58,7 +58,7 @@ public class nowPanel extends JPanel {
         JLabel label3=new JLabel("数量修改为");
         JButton button1=new JButton("查询");
         JButton button2=new JButton("确认送达");
-        JButton button3=new JButton("返回");
+        JButton button3=new JButton("刷新");
         JTextField text1=new JTextField();
         JLabel text2=new JLabel("");
         JLabel text3=new JLabel("");
@@ -74,6 +74,7 @@ public class nowPanel extends JPanel {
 //        container1.add(text1);
         container1.add(button1);
         container1.add(button2);
+        container1.add(button3);
         container1.add(label4);
         container1.add(label5);
 
@@ -85,7 +86,15 @@ public class nowPanel extends JPanel {
             new completeorder().completeorder(orderId);
         });
         /*--------------------------------查询订单--------------------------------*/
-
+        button3.addActionListener(e -> {
+            DefaultTableModel tableModel1=new DefaultTableModel(queryData(sql),TableHead){
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            table=new JTable(tableModel1);
+            scrollPanel.setViewportView(table);
+        });
 
         /*--------------------------------确认送达--------------------------------*/
         button2.addActionListener(e -> {
@@ -210,7 +219,7 @@ public class nowPanel extends JPanel {
             }else {
                 stmt.executeUpdate(sql);
                 rs = stmt.executeQuery(sql);
-            }
+           }
             while (rs.next()) {
                 //每循环一次就是一个对象，把这个对象放入容器（List（有序可重复）、Set（无序不可重复）、Map（key、value结构）
                 OrderBean item = new OrderBean();
