@@ -10,6 +10,42 @@ public class OrderDaoImpl implements OrderDao {
     Connection conn=null;
 
     @Override
+    public void confirm(String orderid){
+        try {
+            String user = "root";
+            String dbPassword = "123456";
+            String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+            conn = DriverManager.getConnection(url, user, dbPassword);
+            String sql="INSERT INTO history (order_id,user_id,order_price,order_date,order_pay) " +
+                    "SELECT order_id,user_id,order_price,order_date,order_pay FROM 'order' WHERE order_id = ?";
+            PreparedStatement pstmt=conn.prepareStatement(sql);
+            pstmt.setString(1, orderid);
+
+            pstmt.executeUpdate();//真正执行sql语句
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+@Override
+    public void addOrder(String orderid,String userid) {
+        try {
+            String user = "root";
+            String dbPassword = "123456";
+            String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+            conn = DriverManager.getConnection(url, user, dbPassword);
+            String sql="INSERT INTO completeorder (food_id,food_title,food_price,number,user_id,?) " +
+                    "SELECT food_id,food_title,food_price,number,user_id FROM ordering WHERE user_id = ?";
+            PreparedStatement pstmt=conn.prepareStatement(sql);
+            pstmt.setString(1, orderid);
+            pstmt.setString(2,userid);
+
+            pstmt.executeUpdate();//真正执行sql语句
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    @Override
     public float pay(String userid)throws SQLException{
         float money=0;
         String user = "root";
@@ -40,6 +76,22 @@ public class OrderDaoImpl implements OrderDao {
         return sb.toString();
     }
 
+    @Override
+    public  void DeleteOrders(String orderid) throws SQLException{
+        try {
+            String user = "root";
+            String dbPassword = "123456";
+            String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+            conn = DriverManager.getConnection(url, user, dbPassword);
+            String sql="DELETE FROM `order` WHERE order_id=?";
+            PreparedStatement pstmt=conn.prepareStatement(sql);
+            pstmt.setString(1,orderid);
+
+            pstmt.executeUpdate();//真正执行sql语句
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 
 @Override
     public  void DeleteOrder(int id) throws SQLException{

@@ -1,6 +1,7 @@
 package View.UserView.UserOrderView;
 
 
+import Order.OrderDaoImpl;
 import Order.bean.OrderBean;
 
 import javax.swing.*;
@@ -100,8 +101,14 @@ public class nowPanel extends JPanel {
         button2.addActionListener(e -> {
         int count= table.getSelectedRow();
         String orderId=table.getValueAt(count,0).toString();
-        String sql3="insert into history select * from order where order_id="+orderId;
-});
+        OrderDaoImpl orderDao = new OrderDaoImpl();
+        orderDao.confirm(orderId);
+            try {
+                orderDao.DeleteOrders(orderId);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        });
         /*--------------------------------确认送达--------------------------------*/
 
         /*--------------------------------修改订单--------------------------------*/

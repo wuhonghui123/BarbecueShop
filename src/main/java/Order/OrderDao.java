@@ -19,7 +19,13 @@ public interface OrderDao {
 
     void DeleteOrder(int id) throws SQLException;
 
+    void DeleteOrders(String orderid) throws SQLException;
+
     void DeleteOrdering(String userid) throws SQLException;
 
     float pay(String userid)throws SQLException;
+
+    void addOrder(String orderid,String userid);
+
+    void confirm(String orderid);
 }
