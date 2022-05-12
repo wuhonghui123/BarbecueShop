@@ -51,11 +51,10 @@ public class OrderDaoImpl implements OrderDao {
             String dbPassword = "123456";
             String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
             conn = DriverManager.getConnection(url, user, dbPassword);
-            String sql="UPDATE ordering SET order_id = ? WHERE user_id = ?";
+            String sql="UPDATE completeorder SET order_id = ? WHERE user_id = ?";
             PreparedStatement pstmt=conn.prepareStatement(sql);
             pstmt.setString(1,orderid);
             pstmt.setString(2,userid);
-
             pstmt.executeUpdate();//真正执行sql语句
         } catch (SQLException ex) {
             ex.printStackTrace();
