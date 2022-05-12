@@ -95,8 +95,6 @@ public class historyPanel extends JPanel {
             }
         });
         /*--------------------------------查询订单--------------------------------*/
-
-
         return panel;
     }
     private Connection connection(String sql){
@@ -147,7 +145,6 @@ public class historyPanel extends JPanel {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-
         }
 
         Object[][] data = new Object[list.size()][TableHead.length];

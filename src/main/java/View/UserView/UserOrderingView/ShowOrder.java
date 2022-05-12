@@ -26,49 +26,10 @@ public class ShowOrder extends JPanel {
     private Object[][] data = null;
 
     public JPanel Show(String name, String userid) {
-        Connection conn = null;
-        String user = "root";
-        String dbPassword = "123456";
-        String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
-        java.util.List<Ordering> list1 = new ArrayList<Ordering>();
-        try {
-            conn = DriverManager.getConnection(url, user, dbPassword);
-//                conn=ConnectionHandler.getConn();
-            Statement stmt = null;
-            String sql = "SELECT * FROM " + name + " WHERE user_id = " + userid;
-            ResultSet rs = null;
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            rs = pstmt.executeQuery(sql);
-            while (rs.next()) {
-                Ordering ordering = new Ordering();
-                ordering.setId(rs.getInt(1));
-                ordering.setTitle(rs.getString(2));
-                ordering.setPrice(rs.getFloat(3));
-                ordering.setNumber(rs.getInt(4));
-                list1.add(ordering);
 
-            }
-
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-
-        }
-
-        data = new Object[list1.size()][head.length];
-
-        for (int i = 0; i < list1.size(); i++) {
-            for (int j = 0; j < head.length; j++) {
-                data[i][0] = list1.get(i).getId();
-                data[i][1] = list1.get(i).getTitle();
-                data[i][2] = list1.get(i).getPrice();
-                data[i][3] = list1.get(i).getNumber();
-
-            }
-        }
 //                                 return data;
 
-        DefaultTableModel tableModel = new DefaultTableModel(data, head) {
+        DefaultTableModel tableModel = new DefaultTableModel(getDataFromDatabase(name,userid), head) {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
@@ -100,6 +61,15 @@ public class ShowOrder extends JPanel {
                         orderDao.DeleteOrder(id);
                     } catch (SQLException ex) {
                         ex.printStackTrace();
+                    }finally {
+                        DefaultTableModel tableModel1 = new DefaultTableModel(getDataFromDatabase(name,userid), head) {
+                            public boolean isCellEditable(int row, int column) {
+                                return false;
+                            }
+                        };
+                        table1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                        table1.setModel(tableModel1);
+
                     }
                 }
 
@@ -149,6 +119,15 @@ public class ShowOrder extends JPanel {
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
+                    finally {
+                        DefaultTableModel tableModel2 = new DefaultTableModel(getDataFromDatabase(name,userid), head) {
+                            public boolean isCellEditable(int row, int column) {
+                                return false;
+                            }
+                        };
+                        table1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                        table1.setModel(tableModel2);
+                    }
                 }
         );
 
@@ -178,6 +157,47 @@ public class ShowOrder extends JPanel {
         }
 
         return panel;
+    }
+    public Object[][] getDataFromDatabase(String name,String userid){
+        Connection conn = null;
+        String user = "root";
+        String dbPassword = "123456";
+        String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+
+        java.util.List<Ordering> list1 = new ArrayList<>();
+        try {
+            conn = DriverManager.getConnection(url, user, dbPassword);
+//                conn=ConnectionHandler.getConn();
+            Statement stmt = null;
+            String sql = "SELECT * FROM " + name + " WHERE user_id = " + userid;
+            ResultSet rs = null;
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery(sql);
+            while (rs.next()) {
+                Ordering ordering = new Ordering();
+                ordering.setId(rs.getInt(1));
+                ordering.setTitle(rs.getString(2));
+                ordering.setPrice(rs.getFloat(3));
+                ordering.setNumber(rs.getInt(4));
+                list1.add(ordering);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+
+        }
+
+        data = new Object[list1.size()][head.length];
+
+        for (int i = 0; i < list1.size(); i++) {
+            for (int j = 0; j < head.length; j++) {
+                data[i][0] = list1.get(i).getId();
+                data[i][1] = list1.get(i).getTitle();
+                data[i][2] = list1.get(i).getPrice();
+                data[i][3] = list1.get(i).getNumber();
+            }
+        }
+        return data;
     }
 
 }

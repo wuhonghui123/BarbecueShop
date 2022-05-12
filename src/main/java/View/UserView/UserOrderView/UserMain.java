@@ -21,7 +21,6 @@ public class UserMain {
 
         JTabbedPane jTabbedPane = new JTabbedPane(SwingConstants.NORTH, JTabbedPane.SCROLL_TAB_LAYOUT);
 
-
         System.out.println("当前登录的用户ID: "+userid);
         JFrame frame = new JFrame("用户主页  "+userid);
 

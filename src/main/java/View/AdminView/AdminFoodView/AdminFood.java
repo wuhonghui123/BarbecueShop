@@ -63,6 +63,13 @@ public class AdminFood  extends JPanel {
                     FoodBean foodBean =new FoodBean(id,title,price,description,sales,img_url);
                     GaiFood gaiFood = new GaiFood(foodBean);
                     gaiFood.setVisible(true);
+                    DefaultTableModel tableModel1 = new DefaultTableModel(getDataFromDatabase(), head) {
+                        public boolean isCellEditable(int row, int column) {
+                            return false;
+                        }
+                    };
+                    table1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                    table1.setModel(tableModel1);
                 }
         );
 
@@ -95,6 +102,13 @@ public class AdminFood  extends JPanel {
             int id=(int)table1.getValueAt(rowNo, 0);
             FoodDaoImpl foodDao = new FoodDaoImpl();
             foodDao.DeleteFood(id);
+            DefaultTableModel tableModel2 = new DefaultTableModel(getDataFromDatabase(), head) {
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            table1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            table1.setModel(tableModel2);
                 }
         );
 
@@ -103,9 +117,17 @@ public class AdminFood  extends JPanel {
         button4.setBounds(400, 360, 100, 30);
         button4.addActionListener(
                 (e)-> {
-
-                    new AddFood();
-
+                    try {
+                        new AddFood();
+                    } finally {
+                        DefaultTableModel tableModel3 = new DefaultTableModel(getDataFromDatabase(), head) {
+                            public boolean isCellEditable(int row, int column) {
+                                return false;
+                            }
+                        };
+                        table1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                        table1.setModel(tableModel3);
+                    }
                 }
         );
 
@@ -159,13 +181,13 @@ public class AdminFood  extends JPanel {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
-            try {
-                rs.close();
-                stmt.close();
-                conn.close();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+//            try {
+//                rs.close();
+//                stmt.close();
+//                conn.close();
+//            } catch (SQLException throwables) {
+//                throwables.printStackTrace();
+//            }
         }
         // 把集合的数据（商品信息）转换成二维数组
         data = new Object[list.size()][head.length];
