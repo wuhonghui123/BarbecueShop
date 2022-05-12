@@ -76,6 +76,9 @@ public class OrderDaoImpl implements OrderDao {
         return sb.toString();
     }
 
+
+
+//用于确认送达将表order的数据传送给表history后删除表order中这个数据
     @Override
     public  void DeleteOrders(String orderid) throws SQLException{
         try {
@@ -93,6 +96,7 @@ public class OrderDaoImpl implements OrderDao {
         }
     }
 
+    //删除购物车中一行数据
 @Override
     public  void DeleteOrder(int id) throws SQLException{
         try {
@@ -103,7 +107,6 @@ public class OrderDaoImpl implements OrderDao {
             String sql="DELETE FROM `ordering` WHERE food_id=?";
             PreparedStatement pstmt=conn.prepareStatement(sql);
             pstmt.setInt(1,id);
-
             pstmt.executeUpdate();//真正执行sql语句
         } catch (SQLException ex) {
             ex.printStackTrace();
