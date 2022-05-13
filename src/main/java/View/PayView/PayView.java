@@ -10,6 +10,8 @@ import Pay.WXPay;
 import java.awt.*;
 import java.io.File;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
 import javax.swing.*;
 
 /**
@@ -106,17 +108,20 @@ public class PayView{
         frame.add(button1);
         button1.setBounds(new Rectangle(new Point(55, 230), button1.getPreferredSize()));
         button1.addActionListener(e->{
+            try {
+            Date date = new Date();
+            Timestamp timestamp = new Timestamp(date.getTime());
             OrderDaoImpl orderDao=new OrderDaoImpl();
             orderDao.Updateordering(orderid,userid);
             orderDao.addOrder(orderid,userid);
-            try {
-                orderDao.DeleteOrdering(userid);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+            orderDao.DeleteOrdering(userid);
+            orderDao.newOrders(orderid,userid,money,timestamp);
             WXPay wxpay = new WXPay();
             wxpay.unifiedOrder(orderid,userid,money);
             label.setIcon(new ImageIcon("src/main/java/image/二维码.jpg"));//显示二维码
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         });
 
         //---- button2 ----

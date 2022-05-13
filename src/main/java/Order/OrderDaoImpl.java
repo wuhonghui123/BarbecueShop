@@ -1,7 +1,9 @@
 package Order;
 
 
+import Order.bean.OrderBean;
 import Order.bean.Ordering;
+import util.ConnectionHandler;
 
 import java.sql.*;
 import java.util.Random;
@@ -212,6 +214,38 @@ public class OrderDaoImpl implements OrderDao {
             throw new SQLException("新增订单失败");
         }finally {
             conn.close();
+        }
+    }
+
+    @Override
+    public void newOrders(String orderid,String userid,float money,Timestamp timestamp) throws SQLException{
+        Connection conn = null;
+        try {
+
+            conn = ConnectionHandler.getConn();
+            // System.out.println(conn.hashCode());
+            //conn.setAutoCommit(false);//取消自动提交，自己控制，也叫开始事务
+            String sql="INSERT INTO `order` VALUES(?,?,?,?,?)";
+            PreparedStatement pstmt=conn.prepareStatement(sql);
+
+            pstmt.setString(1,orderid);
+            pstmt.setString(2,userid);
+            pstmt.setFloat(3,money);
+            pstmt.setTimestamp(4,timestamp);
+            pstmt.setString(5,"未支付");
+//            pstmt.setInt(7,order.getItem_id());
+//            pstmt.setFloat(8,order.getItem_price());
+//            pstmt.setInt(9,order.getAmount());
+//            pstmt.setFloat(10,order.getOrder_price());
+
+            pstmt.executeUpdate();
+
+            //conn.commit();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            throw  new SQLException("新增订单失败");
+
         }
     }
 }

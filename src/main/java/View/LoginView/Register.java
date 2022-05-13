@@ -25,7 +25,7 @@ public class Register extends JFrame {
         radioButton2 = new JRadioButton();
         textField1 = new JTextField();
         textField2 = new JTextField();
-        textField3 = new JTextField();
+        textField3 = new JPasswordField();
         textField4 = new JTextField();
         button1 = new JButton();
         button2 = new JButton();
@@ -36,17 +36,17 @@ public class Register extends JFrame {
         label5 = new JLabel();
 
         //======== this ========
-        setTitle("Register");
+        setTitle("注册");
         var contentPane = getContentPane();
         contentPane.setLayout(null);
 
         //---- radioButton1 ----
-        radioButton1.setText("user");
+        radioButton1.setText("用户");
         contentPane.add(radioButton1);
         radioButton1.setBounds(new Rectangle(new Point(205, 60), radioButton1.getPreferredSize()));
 
         //---- radioButton2 ----
-        radioButton2.setText("admin");
+        radioButton2.setText("管理员");
         contentPane.add(radioButton2);
         radioButton2.setBounds(new Rectangle(new Point(300, 60), radioButton2.getPreferredSize()));
 
@@ -64,7 +64,7 @@ public class Register extends JFrame {
         textField4.setBounds(220, 220, 110, textField4.getPreferredSize().height);
 
         //---- button1 ----
-        button1.setText("Register");
+        button1.setText("注册");
         contentPane.add(button1);
         button1.setBounds(new Rectangle(new Point(185, 290), button1.getPreferredSize()));
         button1.addActionListener(e-> {
@@ -86,6 +86,8 @@ public class Register extends JFrame {
                             conn.close();// 关闭数据库连接对象
                         } catch (SQLException ex) {
                             ex.printStackTrace();
+                        }finally {
+                            JOptionPane.showMessageDialog(null, "注册成功");
                         }
                     }
                     else if (radioButton2.isSelected()) {
@@ -107,13 +109,15 @@ public class Register extends JFrame {
                             conn.close();// 关闭数据库连接对象
                         } catch (SQLException ex) {
                             ex.printStackTrace();
+                        }finally {
+                            JOptionPane.showMessageDialog(null, "注册成功");
                         }
                     }
                 }
         );
 
         //---- button2 ----
-        button2.setText("return");
+        button2.setText("返回");
         contentPane.add(button2);
         button2.setBounds(new Rectangle(new Point(305, 290), button2.getPreferredSize()));
         button2.addActionListener(e-> {
@@ -122,22 +126,22 @@ public class Register extends JFrame {
         );
 
         //---- label1 ----
-        label1.setText("id");
+        label1.setText("账号");
         contentPane.add(label1);
         label1.setBounds(new Rectangle(new Point(140, 110), label1.getPreferredSize()));
 
         //---- label2 ----
-        label2.setText("name");
+        label2.setText("名字");
         contentPane.add(label2);
         label2.setBounds(new Rectangle(new Point(140, 150), label2.getPreferredSize()));
 
         //---- label3 ----
-        label3.setText("passward");
+        label3.setText("密码");
         contentPane.add(label3);
         label3.setBounds(new Rectangle(new Point(140, 185), label3.getPreferredSize()));
 
         //---- label4 ----
-        label4.setText("phone");
+        label4.setText("手机号");
         contentPane.add(label4);
         label4.setBounds(new Rectangle(new Point(140, 225), label4.getPreferredSize()));
 
@@ -159,7 +163,7 @@ public class Register extends JFrame {
     private JRadioButton radioButton2;
     private JTextField textField1;
     private JTextField textField2;
-    private JTextField textField3;
+    private JPasswordField textField3;
     private JTextField textField4;
     private JButton button1;
     private JButton button2;

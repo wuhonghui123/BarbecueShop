@@ -140,11 +140,11 @@ public class Login extends JFrame {
         label2.setBounds(new Rectangle(new Point(170, 220), label2.getPreferredSize()));
         contentPane.add(textField1);
         textField1.setBounds(245, 165, 120, textField1.getPreferredSize().height);
-        textField1.setText("10086");
+        textField1.setText("");
 //        contentPane.add(textField2);
 //        textField2.setBounds(245, 215, 120, textField2.getPreferredSize().height);
 //        textField2.setText("123456");
-        mima.setText("123456");
+        mima.setText("");
         mima.setBounds(245, 215, 120, mima.getPreferredSize().height);
         contentPane.add(mima);
 

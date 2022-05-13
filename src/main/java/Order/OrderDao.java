@@ -1,8 +1,10 @@
 package Order;
 
+import Order.bean.OrderBean;
 import Order.bean.Ordering;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 /**
  * 操作订单
@@ -25,9 +27,11 @@ public interface OrderDao {
 
     float pay(String userid)throws SQLException;
 
-    void addOrder(String orderid,String userid);
+    void addOrder(String orderid,String userid) throws SQLException;
 
-    void confirm(String orderid);
+    void confirm(String orderid) throws SQLException;
 
-    void Updateordering(String orderid,String userid);
+    void Updateordering(String orderid,String userid) throws SQLException;
+
+    void newOrders(String orderid, String userid, float money, Timestamp timestamp) throws SQLException;
 }
