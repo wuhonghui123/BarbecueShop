@@ -10,7 +10,7 @@ import java.awt.*;
 public class UserMain {
 
     public void init(String userid) {
-        String sql1 = "select * from `order` WHERE user_id = "+userid;
+        String sql1 = "select * from `orders` WHERE user_id = "+userid;
         String sql2 = "select * from history WHERE user_id = "+userid;
         String sql3 = "ordering";
 

@@ -18,7 +18,7 @@ public class OrderDaoImpl implements OrderDao {
             String dbPassword = "123456";
             String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
             conn = DriverManager.getConnection(url, user, dbPassword);
-            String sql="INSERT INTO history SELECT * FROM `order` WHERE order_id = ?";
+            String sql="INSERT INTO history SELECT * FROM `orders` WHERE order_id = ?";
             PreparedStatement pstmt=conn.prepareStatement(sql);
             pstmt.setString(1, orderid);
 
@@ -124,7 +124,7 @@ public class OrderDaoImpl implements OrderDao {
             String dbPassword = "123456";
             String url = "jdbc:mysql://120.25.164.209:3306/BarbecueShopSystem?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
             conn = DriverManager.getConnection(url, user, dbPassword);
-            String sql="DELETE FROM `order` WHERE order_id=?";
+            String sql="DELETE FROM `orders` WHERE order_id=?";
             PreparedStatement pstmt=conn.prepareStatement(sql);
             pstmt.setString(1,orderid);
 
@@ -225,7 +225,7 @@ public class OrderDaoImpl implements OrderDao {
             conn = ConnectionHandler.getConn();
             // System.out.println(conn.hashCode());
             //conn.setAutoCommit(false);//取消自动提交，自己控制，也叫开始事务
-            String sql="INSERT INTO `order` VALUES(?,?,?,?,?)";
+            String sql="INSERT INTO `orders` VALUES(?,?,?,?,?)";
             PreparedStatement pstmt=conn.prepareStatement(sql);
 
             pstmt.setString(1,orderid);

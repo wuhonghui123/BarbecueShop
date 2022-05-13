@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AdminOrder {
-    String sql1 = "select * from `order` ";
+    String sql1 = "select * from `orders` ";
     String sql2 = "select * from history ";
     JFrame frame = new JFrame("商家订单信息");
     JPanel panel1 = new processPanel().init(sql1);
