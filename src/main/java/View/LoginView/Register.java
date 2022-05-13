@@ -59,9 +59,9 @@ public class Register extends JFrame {
         contentPane.add(textField2);
         textField2.setBounds(220, 145, 115, textField2.getPreferredSize().height);
         contentPane.add(textField3);
-        textField3.setBounds(220, 180, 110, textField3.getPreferredSize().height);
+        textField3.setBounds(220, 180, 115, textField3.getPreferredSize().height);
         contentPane.add(textField4);
-        textField4.setBounds(220, 220, 110, textField4.getPreferredSize().height);
+        textField4.setBounds(220, 220, 115, textField4.getPreferredSize().height);
 
         //---- button1 ----
         button1.setText("注册");
